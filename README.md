@@ -24,7 +24,7 @@ Information pages and other documents:
 -User Manual:  
 -Team:  
 -Report:https://drive.google.com/file/d/0B4k_15Pd490fVHZJVzNmTmZINzg/view  
--Inception/Planning:  
+-Inception/Planning: https://github.com/sSarahlei/Watch-It/wiki/Inception%5C-planning  
 
 
 
