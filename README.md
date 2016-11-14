@@ -16,6 +16,15 @@ Chat:
 Task management system:
 https://github.com/sSarahlei/Watch-It/search?q=issues&type=Issues&utf8=%E2%9C%93
 
+Note:This project is carried out within the framework of Software engineering course in Azreili College.
+      Course Materials://https://github.com/jce-il/se-class-materials 
+
+Information pages and other documents:
+
+-User Manual:
+-Team:
+-Report:https://drive.google.com/file/d/0B4k_15Pd490fVHZJVzNmTmZINzg/view
+-Inception/Planning:
 
 
 
