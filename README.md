@@ -1,30 +1,30 @@
-Project Name:
-Watch-It
+Project Name:  
+Watch-It  
 
-Summary:
-Watch-It is a unique new venture of selling watches through web catalougs allowing price reduction by tens of precents.
-The Develope system Implements a marketing platform that manages the project in a way that is easy both for the buyer and for the company.
-The system is designed primarily for the Hareidi Sector who require filtering of inappropiate content.
+Summary:  
+Watch-It is a unique new venture of selling watches through web catalougs allowing price reduction by tens of precents.  
+The Develope system Implements a marketing platform that manages the project in a way that is easy both for the buyer and for the company.  
+The system is designed primarily for the Hareidi Sector who require filtering of inappropiate content.  
 
-Logo:
+Logo:  
 
-Current distribution of the product:
+Current distribution of the product:  
 https://drive.google.com/file/d/0B4k_15Pd490fcXFHbUlGVkptT1k/view
+  
+Chat:  
 
-Chat:
+Task management system:  
+https://github.com/sSarahlei/Watch-It/search?q=issues&type=Issues&utf8=%E2%9C%93  
 
-Task management system:
-https://github.com/sSarahlei/Watch-It/search?q=issues&type=Issues&utf8=%E2%9C%93
+Note:This project is carried out within the framework of Software engineering course in Azreili College.  
+      Course Materials://https://github.com/jce-il/se-class-materials   
 
-Note:This project is carried out within the framework of Software engineering course in Azreili College.
-      Course Materials://https://github.com/jce-il/se-class-materials 
+Information pages and other documents:  
 
-Information pages and other documents:
-
--User Manual:
--Team:
--Report:https://drive.google.com/file/d/0B4k_15Pd490fVHZJVzNmTmZINzg/view
--Inception/Planning:
+-User Manual:  
+-Team:  
+-Report:https://drive.google.com/file/d/0B4k_15Pd490fVHZJVzNmTmZINzg/view  
+-Inception/Planning:  
 
 
 
