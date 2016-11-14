@@ -12,6 +12,7 @@ Current distribution of the product:
 https://drive.google.com/file/d/0B4k_15Pd490fcXFHbUlGVkptT1k/view
   
 Chat:  
+https://gitter.im/se-class-2017a/Lobby
 
 Task management system:  
 https://github.com/sSarahlei/Watch-It/search?q=issues&type=Issues&utf8=%E2%9C%93  
