@@ -2,8 +2,8 @@ Project Name:
 Watch-It  
 
 Summary:  
-Watch-It is a unique new venture of selling watches through web catalougs allowing price reduction by tens of precents.  
-The Develope system Implements a marketing platform that manages the project in a way that is easy both for the buyer and for the company.  
+Watch-It is a unique new venture of selling watches through web catalogs allowing price reduction by tens of precents.  
+The Developed system Implements a marketing platform that manages the project in a way that is easy both for the buyer and for the company.  
 The system is designed primarily for the Hareidi Sector who require filtering of inappropiate content.  
 
 Logo:  
