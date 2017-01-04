@@ -1,0 +1,25 @@
+{
+  "name": "WatchItProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sSarahlei/Watch-It"
+  },
+  "author": "WatchIt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sSarahlei/Watch-It/issues"
+  },
+  "homepage": "https://github.com/sSarahlei/Watch-It",
+  "dependencies": {
+    "angular": "^1.6.0",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.16",
+    "mongoose": "^4.7.6"
+  }
+}
