@@ -1,0 +1,68 @@
+
+<div class="container">
+    <h2 text align="right">ניהול חברות</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>עידכון</th>
+            <th>מחיקה</th>
+            <th>פרטים נוספים</th>
+            <th>אחוז רווח</th>
+            <th>אחוז חישוב</th>
+            <th>תמונה</th>
+            <th>שם חברה</th>
+            <th>מזהה</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div class="container">
+        <!-- Trigger the modal with a button -->
+        <button type="button" align="right" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">הוספת חברה חדשה</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">הוסף חברה:</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                        <label>שם:
+                            <input type="text" id="name" placeholder="שם חברה" />
+                        </label></br>
+                        <label>תמונה:
+                            <input type="file" id="image" placeholder="תמונה" />
+                        </label></br>
+                        <label>אחוז חישוב:
+                            <input type="text"  id="precentClac" placeholder="אחוז חישוב" />
+                        </label></br>
+                        <label>אחוז רווח:
+                            <input type="text"  id="precentProfit" placeholder="אחוז רווח" />
+                        </label></br>
+                        <label>פרטים נוספים:
+                            <input type="text"  id="details"placeholder="פרטים נוספים" />
+                        </label></br>
+                            <input type="submit"  class="btn btn-default" name="submit" value="אישור" data-dismiss="modal"/></br></br>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    #myModal {
+        direction: rtl;
+        font-size: large;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+
