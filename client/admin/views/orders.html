@@ -11,11 +11,20 @@
             <th>מזהה פרטי תשלום</th>
             <th>מזהה שעון</th>
             <th>מזהה מזמין</th>
-            <th>מזהה</th>
+
 
         </tr>
         </thead>
         <tbody>
+        <tr ng-repeat="item in ordersList">
+            <th>הזמנה מהספק</th>
+            <th>עידכון</th>
+            <th><a ng-click="deleteOrder(item._id)">מחיקה</a></th>
+            <th>{{item.dateOrder | date:'dd/MM/yyyy' }}</th>
+            <th>{{item.payment}}</th>
+            <th>{{item.watch}}</th>
+            <th>{{item.client}}</th>
+        </tr>
         </tbody>
     </table>
     <button type="button" align="right" class="btn btn-default btn-lg">הוספת הזמנה חדשה</button>

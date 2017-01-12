@@ -32,32 +32,48 @@ var Schema = mongoose.Schema;
 // var ordersCollection = DB.collection('orders').find();
 // var companiesCollection = DB.collection('companies').find();
 // var usersCollection = DB.collection('users').find();
-
 module.exports={
-    test:function() {
+    //companies
+    getAllCompanies:function() {
         return DB.collection('companies').find({});
     },
-    insertCompany:function(document){
-
-        DB.collection('companies').insertOne(document);
-        console.log("Inserted document");
-        return DB.collection('companies').find({});
-
-
-
-    },
-
     deleteCompany:function(id){
 
         DB.collection('companies').deleteOne({_id:new mongodb.ObjectID(id)});
-        //DB.getCollection('companies').deleteOne({_id:ObjectId("5874c68f9e811ce0e00205fd")})
+            console.log("Removed document");
+            return DB.collection('companies').find({});
+
+
+
+    },
+
+    //orders
+    getAllOrders:function() {
+        return DB.collection('orders').find({});
+    },
+    deleteOrder:function(id){
+
+        DB.collection('orders').deleteOne({_id:new mongodb.ObjectID(id)});
         console.log("Removed document");
-        // console.log(DB.collection('companies').find({}));
-        return DB.collection('companies').find({});
+        return DB.collection('orders').find({});
 
 
 
-    }
+    },
+    //watches
+    getAllWatches:function() {
+        return DB.collection('Watches').find({});
+    },
+    deleteWatches:function(id){
+
+        DB.collection('Watches').deleteOne({_id:new mongodb.ObjectID(id)});
+        console.log("Removed document");
+        return DB.collection('Watches').find({});
+
+
+
+    },
+
 }
 
 

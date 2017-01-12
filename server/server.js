@@ -1,56 +1,40 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var app = express();
-app.use(bodyParser.json());
 var path = require('path');
-var dir=path.resolve('../client/admin/views');
-app.use(express.static(dir));
-var db=require('./db.js');
+ var dir=path.resolve('../client/admin/views');
+//var dirCustomer=path.resolve('../client/customer/views');
 
+app.use(express.static(dir));
+//app.use(express.static(dirCustomer));
+var db=require('./db.js');
+//console.log(db.dbw);
 
 app.listen(3000, function () {
     console.log("server running at port 3000!");
 
 });
+//companies
 app.get('/getCompanies', function (req, res) {
     console.log("serving getCompanies");
-    var arr=db.test();
+    var arr=db.getAllCompanies();
 
     var arrComp;
 
     arr.toArray(function(err, items) { //foreach
-        arrComp=JSON.stringify(items);
-        res.send(arrComp);
+         arrComp=JSON.stringify(items);
+         res.send(arrComp);
 
     });
 
 
 });
-//sarah
-app.post('/insertCompany', function (req, res,next) {
-
-    console.log("serving insertCompany");
-    var document=req.body;
-    console.log(document);
-    var arr=db.insertCompany(document);
-    console.log("arr"+arr);
-    var arrComp;
-    arr.toArray(function(err, items) { //foreach
-        arrComp=JSON.stringify(items);
-        //console.log(items);
-        res.send(arrComp);
-
-    });
-
-});
-//sophia
 app.get('/deleteCompany/:id', function (req, res) {
 
     console.log("serving deleteCompany");
     console.log(req.params.id);
     var arr=db.deleteCompany(req.params.id);
 
-    var arrComp;
+     var arrComp;
     arr.toArray(function(err, items) { //foreach
         arrComp=JSON.stringify(items);
         //console.log(items);
@@ -60,9 +44,74 @@ app.get('/deleteCompany/:id', function (req, res) {
 
 });
 
+//tzofia
+//orders
+app.get('/getOrders', function (req, res) {
+    console.log("serving getOrders");
+    var arr=db.getAllOrders();
+
+    var arrOrders;
+
+    arr.toArray(function(err, items) { //foreach
+        arrOrders=JSON.stringify(items);
+        res.send(arrOrders);
+
+    });
+
+
+});
+app.get('/deleteOrders/:id', function (req, res) {
+
+    console.log("serving deleteOrders");
+    console.log(req.params.id);
+    var arr=db.deleteOrder(req.params.id);
+
+    var arrOrders;
+    arr.toArray(function(err, items) { //foreach
+        arrOrders=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrOrders);
+
+    });
+
+});
+
+//watches
+//tzofia
+app.get('/getWatches', function (req, res) {
+    console.log("serving getWatches");
+    var arr=db.getAllWatches();
+
+    var arrWatches;
+
+    arr.toArray(function(err, items) { //foreach
+        arrWatches=JSON.stringify(items);
+        res.send(arrWatches);
+
+    });
+
+
+});
+app.get('/deleteWatch/:id', function (req, res) {
+
+    console.log("serving deleteWatche");
+    console.log(req.params.id);
+    var arr=db.deleteWatches(req.params.id);
+
+    var arrWatches;
+    arr.toArray(function(err, items) { //foreach
+        arrWatches=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrWatches);
+
+    });
+
+});
+
+
+
 /*Sarah*/
 app.get('/',function(req,res){
-
     res.sendFile(path.join(dir,'/index.html'));
     //__dirname : It will resolve to your project folder.
 });
@@ -97,14 +146,68 @@ app.get('/message',function(req,res){
 
 
 
-
-// app.get('/getCompanies', function (req, res) {
-//     console.log("serving getCompanies");
-//    // res.sendFile(path.join(_dirname+’/index.html');
+//customer
+// app.get('/',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/index.html'));
+//     //__dirname : It will resolve to your project folder.
 // });
-
-
-
-
-
-
+//
+// app.get('/404',function(req,res){
+//
+//     res.sendFile(path.join(dirCustomer,'/404.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/about',function(req,res){
+//
+//     res.sendFile(path.join(dirCustomer,'/about.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/brands',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/brands.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/checkout',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/checkout.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/contact',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/contact.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/home',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/home.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/legall',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/legall.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/login',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/login.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/men',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/men.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/order',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/order.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+//
+// app.get('/register',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/register.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/single',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/single.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/whatsNew',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/whatsNew.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/woman',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/woman.html'));
+//     //__dirname : It will resolve to your project folder.
+// });

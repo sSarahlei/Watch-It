@@ -16,14 +16,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--webfont-->
 <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="../../../js/libraries/jquery-1.12.4.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="../../../js/libraries/megamenu.js"></script>
+<script type="text/javascript" src="/megamenu.js"></script>
     <!-- to fix - the order of the menu not  true -->
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-<script src="../../../js/libraries/jquery.easydropdown.js"></script>
-<script src="../../../js/libraries/simpleCart.min.js"> </script>
+<script src="/jquery.easydropdown.js"></script>
+<script src="/simpleCart.min.js"> </script>
 
 <link href="css/bootstrap-theme.min.css" rel='stylesheet' type='text/css' />
     <link href="css/bootstrap-rtl.min.css" rel='stylesheet' type='text/css' />
@@ -31,25 +34,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
      <!-- load angular and angular route via CDN -->
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
 
 
 
-<script src="../../../js/libraries/angular/angular.js"></script>
-<script src="../../../js/libraries/angular/angular-route.js"></script>
+<!--<script src="angular.js"></script>-->
+<!--<script src="angular-route.js"></script>-->
 <script src="app.js"></script>
-<script src="..\controllers\404Ctrl.js"></script>
-<script src="..\controllers\brandsCtrl.js"></script>
-<script src="..\controllers\checkoutCtrl.js"></script>
-<script src="..\controllers\contactCtrl.js"></script>
-<script src="..\controllers\indexCtrl.js"></script>
-<script src="..\controllers\loginCtrl.js"></script>
-<script src="..\controllers\menCtrl.js"></script>
-<script src="..\controllers\newCtrl.js"></script>
-<script src="..\controllers\orderCtrl.js"></script>
-<script src="..\controllers\singleCtrl.js"></script>
-<script src="..\controllers\womanCtrl.js"></script>
+<script src="404Ctrl.js"></script>
+<script src="brandsCtrl.js"></script>
+<script src="checkoutCtrl.js"></script>
+<script src="contactCtrl.js"></script>
+<script src="indexCtrl.js"></script>
+<script src="loginCtrl.js"></script>
+<script src="menCtrl.js"></script>
+<script src="newCtrl.js"></script>
+<script src="orderCtrl.js"></script>
+<script src="singleCtrl.js"></script>
+<script src="womanCtrl.js"></script>
 </head>
 <body ng-controller="indexCtrl">
 	<div id="index_banner" class="banner">
@@ -95,8 +98,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                         <!----search-scripts---->
-                        <script src="../../../js/libraries/classie1.js"></script>
-                        <script src="../../../js/libraries/uisearch.js"></script>
+                        <script src="classie1.js"></script>
+                        <script src="uisearch.js"></script>
                         <script>
                                new UISearch(document.getElementById('sb-search'));
                         </script>

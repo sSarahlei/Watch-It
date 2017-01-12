@@ -26,9 +26,9 @@
         </tr>
         </tbody>
     </table>
-    <di<div class="container">
+    <div class="container">
         <!-- Trigger the modal with a button -->
-        <button  type="button" align="right" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" ng-click="insert()">הוספת חברה חדשה</button>
+        <button  type="button" align="right" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">הוספת חברה חדשה</button>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal">
@@ -38,23 +38,23 @@
                         <h2 class="modal-title">הוסף חברה:</h2>
                     </div>
                     <div class="modal-body">
-                        <form name="addForm" ng-submit="submitForm(addForm)">
-                            <label>שם:
-                                <input type="text" id="name" placeholder="שם חברה" ng-model="name" />
-                            </label></br>
-                            <label>תמונה:
-                                <input type="text" id="image" placeholder="תמונה" ng-model="image" />
-                            </label></br>
-                            <label>אחוז חישוב:
-                                <input type="text"  id="percentClac" placeholder="אחוז חישוב" ng-model="percentCalc" />
-                            </label></br>
-                            <label>אחוז רווח:
-                                <input type="text"  id="percentProfit" placeholder="אחוז רווח" ng-model="percentProfit" />
-                            </label></br>
-                            <label>פרטים נוספים:
-                                <input type="text"  id="details"placeholder="פרטים נוספים"  ng-model="form.details"/>
-                            </label></br>
-                            <input type="submit"  class="btn btn-default" name="submit" value="אישור"  data-dismiss="modal" ng-click="insert()"></br></br>
+                        <form>
+                        <label>שם:
+                            <input type="text" id="name" placeholder="שם חברה" />
+                        </label></br>
+                        <label>תמונה:
+                            <input type="file" id="image" placeholder="תמונה" />
+                        </label></br>
+                        <label>אחוז חישוב:
+                            <input type="text"  id="precentClac" placeholder="אחוז חישוב" />
+                        </label></br>
+                        <label>אחוז רווח:
+                            <input type="text"  id="precentProfit" placeholder="אחוז רווח" />
+                        </label></br>
+                        <label>פרטים נוספים:
+                            <input type="text"  id="details"placeholder="פרטים נוספים" />
+                        </label></br>
+                            <input type="submit"  class="btn btn-default" name="submit" value="אישור" data-dismiss="modal"/></br></br>
                         </form>
 
                     </div>
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-    </didiv>
+    </div>
 
 </div>
 <style>

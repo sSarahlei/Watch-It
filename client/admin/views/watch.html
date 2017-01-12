@@ -18,6 +18,18 @@
         </tr>
         </thead>
         <tbody>
+        <tr ng-repeat="item in watchesList">
+            <th>עידכון</th>
+            <th><a ng-click="deleteWatch(item._id)">מחיקה</a></th>
+            <th>{{item.category}}</th>
+            <th>{{item.image}}</th>
+            <th>{{item.details}}</th>
+            <th>{{item.type}}</th>
+            <th>{{item.inStock}}</th>
+            <th>{{item.endPrice}}</th>
+            <th>{{item.priceList}}</th>
+            <th>{{item.model}}</th>
+        </tr>
         </tbody>
     </table>
     <button type="button" align="right" class="btn btn-default btn-lg">הוספת שעון חדש</button>
