@@ -1,450 +1,213 @@
+var express = require('express');
+var app = express();
+var path = require('path');
+ var dir=path.resolve('../client/admin/views');
+//var dirCustomer=path.resolve('../client/customer/views');
 
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-var url = 'mongodb://localhost:27017/dbWatch';
-//init mongoose
-var mongoose= require('mongoose');
-mongoose.connect('mongodb://localhost/dbWatch');
-var Schema = mongoose.Schema;
+app.use(express.static(dir));
+//app.use(express.static(dirCustomer));
+var db=require('./db.js');
+//console.log(db.dbw);
 
+app.listen(3000, function () {
+    console.log("server running at port 3000!");
 
-MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    if(err) { return console.log(err); } //handling errors
-    console.log("connected!");
-    var typesCollection = db.collection('types');
-    var permissionsCollection = db.collection('permissions');
-    var watchesCollection = db.collection('Watches');
-    var categoriesCollection = db.collection('categories');
-    var clientsCollection = db.collection('clients');
-    var ordersCollection = db.collection('orders');
-    var companiesCollection = db.collection('companies');
-    var usersCollection = db.collection('users');
-
-    /*insert by sarah Leibovitz*/
-    // var document= {
-    //     "client" : null,
-    //     "watch" : "58653fbccab7e7d4fd4dade3",
-    //     "payment" : null,
-    //     "dateOrder" : 2.7
-    // }
-    typesCollection.insert(document, function(err,docsInserted){
-        if(err) {
-            throw err;
-        }
-    });
-    permissionsCollection.insert(document, function(err,docsInserted){
-        if(err) {
-            throw err;
-        }
-    });
-    watchesCollection.insert(document, function(err,docsInserted){
-        if(err) {
-            throw err;
-        }
-    });
-    categoriesCollection.insert(document, function(err,docsInserted){
-        if(err) {
-            throw err;
-        }
-    });
-    clientsCollection.insert(document, function(err,docsInserted){
-        if(err) {
-            throw err;
-        }
-    });
-    ordersCollection.insert(document, function(err,docsInserted){
-        if(err) {
-            throw err;
-        }
-    });
-    companiesCollection.insert(document, function(err,docsInserted){
-        if(err) {
-            throw err;
-        }
-    });
-    usersCollection.insert(document, function(err,docsInserted){
-        if(err) {
-            throw err;
-        }
-    });
-    /*find collection to and convert to array by Sarah Leibovitz*/
-    typesCollection.find({}).toArray(function(err, docs) {
-        console.log("Found the following records");
-        console.dir(docs);
-    });
-    permissionsCollection.find({}).toArray(function(err, docs) {
-        console.log("Found the following records");
-        console.dir(docs);
-    });
-    watchesCollection.find({}).toArray(function(err, docs) {
-        console.log("Found the following records");
-        console.dir(docs);
-    });
-    categoriesCollection.find({}).toArray(function(err, docs) {
-        console.log("Found the following records");
-        console.dir(docs);
-    });
-    clientsCollection.find({}).toArray(function(err, docs) {
-        console.log("Found the following records");
-        console.dir(docs);
-    });
-    ordersCollection.find({}).toArray(function(err, docs) {
-        console.log("Found the following records");
-        console.dir(docs);
-    });
-    companiesCollection.find({}).toArray(function(err, docs) {
-        console.log("Found the following records");
-        console.dir(docs);
-    });
-    usersCollection.find({}).toArray(function(err, docs) {
-        console.log("Found the following records");
-        console.dir(docs);
-    });
-    //delete document from collection by chedva klinger
-    typesCollection.deleteOne(document, function (err, docs) {
-        console.log("Removed document");
-        console.dir(docs);
-    });
-    permissionsCollection.deleteOne(document, function (err, docs) {
-        console.log("Removed document");
-        console.dir(docs);
-    });
-    watchesCollection.deleteOne(document, function (err, docs) {
-        console.log("Removed document");
-        console.dir(docs);
-    });
-    categoriesCollection.deleteOne(document, function (err, docs) {
-        console.log("Removed document");
-        console.dir(docs);
-    });
-    clientsCollection.deleteOne(document, function (err, docs) {
-        console.log("Removed document");
-        console.dir(docs);
-    });
-    ordersCollection.deleteOne(document, function (err, docs) {
-        console.log("Removed document");
-        console.dir(docs);
-    });
-    companiesCollection.deleteOne(document, function (err, docs) {
-        console.log("Removed document");
-        console.dir(docs);
-    });
-    usersCollection.deleteOne(document, function (err, docs) {
-        console.log("Removed document");
-        console.dir(docs);
-    });
-    /*created by adina and zehava*/
-//clients
-    var clientsSchema = new Schema({
-        _id: String,
-        name: String,
-        email:String,
-        tel: String,
-        payment: String
-    }, {collection: 'clients'});
-    var Clients = mongoose.model('Clients', clientsSchema);
-
-//watches
-    var watchesSchema = new Schema({
-        _id: String,
-        model: String,
-        priceList:String,
-        endPrice: String,
-        inStock: String,
-        type:String,
-        details:String,
-        image:String,
-        category:String
-    }, {collection: 'Watches'});
-    var Watches = mongoose.model('Watches', watchesSchema);
-
-//categories
-    var categorieSchema = new Schema({
-        _id: String,
-        title: String
-    }, {collection: 'categories'});
-    var Categories = mongoose.model('categories', categorieSchema);
-
+});
 //companies
-    var companiesSchema = new Schema({
-        _id: String,
-        name: String,
-        image:String,
-        percentCalc: String,
-        percentProfit: String,
-        details:String
-    }, {collection: 'companies'});
-    var Companies = mongoose.model('companies', companiesSchema);
+app.get('/getCompanies', function (req, res) {
+    console.log("serving getCompanies");
+    var arr=db.getAllCompanies();
 
-//orders
-    var ordersSchema = new Schema({
-        _id: String,
-        client: String,
-        watch:String,
-        payment: String,
-        dateOrder: String
-    }, {collection: 'orders'});
-    var Orders = mongoose.model('orders', ordersSchema);
+    var arrComp;
 
-//permissions
-    var permissionsSchema = new Schema({
-        _id: String,
-        title: String,
-        level:String
-    }, {collection: 'permissions'});
-    var Permissions = mongoose.model('permissions', permissionsSchema);
+    arr.toArray(function(err, items) { //foreach
+         arrComp=JSON.stringify(items);
+         res.send(arrComp);
 
-//types
-    var typesSchema = new Schema({
-        _id: String,
-        title: String
-    }, {collection: 'types'});
-    var Types = mongoose.model('types', typesSchema);
-
-//users
-    var usersSchema = new Schema({
-        _id: String,
-        name: String,
-        password:String,
-        mailDelivery:String,
-        permissions:String
-    }, {collection: 'users'});
-    var Users = mongoose.model('users', usersSchema);
-
-
-//fetch all clients
-    Clients.find({ }, function(err,clientsData) {
-        if (err) {
-            return console.log("something went wrong when fetching the data");
-        }
-
-        console.log(clinetsData);
     });
-
-
-    //fetch all users
-    Users.find({ }, function(err,usersData) {
-        if (err) {
-            return console.log("something went wrong when fetching the data");
-        }
-
-        console.log(usersData);
-    });
-
-    //fetch all types
-    Types.find({ }, function(err,types) {
-        if (err) {
-            return console.log("something went wrong when fetching the data");
-        }
-
-        console.log(types);
-    });
-
-
-    //fetch all permission
-    Permissions.find({ }, function(err,permissions) {
-        if (err) {
-            return console.log("something went wrong when fetching the data");
-        }
-
-        console.log(permissions);
-    });
-
-
-    //fetch all categories
-    Categories.find({ }, function(err,categories) {
-        if (err) {
-            return console.log("something went wrong when fetching the data");
-        }
-
-        console.log(categories);
-    });
-
-
-    //fetch all orders
-    Orders.find({ }, function(err,orders) {
-        if (err) {
-            return console.log("something went wrong when fetching the data");
-        }
-
-        console.log(orders)
-    });
-
-
-
-    //fetch all companies
-    Companies.find({}, function(err,companyData) {
-        if (err) {
-            return console.log("something went wrong when fetching the data");
-        }
-
-        console.log(CompanyData);
-    });
-
-
-    //fetch all watches
-    Watches.find({}, function(err,WatchData) {
-        if (err) {
-            return console.log("something went wrong when fetching the data");
-        }
-
-        console.log(WatchData);
-    });
-
-    /*
-     //fetch first client that matches name+email
-     Clients.findOne({name: client.name,email: client.email}, function(err,clientD) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(clinetD);
-     });
-
-     //fetch all users that match wanted permission
-     Users.find({permission: user.permission }, function(err,usersByPermissionData) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(usersByPermissionData);
-     });
-
-     //fetch first user that matches name+password
-     Users.findOne({name: user.name, password: user.password}, function(err,userD) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(userD);
-     });
-
-     //fetch type that match wanted title
-     Types.find({title: type.title}, function(err,typesByTitle) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(typesByTitle);
-     });
-
-     //fetch permission that match wanted title
-     Permissions.find({title: permission.title}, function(err,permissionByTitle) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(permissionByTitle);
-     });
-
-     //fetch categories that match wanted title
-     Categories.find({title: categoriy.title}, function(err,categoryByTitle) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(categoryByTitle);
-     });
-
-
-     //fetch all orders of wanted client
-     Orders.find({client: order.client}, function(err,ordersByClient) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(ordersByClient);
-     });
-
-     //fetch all orders of wanted date
-     Orders.find({dateOrder: order.dateOrder}, function(err,ordersByDate) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(ordersByClient);
-     });
-
-     //fetch all orders of wanted client+dateOrder
-     Orders.find({client: order.client, dateOrder: order.dateOrder}, function(err,ordersByClientAndDate) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(ordersByClientAndDate);
-     });
-
-     //fetch all companies by propfit percent
-     Companies.find({percentProfit: company.precentprofit}, function(err,companyByProfitPercent) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(companyByProfitPercent);
-     });
-
-     //fetch all companies by calc percent
-     Companies.find({percentCalc: company.percentCalc}, function(err,companyByCalcPercent) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(companyByCalcPercent);
-     });
-
-     //fetch all watches by model
-     Watches.find({model: watch.model}, function(err,watchesByModel) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(watchesByModel);
-     });
-
-     //fetch all watches inStock/notInStock
-     Watches.find({inStock: watch.inStock}, function(err,WatchesByStock) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(WatchesByStock);
-     });
-
-     //fetch all watches by type
-     Watches.find({type: watch.type}, function(err,WatchByType) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(WatchByType);
-     });
-
-     //fetch all watches by category
-     Watches.find({model: watch.model}, function(err,watchesByCategory) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(watchesByCategory);
-     });
-
-     //fetch all watches by type+category
-     Watches.find({type: watch.type, category: watch.category}, function(err,WatchesByTypeAndCategory) {
-     if (err) {
-     return console.log("something went wrong when fetching the data");
-     }
-
-     console.log(WatchesByTypeAndCategory);
-     });
-
-     */
-
-
-
-
-
-
 
 
 });
+app.get('/deleteCompany/:id', function (req, res) {
+
+    console.log("serving deleteCompany");
+    console.log(req.params.id);
+    var arr=db.deleteCompany(req.params.id);
+
+     var arrComp;
+    arr.toArray(function(err, items) { //foreach
+        arrComp=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrComp);
+
+    });
+
+});
+
+//tzofia
+//orders
+app.get('/getOrders', function (req, res) {
+    console.log("serving getOrders");
+    var arr=db.getAllOrders();
+
+    var arrOrders;
+
+    arr.toArray(function(err, items) { //foreach
+        arrOrders=JSON.stringify(items);
+        res.send(arrOrders);
+
+    });
+
+
+});
+app.get('/deleteOrders/:id', function (req, res) {
+
+    console.log("serving deleteOrders");
+    console.log(req.params.id);
+    var arr=db.deleteOrder(req.params.id);
+
+    var arrOrders;
+    arr.toArray(function(err, items) { //foreach
+        arrOrders=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrOrders);
+
+    });
+
+});
+
+//watches
+//tzofia
+app.get('/getWatches', function (req, res) {
+    console.log("serving getWatches");
+    var arr=db.getAllWatches();
+
+    var arrWatches;
+
+    arr.toArray(function(err, items) { //foreach
+        arrWatches=JSON.stringify(items);
+        res.send(arrWatches);
+
+    });
+
+
+});
+app.get('/deleteWatch/:id', function (req, res) {
+
+    console.log("serving deleteWatche");
+    console.log(req.params.id);
+    var arr=db.deleteWatches(req.params.id);
+
+    var arrWatches;
+    arr.toArray(function(err, items) { //foreach
+        arrWatches=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrWatches);
+
+    });
+
+});
+
+
+
+/*Sarah*/
+app.get('/',function(req,res){
+    res.sendFile(path.join(dir,'/index.html'));
+    //__dirname : It will resolve to your project folder.
+});
+
+app.get('/menu',function(req,res){
+    res.sendFile(path.join(dir,'/menu.html'));
+
+});
+app.get('/orders',function(req,res){
+    res.sendFile(path.join(dir,'/orders.html'));
+
+});
+app.get('/watch',function(req,res){
+    res.sendFile(path.join(dir,'/watch.html'));
+
+});
+app.get('/company',function(req,res){
+    res.sendFile(path.join(dir,'/company.html'));
+
+});
+app.get('/rights',function(req,res){
+    res.sendFile(path.join(dir,'/rights.html'));
+
+});
+app.get('/message',function(req,res){
+    res.sendFile(path.join(dir,'/message.html'));
+
+});
+
+/*statics (sarah)*/
+
+
+
+
+//customer
+// app.get('/',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/index.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+//
+// app.get('/404',function(req,res){
+//
+//     res.sendFile(path.join(dirCustomer,'/404.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/about',function(req,res){
+//
+//     res.sendFile(path.join(dirCustomer,'/about.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/brands',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/brands.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/checkout',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/checkout.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/contact',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/contact.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/home',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/home.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/legall',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/legall.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/login',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/login.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/men',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/men.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/order',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/order.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+//
+// app.get('/register',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/register.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/single',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/single.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/whatsNew',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/whatsNew.html'));
+//     //__dirname : It will resolve to your project folder.
+// });
+// app.get('/woman',function(req,res){
+//     res.sendFile(path.join(dirCustomer,'/woman.html'));
+//     //__dirname : It will resolve to your project folder.
+// });

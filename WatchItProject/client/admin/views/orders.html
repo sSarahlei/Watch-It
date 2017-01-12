@@ -1,0 +1,34 @@
+
+<div class="container">
+    <h2 text align="right">ניהול הזמנות</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>הזמנה מהספק</th>
+            <th>עידכון</th>
+            <th>מחיקה</th>
+            <th>תאריך</th>
+            <th>מזהה פרטי תשלום</th>
+            <th>מזהה שעון</th>
+            <th>מזהה מזמין</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in ordersList">
+            <th>הזמנה מהספק</th>
+            <th>עידכון</th>
+            <th><a ng-click="deleteOrder(item._id)">מחיקה</a></th>
+            <th>{{item.dateOrder | date:'dd/MM/yyyy' }}</th>
+            <th>{{item.payment}}</th>
+            <th>{{item.watch}}</th>
+            <th>{{item.client}}</th>
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" align="right" class="btn btn-default btn-lg">הוספת הזמנה חדשה</button>
+    <button type="button" align="right" class="btn btn-default btn-lg">הזמנות ישנות</button>
+    <button type="button" align="right" class="btn btn-default btn-lg">שליחת ההזמנה לספק</button>
+</div>
+

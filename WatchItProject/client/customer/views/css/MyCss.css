@@ -1,0 +1,49 @@
+﻿body
+{
+}
+.Wmargin-logo{
+    margin-right:2%;
+}
+.WRightPanel{
+    text-align:right;
+}
+.titleIcons{
+    float:right;
+    position:relative;
+    margin-top:1.5%;
+}
+.merginRightSocial {
+    margin-right:45%;
+}
+.Wwishmargin{
+    margin-right:-2%;
+}
+.WmarginPage {
+    margin-right:45%;
+}
+.WmarginPerPage{
+    margin-right:1.8%;
+    margin-top:-30%;
+}
+.WMarginSort{
+  margin-right:-195%; 
+}
+.WMarginForm{
+    margin-right:89.5%;
+}
+.Wmenu{
+    margin-right:2%;
+    clear:both;
+   
+   
+}
+.WfloatRight{
+    float:right;
+    margin-right:50%;
+    color:#F9D9BE !important;
+    font-weight:700;
+    
+}
+.WclearFloat{
+clear:both;
+}

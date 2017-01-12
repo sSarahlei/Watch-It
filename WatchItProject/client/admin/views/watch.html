@@ -1,0 +1,37 @@
+
+
+<div class="container">
+    <h2 text align="right">ניהול שעונים</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>עידכון</th>
+            <th>מחיקה</th>
+            <th>מזהה קטגוריה</th>
+            <th>תמונה</th>
+            <th>פרטים נוספים</th>
+            <th>סוג מנגנון</th>
+            <th>זמין\לאזמין</th>
+            <th>מחיר סופי</th>
+            <th>מחיר מחירון</th>
+            <th>דגם</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in watchesList">
+            <th>עידכון</th>
+            <th><a ng-click="deleteWatch(item._id)">מחיקה</a></th>
+            <th>{{item.category}}</th>
+            <th>{{item.image}}</th>
+            <th>{{item.details}}</th>
+            <th>{{item.type}}</th>
+            <th>{{item.inStock}}</th>
+            <th>{{item.endPrice}}</th>
+            <th>{{item.priceList}}</th>
+            <th>{{item.model}}</th>
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" align="right" class="btn btn-default btn-lg">הוספת שעון חדש</button>
+</div>
+
