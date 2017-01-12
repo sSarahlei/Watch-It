@@ -977,7 +977,7 @@ a.create:hover, .account-top input[type="submit"]:hover, .register-but form inpu
 	padding:5em 0;
 }
 .cssmenu{
-	float:left;
+	float:right;
 }
 .cssmenu ul{
 	padding:0;
@@ -1002,7 +1002,7 @@ a.create:hover, .account-top input[type="submit"]:hover, .register-but form inpu
 ul.social {
 	padding:0;
 	list-style: none;
-	float:right;
+	float:left;
 }
 ul.social li:first-child {
 	margin-left: 0;

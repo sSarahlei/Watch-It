@@ -1,9 +1,4 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+﻿<!--index-->
 <!DOCTYPE HTML>
 <html ng-app="myApp">
 <head>
@@ -31,17 +26,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/simpleCart.min.js"> </script>
 
 <link href="css/bootstrap-theme.min.css" rel='stylesheet' type='text/css' />
-<link href="css/bootstrap-rtl.min.css" rel='stylesheet' type='text/css' />
-<link href="css/MyCss.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-rtl.min.css" rel='stylesheet' type='text/css' />
+    <link href="css/MyCss.css" rel="stylesheet" type="text/css" />
 
- <!-- load angular and angular route via CDN -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+     <!-- load angular and angular route via CDN -->
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>-->
+
+
+
+<script src="angular.js"></script>
+<script src="angular-route.js"></script>
 <script src="app.js"></script>
-
+<script src="..\controllers\404Ctrl.js"></script>
+<script src="..\controllers\brandsCtrl.js"></script>
+<script src="..\controllers\checkoutCtrl.js"></script>
+<script src="..\controllers\contactCtrl.js"></script>
+<script src="..\controllers\indexCtrl.js"></script>
+<script src="..\controllers\loginCtrl.js"></script>
+<script src="..\controllers\menCtrl.js"></script>
+<script src="..\controllers\newCtrl.js"></script>
+<script src="..\controllers\orderCtrl.js"></script>
+<script src="..\controllers\singleCtrl.js"></script>
+<script src="..\controllers\womanCtrl.js"></script>
 </head>
-<body>
-	<div class="men_banner">
+<body ng-controller="indexCtrl">
+	<div id="index_banner" class="banner">
         <div class="container">
             <div class="header_top">
                 <div class="header_top_left">
@@ -100,16 +111,92 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="header_bottom">
             <div class="logo Wmargin-logo">
-              <!--   <h1><a href="index.html"> --><span class="m_1">ש</span>עון בקטלוג<!-- </a></h1> -->
+              <h1><span class="m_1">ש</span>עון בקטלוג</h1>
             </div>
             <br /><br />
             <div class="Wmenu">
                 <div class="menu">
                     <ul class="megamenu skyblue">
                         <!-- data from DB -->
-						<li><a class="color7" href="#whatsNew">מה חדש</a></li>
+                        <li><a class="color7" href="#whatsNew">מה חדש</a></li>
 
 					 <li>
+                            <a class="color2" href="#woman">נשים</a>
+                            <div class="megapanel WRightPanel">
+                                <div class="row">
+                                    <div class="col2">
+                                        <div class="h_nav">
+                                            <h4 class="WfloatRight">נוספים</h4>
+                                            <ul class="WclearFloat">
+                                                <li>
+                                                    <div class="p_right">
+                                                        <h4><a href="#">Denim shirt</a></h4>
+                                                        <span class="item-cat"><small><a href="#">watches</a></small></span>
+                                                        <span class="price">29.99 $</span>
+                                                    </div>
+                                                    <div class="p_left">
+                                                        <img src="images/p1.jpg" class="img-responsive" alt="" />
+                                                    </div>
+
+                                                    <div class="clearfix"> </div>
+                                                </li>
+                                                <li>
+
+                                                    <div class="p_right">
+                                                        <h4><a href="#">Denim shirt</a></h4>
+                                                        <span class="item-cat"><small><a href="#">watches</a></small></span>
+                                                        <span class="price">29.99 $</span>
+                                                    </div>
+                                                    <div class="p_left">
+                                                        <img src="images/p2.jpg" class="img-responsive" alt="" />
+                                                    </div>
+                                                    <div class="clearfix"> </div>
+                                                </li>
+                                                <li>
+
+                                                    <div class="p_right">
+                                                        <h4><a href="#">Denim shirt</a></h4>
+                                                        <span class="item-cat"><small><a href="#">watches</a></small></span>
+                                                        <span class="price">29.99 $</span>
+                                                    </div>
+                                                    <div class="p_left">
+                                                        <img src="images/p3.jpg" class="img-responsive" alt="" />
+                                                    </div>
+                                                    <div class="clearfix"> </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4 class="WfloatRight">אופנה</h4>
+                                            <ul class="WclearFloat">
+                                                <li><a href="#men">Calvin Klein-קלווין קליין</a></li>
+                                                <li><a href="#men">Calvin Klein-קלווין קליין</a></li>
+                                                <li><a href="#men">Calvin Klein-קלווין קליין</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4 class="WfloatRight">מותגים</h4>
+                                            <ul class="WclearFloat">
+                                                <li><a href="#men">Tisst-טיסו</a></li>
+                                                <li><a href="#men">Tisst-טיסו</a></li>
+                                                <li><a href="#men">Tisst-טיסו</a></li>
+                                                <li><a href="#men">Tisst-טיסו</a></li>
+                                                <li><a href="#men">Tisst-טיסו</a></li>
+                                                <li><a href="#men">Tisst-טיסו</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </li>
+						<li>
                             <a class="color2" href="#men">גברים</a>
                             <div class="megapanel WRightPanel">
                                 <div class="row">
@@ -187,87 +274,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                             </div>
                         </li>
-						<li>
-                            <a class="color2" href="#woman">נשים</a>
-                            <div class="megapanel WRightPanel">
-                                <div class="row">
-                                    <div class="col2">
-                                        <div class="h_nav">
-                                            <h4 class="WfloatRight">נוספים</h4>
-                                            <ul class="WclearFloat">
-                                                <li>
-                                                    <div class="p_right">
-                                                        <h4><a href="#">Denim shirt</a></h4>
-                                                        <span class="item-cat"><small><a href="#">watches</a></small></span>
-                                                        <span class="price">29.99 $</span>
-                                                    </div>
-                                                    <div class="p_left">
-                                                        <img src="images/p1.jpg" class="img-responsive" alt="" />
-                                                    </div>
-
-                                                    <div class="clearfix"> </div>
-                                                </li>
-                                                <li>
-
-                                                    <div class="p_right">
-                                                        <h4><a href="#">Denim shirt</a></h4>
-                                                        <span class="item-cat"><small><a href="#">watches</a></small></span>
-                                                        <span class="price">29.99 $</span>
-                                                    </div>
-                                                    <div class="p_left">
-                                                        <img src="images/p2.jpg" class="img-responsive" alt="" />
-                                                    </div>
-                                                    <div class="clearfix"> </div>
-                                                </li>
-                                                <li>
-
-                                                    <div class="p_right">
-                                                        <h4><a href="#">Denim shirt</a></h4>
-                                                        <span class="item-cat"><small><a href="#">watches</a></small></span>
-                                                        <span class="price">29.99 $</span>
-                                                    </div>
-                                                    <div class="p_left">
-                                                        <img src="images/p3.jpg" class="img-responsive" alt="" />
-                                                    </div>
-                                                    <div class="clearfix"> </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4 class="WfloatRight">אופנה</h4>
-                                            <ul class="WclearFloat">
-                                                <li><a href="#men">Calvin Klein-קלווין קליין</a></li>
-                                                <li><a href="#men">Calvin Klein-קלווין קליין</a></li>
-                                                <li><a href="#men">Calvin Klein-קלווין קליין</a></li>
-                                                <li><a href="#men">Calvin Klein-קלווין קליין</a></li>
-                                                <li><a href="#men">Calvin Klein-קלווין קליין</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4 class="WfloatRight">מותגים</h4>
-                                            <ul class="WclearFloat">
-                                                <li><a href="#men">Tisst-טיסו</a></li>
-                                                <li><a href="#men">Tisst-טיסו</a></li>
-                                                <li><a href="#men">Tisst-טיסו</a></li>
-                                                <li><a href="#men">Tisst-טיסו</a></li>
-                                                <li><a href="#men">Tisst-טיסו</a></li>
-                                                <li><a href="#men">Tisst-טיסו</a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
 
 
-                                </div>
-                            </div>
-                        </li>
-						<li class ="active" ><a  class="color3" href="#">עמוד הבית</a></li>
-
-
+                        <li class ="active"><a href="#/ ">דף הבית</a></li>
 
 
 
@@ -285,17 +294,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <div class="footer">
         <div class="container">
-            <div class="newsletter">
-                <h3>ניוזלטר</h3>
-                <p>טקסט</p>
-                <form>
-                    <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-                    <input type="submit" value="אישור">
-                </form>
-            </div>
-            <div class="row">
 
-                <div class="col-sm-6">
+
+
+
                     <div class="cssmenu">
                         <ul>
                             <li class="active"><a href="#legall">מדיניות</a></li>
@@ -303,19 +305,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li><a href="#contact">צור קשר</a></li>
                         </ul>
                     </div>
-                </div>
 
-            </div>
-            <!-- to fix - to create a class for this style -->
-            <div class="row" style="margin-right:20px;">
-                <div class="col-sm-4">
+
+
+
                     <ul class="social">
                         <li><a href=""> <i class="instagram"> </i> </a></li>
                         <li><a href=""><i class="fb"> </i> </a></li>
                         <li><a href=""><i class="tw"> </i> </a></li>
                     </ul>
-                </div>
-                </div>
+
                 <div class="clearfix"></div>
                 <div class="clearfix"></div>
                 <div class="clearfix"></div>

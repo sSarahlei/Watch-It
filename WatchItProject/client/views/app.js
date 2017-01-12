@@ -6,42 +6,60 @@ myApp.config(function($routeProvider) {
 
     // route for the home page
         .when('/', {
-            templateUrl : 'home.html'
+            templateUrl : 'home.html',
+            controller: 'indexCtrl'
         })
 
-        // route for the about page
         .when('/men', {
-            templateUrl :'men.html'
-        })
-        .when('/404', {
-            templateUrl :'404.html'
+            templateUrl :'men.html',
+            controller:'menCtrl'
         })
 
-        // route for the contact page
+
         .when('/woman', {
-            templateUrl : 'woman.html'
+            templateUrl : 'woman.html',
+            controller:'womanCtrl'
         })
         .when('/contact', {
-            templateUrl : 'contact.html'
+            templateUrl : 'contact.html',
+            controller:'contactCtrl'
         })
         .when('/whatsNew', {
-            templateUrl : 'whatsNew.html'
+            templateUrl : 'whatsNew.html',
+            controller:'newCtrl'
         })
 		.when('/brands', {
-            templateUrl : 'brands.html'
+            templateUrl : 'brands.html',
+            controller:'brandsCtrl'
         })
 
 		.when('/register', {
-            templateUrl : 'register.html'
+            templateUrl : 'register.html',
+            controller:'singleCtrl'
         })
 		.when('/single', {
-            templateUrl : 'single.html'
+            templateUrl : 'single.html',
+            controller:'singleCtrl'
         })
         .when('/login', {
-            templateUrl : 'login.html'
+            templateUrl : 'login.html',
+            controller:'loginCtrl'
+        })
+        .when('/order', {
+            templateUrl : 'order.html',
+            controller:'orderCtrl'
         })
 		.when('/checkout', {
-            templateUrl : 'checkout.html'
+            templateUrl : 'checkout.html',
+            controller:'checkoutCtrl'
+        })
+        .otherwise( {
+            templateUrl :'404.html',
+            controller:'404Ctrl'
+
         });
 });
+
+
+
 

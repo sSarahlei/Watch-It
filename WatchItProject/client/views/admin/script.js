@@ -1,8 +1,8 @@
-// create the module and name it myAppServer
-var myAppAdmin = angular.module('myAppAdmin', ['ngRoute']);
+// create the module and name it myApp
+var myApp = angular.module('myApp', ['ngRoute']);
 
 // configure our routes
-myAppAdmin.config(function($routeProvider) {
+myApp.config(function($routeProvider) {
     $routeProvider
 
     // route for the home page
@@ -14,7 +14,7 @@ myAppAdmin.config(function($routeProvider) {
         // route for the company page
         .when('/company', {
             templateUrl : 'company.html',
-            controller  : 'companyCtrl'
+            controller  : 'companyController'
         })
         // route for the messages page
         .when('/message', {
@@ -39,39 +39,24 @@ myAppAdmin.config(function($routeProvider) {
 });
 
 // create the controller and inject Angular's $scope
-myAppAdmin.controller('mainController', function($scope) {
+myApp.controller('mainController', function($scope) {
     // create a message to display in our view
     $scope.message = 'תפריט';
 });
 
-myAppAdmin.controller('companyCtrl',function ($scope) {
+myApp.controller('companyController', function($scope) {
     $scope.message = 'חברה';
-
-        if (window.XMLHttpRequest)
-            var xmlhttp = new XMLHttpRequest();
-        else
-            var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-
-        xmlhttp.open("GET","http://localhost:3000/getCompanies", true);
-        console.log(xmlhttp);
-        xmlhttp.onreadystatechange=function(){
-            if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                var arr=xmlhttp.responseText.split('\n');
-                $scope.companyList=arr;
-            }
-            xmlhttp.send();
-    }
 });
-myAppAdmin.controller('ordersController', function($scope) {
+myApp.controller('ordersController', function($scope) {
     $scope.message = 'הזמנה';
 });
-myAppAdmin.controller('rightsController', function($scope) {
+myApp.controller('rightsController', function($scope) {
     $scope.message = 'הרשאות';
 });
-myAppAdmin.controller('watchController', function($scope) {
+myApp.controller('watchController', function($scope) {
     $scope.message = 'שעונים';
 });
 
-myAppAdmin.controller('messageController', function($scope) {
+myApp.controller('messageController', function($scope) {
     $scope.message = 'הודעות';
 });
