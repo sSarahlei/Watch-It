@@ -28,6 +28,24 @@ app.get('/getCompanies', function (req, res) {
 
 
 });
+//sarah
+app.post('/insertCompany', function (req, res,next) {
+
+    console.log("serving insertCompany");
+    var document=req.body;
+    console.log(document);
+    var arr=db.insertCompany(document);
+    console.log("arr"+arr);
+    var arrComp;
+    arr.toArray(function(err, items) { //foreach
+        arrComp=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrComp);
+
+    });
+
+});
+//ctzofia
 app.get('/deleteCompany/:id', function (req, res) {
 
     console.log("serving deleteCompany");

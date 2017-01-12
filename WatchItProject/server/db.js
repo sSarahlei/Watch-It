@@ -37,6 +37,15 @@ module.exports={
     getAllCompanies:function() {
         return DB.collection('companies').find({});
     },
+	insertCompany:function(document){
+
+        DB.collection('companies').insertOne(document);
+        console.log("Inserted document");
+        return DB.collection('companies').find({});
+
+
+
+    },
     deleteCompany:function(id){
 
         DB.collection('companies').deleteOne({_id:new mongodb.ObjectID(id)});
