@@ -1,4 +1,3 @@
-
 <div class="container">
     <h2 text align="right">ניהול הזמנות</h2>
     <table class="table table-hover">
@@ -27,8 +26,56 @@
         </tr>
         </tbody>
     </table>
-    <button type="button" align="right" class="btn btn-default btn-lg">הוספת הזמנה חדשה</button>
+    <div class="container">
+        <!-- Trigger the modal with a button -->
+        <button  type="button"  class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">הוספת הזמנה חדשה</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">הוסף הזמנה:</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form name="myForm"  class="form-horizontal" novalidate ng-submit="insertOrder(myForm)">
+                            <label>מזהה מזמין:
+                                <input type="text" name="customerId"  ng-model="customerId" required/><br>
+                                <span class="error" ng-show="myForm.customerId.$error.required" style="color:darkred">Required</span><br>
+                            </label><br>
+                            <label>מזהה שעון:
+                                <input type="text" name="watchId"  ng-model="watchId" required/><br>
+                                <span class="error" ng-show="myForm.watchId.$error.required" style="color:darkred">Required</span><br>
+                            </label><br>
+                            <label>פרטים תשלום:
+                                <input type="text"  name="payment"   ng-model="payment" required />
+                                <span class="error" ng-show="myForm.payment.$error.required" style="color:darkred">Required</span><br>
+                            </label><br>
+                            <label>תאריך:
+                                <input type="date" id="exampleInput" name="input" ng-model="example.value"
+                                       placeholder="yyyy-MM-dd"  required />
+                            </label><br>
+                            <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="myForm.$invalid" value="אישור"/>
+                            <input type="button"   class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <style>
+            #myModal {
+                direction: rtl;
+                font-size: large;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    </div>
     <button type="button" align="right" class="btn btn-default btn-lg">הזמנות ישנות</button>
     <button type="button" align="right" class="btn btn-default btn-lg">שליחת ההזמנה לספק</button>
 </div>
-

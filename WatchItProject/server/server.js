@@ -1,9 +1,11 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
+app.use(bodyParser.json());
 var path = require('path');
  var dir=path.resolve('../client/admin/views');
-//var dirCustomer=path.resolve('../client/customer/views');
-
+var dirControllers=path.join(__dirname, '../client/admin/controllers');
+app.use(express.static(dirControllers));
 app.use(express.static(dir));
 //app.use(express.static(dirCustomer));
 var db=require('./db.js');
@@ -28,7 +30,21 @@ app.get('/getCompanies', function (req, res) {
 
 
 });
-//sarah
+app.get('/deleteCompany/:id', function (req, res) {
+
+    console.log("serving deleteCompany");
+    console.log(req.params.id);
+    var arr=db.deleteCompany(req.params.id);
+
+     var arrComp;
+    arr.toArray(function(err, items) { //foreach
+        arrComp=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrComp);
+
+    });
+
+});
 app.post('/insertCompany', function (req, res,next) {
 
     console.log("serving insertCompany");
@@ -45,14 +61,34 @@ app.post('/insertCompany', function (req, res,next) {
     });
 
 });
-//ctzofia
-app.get('/deleteCompany/:id', function (req, res) {
 
-    console.log("serving deleteCompany");
-    console.log(req.params.id);
-    var arr=db.deleteCompany(req.params.id);
+app.post('/insertWatch', function (req, res,next) {
 
-     var arrComp;
+    console.log("serving insertWatch");
+    var document=req.body;
+    console.log(document);
+    var arr=db.insertWatch(document);
+    console.log("arr"+arr);
+    var arrComp;
+    arr.toArray(function(err, items) { //foreach
+        arrComp=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrComp);
+
+    });
+
+});
+
+app.post('/insertOrder', function (req, res,next) {
+
+
+    console.log("serving insertOrder");
+
+    var document=req.body;
+    console.log(document);
+    var arr=db.insertOrder(document);
+    console.log("arr"+arr);
+    var arrComp;
     arr.toArray(function(err, items) { //foreach
         arrComp=JSON.stringify(items);
         //console.log(items);
@@ -159,73 +195,3 @@ app.get('/message',function(req,res){
 
 });
 
-/*statics (sarah)*/
-
-
-
-
-//customer
-// app.get('/',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/index.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-//
-// app.get('/404',function(req,res){
-//
-//     res.sendFile(path.join(dirCustomer,'/404.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/about',function(req,res){
-//
-//     res.sendFile(path.join(dirCustomer,'/about.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/brands',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/brands.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/checkout',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/checkout.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/contact',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/contact.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/home',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/home.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/legall',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/legall.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/login',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/login.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/men',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/men.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/order',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/order.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-//
-// app.get('/register',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/register.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/single',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/single.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/whatsNew',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/whatsNew.html'));
-//     //__dirname : It will resolve to your project folder.
-// });
-// app.get('/woman',function(req,res){
-//     res.sendFile(path.join(dirCustomer,'/woman.html'));
-//     //__dirname : It will resolve to your project folder.
-// });

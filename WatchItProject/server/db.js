@@ -37,15 +37,6 @@ module.exports={
     getAllCompanies:function() {
         return DB.collection('companies').find({});
     },
-	insertCompany:function(document){
-
-        DB.collection('companies').insertOne(document);
-        console.log("Inserted document");
-        return DB.collection('companies').find({});
-
-
-
-    },
     deleteCompany:function(id){
 
         DB.collection('companies').deleteOne({_id:new mongodb.ObjectID(id)});
@@ -71,13 +62,56 @@ module.exports={
     },
     //watches
     getAllWatches:function() {
+
         return DB.collection('Watches').find({});
+    },
+    getWatchesMen:function() {
+
+        return DB.collection('Watches').find({"category":1});
+    },
+    getWatchesWomen:function() {
+
+        return DB.collection('Watches').find({"category":2});
     },
     deleteWatches:function(id){
 
         DB.collection('Watches').deleteOne({_id:new mongodb.ObjectID(id)});
         console.log("Removed document");
         return DB.collection('Watches').find({});
+
+
+
+    },
+    getWatcheSingle:function(id){
+
+       return DB.collection('Watches').find({_id:new mongodb.ObjectID(id)});
+    },
+    insertCompany:function(document){
+
+
+        DB.collection('companies').insertOne(document);
+        console.log("Inserted document");
+        return DB.collection('companies').find({});
+
+
+
+    },
+    insertWatch:function(document){
+
+
+        DB.collection('Watches').insertOne(document);
+        console.log("Inserted Watch");
+        return DB.collection('Watches').find({});
+
+
+
+    },
+    insertOrder:function(document){
+
+
+        DB.collection('orders').insertOne(document);
+        console.log("Inserted Order");
+        return DB.collection('orders').find({});
 
 
 

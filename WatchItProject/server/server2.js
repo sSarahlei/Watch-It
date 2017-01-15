@@ -78,8 +78,10 @@ app.get('/register',function(req,res){
     res.sendFile(path.join(dirCustomer,'/register.html'));
     //__dirname : It will resolve to your project folder.
 });
-app.get('/single',function(req,res){
-    res.sendFile(path.join(dirCustomer,'/single.html'));
+app.get('/single/:id',function(req,res){
+    console.log('serving single');
+    var single=JSON.stringify(db.getWatcheSingle());
+    res.sendFile(path.join(dirCustomer,'/single.html'),req.params.id);
     //__dirname : It will resolve to your project folder.
 });
 app.get('/whatsNew',function(req,res){
@@ -89,4 +91,37 @@ app.get('/whatsNew',function(req,res){
 app.get('/woman',function(req,res){
     res.sendFile(path.join(dirCustomer,'/woman.html'));
     //__dirname : It will resolve to your project folder.
+});
+
+app.get('/getWatchesMen', function (req, res) {
+    console.log("serving getWatches");
+    var arr=db.getWatchesMen();
+
+    var arrWatches;
+
+    arr.toArray(function(err, items) { //foreach
+        arrWatches=JSON.stringify(items);
+        res.send(arrWatches);
+
+    });
+
+
+
+});
+app.get('/getWatchesWomen', function (req, res) {
+    console.log("serving getWatchesWomen");
+    var arr=db.getWatchesWomen();
+
+    var arrWatches;
+
+    arr.toArray(function(err, items) { //foreach
+        arrWatches = JSON.stringify(items);
+        res.send(arrWatches);
+    });
+});
+app.get('/getSingle', function (req, res) {
+    console.log("serving getSingle");
+    var single=JSON.stringify(db.getWatcheSingle());
+    res.send(single);
+
 });
