@@ -8,9 +8,9 @@ var dirControllers=path.join(__dirname, '../client/admin/controllers');
 app.use(express.static(dirControllers));
 app.use(express.static(dir));
 //app.use(express.static(dirCustomer));
-var db=require('./db.js');
-//console.log(db.dbw);
 
+//console.log(db.dbw);
+var db=require('./db.js');
 app.listen(3000, function () {
     console.log("server running at port 3000!");
 
