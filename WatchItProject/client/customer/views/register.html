@@ -2,25 +2,27 @@
 
 
 <div class="account-in">
-    <div class="container">
+    <div class="container" ng-form="myForm">
         <form dir="rtl">
             <div class="register-top-grid">
                 <h2>פרטים אישיים</h2>
                 <div>
                     <span>שם משפחה<label>*</label></span>
-                    <input type="text">
+                    <input type="text" ng-model="user.firstName" class="register-txt form-control" name="firstName" ng-required="true">
+					<span class="errMessage" ng-show="myForm.firstName.$dirty && myForm.firstName.$error.required"> שדה זה הינו חובה</span>
                 </div>
                 <div>
                     <span>שם פרטי<label>*</label></span>
-                    <input type="text">
+                    <input type="text" ng-model="user.lastName" class="register-txt form-control" name="lastName" ng-required="true">
+					<span class="errMessage" ng-show="myForm.lastName.$dirty && myForm.lastName.$error.required">שדה זה הינו חובה</span>
                 </div>
                 <div>
                     <span>טלפון<label></label></span>
-                    <input type="text">
+                    <input type="text" ng-model="user.number" class="register-txt form-control" name="number">
                 </div>
                 <div>
                     <span>כתובת מייל<label>*</label></span>
-                    <input type="text">
+                    <input type="text" ng-model="user.email" class="register-txt form-control" name="email">
                 </div>
                 <div class="clearfix"> </div>
                 <!--<a class="news-letter" href="#">
@@ -31,11 +33,11 @@
                 <h2>פרטי חשבון</h2>
                 <div>
                     <span>סיסמא<label>*</label></span>
-                    <input type="password">
+                    <input type="password" ng-model="user.password" class="register-txt form-control" name="password" ng-required="true">
                 </div>
                 <div>
                     <span>אישור סיסמא<label>*</label></span>
-                    <input type="password">
+                    <input type="password" ng-model="user.passwordValid" class="register-txt form-control" name="passwordValid" ng-required="true">>
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -43,7 +45,8 @@
         <div class="clearfix"> </div>
         <div class="register-but">
             <form class="WMarginForm">
-                <input type="submit" value="אישור">
+                <button ng-click="createUser()" class="btn btn-primary">הירשם</button>
+				<a href="#/login" class="btn btn-link">ביטול</a>
                 <div class="clearfix"> </div>
             </form>
         </div>
