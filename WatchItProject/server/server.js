@@ -103,7 +103,6 @@ app.post('/insertOrder', function (req, res,next) {
 app.get('/getOrders', function (req, res) {
     console.log("serving getOrders");
     var arr=db.getAllOrders();
-
     var arrOrders;
 
     arr.toArray(function(err, items) { //foreach
@@ -149,7 +148,7 @@ app.get('/getWatches', function (req, res) {
 app.get('/deleteWatch/:id', function (req, res) {
 
     console.log("serving deleteWatche");
-    console.log(req.params.id);
+
     var arr=db.deleteWatches(req.params.id);
 
     var arrWatches;
@@ -161,6 +160,21 @@ app.get('/deleteWatch/:id', function (req, res) {
     });
 
 });
+// app.get('/getPayment/:id', function (req, res) {
+//
+//     console.log("serving getPayment");
+//     var single=db.getPayment(req.params.id);
+//
+//     var payment;
+//
+//     single.toArray(function(err, items) { //foreach
+//         payment=JSON.stringify(items);
+//
+//         res.send(payment);
+//
+//     });
+//
+// });
 
 
 

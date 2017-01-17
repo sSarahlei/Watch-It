@@ -3,6 +3,7 @@
  */
 
 myApp.controller('indexCtrl',function ($scope) {
+   // localStorage.clear();
     var my_class=$("#index_banner").attr('class');
 
     if(!(my_class.localeCompare("men_banner"))){

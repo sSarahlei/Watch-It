@@ -14,7 +14,14 @@
             });
         });
     </script>
+<style>
+    .imageWatch{
+        border-color:#9C9C9C;
+        border-radius: 10px;
+        border-width:thin;
 
+    }
+</style>
 
 
 <div class="men">
@@ -23,38 +30,36 @@
             <div class="single_left">
                 <!-- data from DB -->
                 <div class="labout span_1_of_a1">
-                    <div class="flexslider">
-                        <ul class="slides">
-                            <li data-thumb="images/s1.jpg">
-                                <img src="images/s1.jpg" />
-                            </li>
-                            <li data-thumb="images/s2.jpg">
-                                <img src="images/s2.jpg" />
-                            </li>
-                            <li data-thumb="images/s3.jpg">
-                                <img src="images/s3.jpg" />
-                            </li>
-                            <li data-thumb="images/s4.jpg">
-                                <img src="images/s4.jpg" />
-                            </li>
-                        </ul>
+                    <!--<div class="flexslider">-->
+                        <!--<ul class="slides">-->
+                            <!--<li data-thumb={{singleWatch[0].image}}>-->
+                                <!--<img src={{singleWatch[0].image}} />-->
+                            <!--</li>-->
+
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <div>
+                        <img class="imageWatch" width="400" src=images\{{singleWatch[0].image}} />
                     </div>
+
                     <div class="clearfix"></div>
                 </div>
                 <div class="cont1 span_2_of_a1 simpleCart_shelfItem">
-                    <h1>דגם</h1>
+                    <h1> דגם שעון בקטלוג:{{singleWatch[0].wId}}</h1>
+                    <h6>מספר דגם:{{singleWatch[0].model}}</h6>
                     <p class="availability">זמינות: <span class="color">במלאי</span></p>
                     <div class="price_single">
-                        <span>מחיר מחירון:</span> <span class="reducedfrom">$140.00</span><br />
-                        <span>מחיר שעון בקטלוג:</span> <span class="amount item_price actual">$120.00</span><br /><br />
+                        <span>מחיר מחירון:</span> <span class="reducedfrom">{{singleWatch[0].priceList}} ש"ח</span><br />
+                        <span>מחיר שעון בקטלוג:</span> <span class="amount item_price actual">{{singleWatch[0].endPrice}} ש"ח</span><br /><br />
                         <a href="#" class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1" target="_self">הזמן עכשיו</a>
                     </div>
-                    <h2 class="quick">תצוגה מקדימה:</h2>
-                    <p class="quick_desc">תאור קצר</p>
+
+                    <p class="quick_desc">תאור קצר:</p>
+                    <p class="quick_desc">{{singleWatch[0].details}}</p>
                     <div class="wish-list">
                         <ul>
                             <li class="wish" style="margin-right:-0.225%"><a href="#">הוסף למועדפים </a></li><br />
-                            <li class="compare" ><a href="#"> הוסף להשוואה</a></li>
+                            <li class="compare" ><a href=#>הוסף להשוואה</a></li>
                         </ul>
                     </div>
 
@@ -68,7 +73,7 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <a href="#" class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1" target="_self">הוסף לסל</a>
+                    <a href="#cart/{{singleWatch[0]._id}}" class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1" target="_self">הוסף לסל</a>
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -76,91 +81,36 @@
                 <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                     <ul class="resp-tabs-list">
                         <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>תאור המוצר</span></li>
-                        <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>אינפורמציה נוספת</span></li>
-                        <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>תצוגה מקדימה</span></li>
+                        <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>איפורמציה נוספת</span></li>
                     </ul>
                     <div class="resp-tabs-container">
                         <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
                             <div class="facts">
                                 <ul class="tab_list">
-                                    <li><a href="#">טקסט</a></li>
-                                    <li><a href="#">טקסט</a></li>
-                                    <li><a href="#">טקסט</a></li>
-                                    <li><a href="#">טקסט</a></li>
+                                    <li><a href="#">{{singleWatch[0].details}}</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
                             <div class="facts">
                                 <ul class="tab_list">
-                                    <li><a href="#">טקסט</a></li>
-                                    <li><a href="#">טקסט</a></li>
-                                    <li><a href="#">טקסט</a></li>
-                                    <li><a href="#">טקסט</a></li>
+                                    <li><a href="#">אין אינפורמציה זמינה</a></li>
+
                                 </ul>
                             </div>
                         </div>
-                        <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
-                            <div class="facts">
-                                <ul class="tab_list">
-                                    <li><a href="#">טקסט</a></li>
-                                    <li><a href="#">טקסט</a></li>
-                                    <li><a href="#">טקסט</a></li>
-                                    <li><a href="#">טקסט</a></li>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3 tabs">
-            <h3 class="m_1">שעונים נוספים בקטגוריה</h3>
-            <ul class="product">
-                <li class="product_img"><img src="images/m5.jpg" class="img-responsive" alt="" /></li>
-                <li class="product_desc">
-                    <h4><a href="#">דגם</a></h4>
-                    <p class="single_price">$66.30</p>
-                    <a href="#" class="link-cart">הוסף למועדפים</a>
-                    <a href="#" class="link-cart">הוסף לסל</a>
-                </li>
-                <div class="clearfix"> </div>
-            </ul>
-            <ul class="product">
-                <li class="product_img"><img src="images/m5.jpg" class="img-responsive" alt="" /></li>
-                <li class="product_desc">
-                    <h4><a href="#">דגם</a></h4>
-                    <p class="single_price">$66.30</p>
-                    <a href="#" class="link-cart">הוסף למועדפים</a>
-                    <a href="#" class="link-cart">הוסף לסל</a>
-                </li>
-                <div class="clearfix"> </div>
-            </ul>
-            <ul class="product">
-                <li class="product_img"><img src="images/m5.jpg" class="img-responsive" alt="" /></li>
-                <li class="product_desc">
-                    <h4><a href="#">דגם</a></h4>
-                    <p class="single_price">$66.30</p>
-                    <a href="#" class="link-cart">הוסף למועדפים</a>
-                    <a href="#" class="link-cart">הוסף לסל</a>
-                </li>
-                <div class="clearfix"> </div>
-            </ul>
-            <ul class="product">
-                <li class="product_img"><img src="images/m5.jpg" class="img-responsive" alt="" /></li>
-                <li class="product_desc">
-                    <h4><a href="#">דגם</a></h4>
-                    <p class="single_price">$66.30</p>
-                    <a href="#" class="link-cart">הוסף למועדפים</a>
-                    <a href="#" class="link-cart">הוסף לסל</a>
-                </li>
-                <div class="clearfix"> </div>
-            </ul>
+
         </div>
         <div class="clearfix"> </div>
     </div>
 </div>
-
+<input type="button"  ng-click="s()">
 <!-- FlexSlider -->
 <script defer src="jquery.flexslider.js"></script>
 <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />

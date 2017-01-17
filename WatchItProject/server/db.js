@@ -51,6 +51,10 @@ module.exports={
     getAllOrders:function() {
         return DB.collection('orders').find({});
     },
+
+    getOldOrders:function() {
+        return DB.collection('orders').find({status:"4"});
+    },
     deleteOrder:function(id){
 
         DB.collection('orders').deleteOne({_id:new mongodb.ObjectID(id)});
@@ -67,11 +71,15 @@ module.exports={
     },
     getWatchesMen:function() {
 
-        return DB.collection('Watches').find({"category":1});
+        return DB.collection('Watches').find({"category":1,"inStock":true});
     },
     getWatchesWomen:function() {
 
-        return DB.collection('Watches').find({"category":2});
+        return DB.collection('Watches').find({"category":2,"inStock":true});
+    },
+    getStatuses:function() {
+
+        return DB.collection('statuses').find({});
     },
     deleteWatches:function(id){
 
@@ -84,8 +92,12 @@ module.exports={
     },
     getWatcheSingle:function(id){
 
-       return DB.collection('Watches').find({_id:new mongodb.ObjectID(id)});
+        return DB.collection('Watches').find({_id:new mongodb.ObjectID(id)});
     },
+    // getPayment:function(id){
+    //
+    //     return DB.collection('payments').find({_id:new mongodb.ObjectID(id)});
+    // },
     insertCompany:function(document){
 
 

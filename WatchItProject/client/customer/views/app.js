@@ -49,9 +49,13 @@ myApp.config(function($routeProvider) {
             templateUrl : 'order.html',
             controller:'orderCtrl'
         })
-		.when('/checkout', {
+		.when('/checkout/:id', {
             templateUrl : 'checkout.html',
             controller:'checkoutCtrl'
+        })
+        .when('/cart/:id', {
+            templateUrl : 'cart.html',
+            controller:'cartCtrl'
         })
         .otherwise( {
             templateUrl :'404.html',

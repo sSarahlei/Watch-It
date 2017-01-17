@@ -6,23 +6,29 @@
             <th>הזמנה מהספק</th>
             <th>עידכון</th>
             <th>מחיקה</th>
+            <th>סטטוס</th>
             <th>תאריך</th>
-            <th>מזהה פרטי תשלום</th>
-            <th>מזהה שעון</th>
-            <th>מזהה מזמין</th>
+            <th>פרטי תשלום</th>
+            <th>חברה</th>
+            <th>דגם חברה</th>
+            <th>דגם שעון בקטלוג</th>
+            <th>מזמין</th>
 
 
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="item in ordersList">
-            <th>הזמנה מהספק</th>
-            <th>עידכון</th>
-            <th><a ng-click="deleteOrder(item._id)">מחיקה</a></th>
-            <th>{{item.dateOrder | date:'dd/MM/yyyy' }}</th>
-            <th>{{item.payment}}</th>
-            <th>{{item.watch}}</th>
-            <th>{{item.client}}</th>
+            <td>הזמנה מהספק</td>
+            <td>עידכון</td>
+            <td><a ng-click="deleteOrder(item._id)">מחיקה</a></td>
+            <td>{{item.statusT}}</td>
+            <td>{{item.dateOrder | date:'dd/MM/yyyy' }}</td>
+            <td><a ng-click="getPayment(item._id)">לחץ להצגה</a></td>
+            <td>{{item.watchCompany}}</td>
+            <td>{{item.watchModel}}</td>
+            <td>{{item.watchWId}}</td>
+            <td><a href="#">{{item.clientName}}</a></td>
         </tr>
         </tbody>
     </table>
@@ -51,6 +57,7 @@
                                 <input type="text"  name="payment"   ng-model="payment" required />
                                 <span class="error" ng-show="myForm.payment.$error.required" style="color:darkred">Required</span><br>
                             </label><br>
+
                             <label>תאריך:
                                 <input type="date" id="exampleInput" name="input" ng-model="example.value"
                                        placeholder="yyyy-MM-dd"  required />
@@ -76,6 +83,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     </div>
-    <button type="button" align="right" class="btn btn-default btn-lg">הזמנות ישנות</button>
+    <button type="button" ng-show="!showBtn" id="btnOld" ng-click="getOldOrders()" align="right" class="btn btn-default btn-lg">הזמנות ישנות</button>
+    <button type="button" ng-show="showBtn" id="btnNew" ng-click="getNewOrders()" align="right" class="btn btn-default btn-lg">הזמנות בטיפול</button>
     <button type="button" align="right" class="btn btn-default btn-lg">שליחת ההזמנה לספק</button>
+</div>
+
+<div id="divPayment" ng-show="showDivPayment" >
+    <h1>פרטי תשלום</h1>
+    <label>{{paymentToShow.numCard}}</label><br>
+    <label>{{paymentToShow.nameOwnerCard}}</label><br>
+    <label>{{paymentToShow.TZownerCard}}</label><br>
+    <label>{{paymentToShow.cardCompany}}</label><br>
+    <label>{{paymentToShow.cvv}}</label><br>
+    <label>{{paymentToShow.validity}}</label><br>
+    <input type="button" ng-click="closePayment()" value="סגור">
+    <label></label><br>
 </div>

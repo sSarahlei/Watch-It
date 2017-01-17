@@ -2,6 +2,9 @@
  * Created by Tzofia on 15/01/2017.
  */
 myAppAdmin.controller('ordersController', function($scope) {
+    var arrList;
+    $scope.showBtn=false;
+    $scope.showDivPayment=false
     $scope.message = 'הזמנה';
     if (window.XMLHttpRequest)
         var xmlhttp = new XMLHttpRequest();
@@ -14,7 +17,10 @@ myAppAdmin.controller('ordersController', function($scope) {
 
     xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState==4 && xmlhttp.status==200){
-            $scope.ordersList=JSON.parse(xmlhttp.responseText);
+            arrList=JSON.parse(xmlhttp.responseText);
+            $scope.ordersList=arrList.filter(function (item,index,nums) {
+                return item.status!=4;
+            });
 
             $scope.$apply();
         }
@@ -67,6 +73,7 @@ myAppAdmin.controller('ordersController', function($scope) {
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     $scope.orderList = JSON.parse(xmlhttp.responseText);
+
                     $scope.$apply();
 
 
@@ -80,6 +87,39 @@ myAppAdmin.controller('ordersController', function($scope) {
 
 
 
+    }
+    
+    $scope.getOldOrders=function () {
+        $scope.ordersList=arrList.filter(function (item,index,nums) {
+            return item.status==4;
+        });
+       // $("#btnOld").hide;
+        $scope.showBtn=true;
+
+
+    }
+    $scope.getNewOrders=function () {
+        $scope.ordersList=arrList.filter(function (item,index,nums) {
+            return item.status!=4;
+        });
+        // $("#btnOld").hide;
+        $scope.showBtn=false;
+
+
+    }
+    $scope.getPayment=function(id) {
+
+        $scope.showDivPayment=true;
+
+       var res=arrList.filter(function (item,index,nums) {
+
+           return item._id==id;
+       });
+       $scope.paymentToShow=res[0];
+      // alert($scope.paymentToShow.wId);
+    }
+    $scope.closePayment=function () {
+        $scope.showDivPayment=false;
     }
 
 });
