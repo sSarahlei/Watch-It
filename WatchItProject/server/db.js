@@ -51,7 +51,7 @@ module.exports={
         console.log("updated document");
         return DB.collection('companies').find({});
 
-    }
+    },
     //orders
     getAllOrders:function() {
         return DB.collection('orders').find({});
@@ -95,7 +95,7 @@ module.exports={
 
 
     },
-    getWatcheSingle:function(id){
+    getWatchSingle:function(id){
 
         return DB.collection('Watches').find({_id:new mongodb.ObjectID(id)});
     },
