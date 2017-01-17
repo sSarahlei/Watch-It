@@ -20,6 +20,7 @@ myAppAdmin.controller('companyCtrl',function ($scope) {
         }
 
     }
+    //add now
 
 
 //tzofia
