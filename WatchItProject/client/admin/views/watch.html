@@ -12,6 +12,7 @@
             <th>זמין\לאזמין</th>
             <th>מחיר סופי</th>
             <th>מחיר מחירון</th>
+            <th>חברה</th>
             <th>דגם</th>
         </tr>
         </thead>
@@ -46,6 +47,9 @@
                             <label>דגם:
                                 <input type="text"  placeholder="דגם"  name ="model" ng-model="model" required/><br>
                                 <span class="error" ng-show="myForm.model.$error.required" style="color:darkred">Required</span><br>
+                            </label><br>
+                            <label>חברה:
+                                <select  name="company" ng-model="selectedCompany"  ng-options="x for x in company " ng-change="updateCompany(selectedCompany)" required></select>
                             </label><br>
                             <label>מחיר מחירון:
                                 <input type="number" name="priceList" min="0" step="0.1" ng-model="priceList" required/><br>

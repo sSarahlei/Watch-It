@@ -20,6 +20,7 @@ myAppAdmin.controller('companyCtrl',function ($scope) {
         }
 
     }
+    //add now
 
 
 //tzofia
@@ -48,6 +49,44 @@ myAppAdmin.controller('companyCtrl',function ($scope) {
             }
         }
     }
+    //chedva
+    $scope.update = function(form) {
+
+        if(form.$valid) {
+
+            if (window.XMLHttpRequest)
+                var xmlhttp = new XMLHttpRequest();
+            else
+                var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            var document =
+                {
+
+                    "name": $scope.update_name,
+                    "image": $scope.image,
+                    "percentCalc": $scope.percentCalc,
+                    "percentProfit": $scope.percentProfit,
+                    "details": $scope.update_details
+                };
+
+            xmlhttp.onreadystatechange = function () {
+
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    $scope.companyList = JSON.parse(xmlhttp.responseText);
+                    $scope.$apply();
+
+
+                }
+            }
+
+            xmlhttp.open('POST', 'http://localhost:3000/updateCompany');
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+            xmlhttp.send(JSON.stringify(document));
+        }
+
+
+
+    }
+
 
     $scope.insertCompany = function(form) {
         if(form.$valid) {
