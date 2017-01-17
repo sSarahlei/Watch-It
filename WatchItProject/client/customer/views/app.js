@@ -35,9 +35,9 @@ myApp.config(function($routeProvider) {
 
 		.when('/register', {
             templateUrl : 'register.html',
-            controller:'singleCtrl'
+            controller:'registerCtrl'
         })
-		.when('/single', {
+		.when('/single/:id', {
             templateUrl : 'single.html',
             controller:'singleCtrl'
         })
