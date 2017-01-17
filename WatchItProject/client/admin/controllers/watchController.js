@@ -1,7 +1,58 @@
 /**
  * Created by Tzofia on 15/01/2017.
  */
+
+
 myAppAdmin.controller('watchController', function($scope) {
+
+    function companies_name(arr) {
+        if (window.XMLHttpRequest)
+            var xmlhttp = new XMLHttpRequest();
+        else
+            var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        var companies =new Array();
+
+        xmlhttp.open("GET", "http://localhost:3000/getCompanies", true);
+        xmlhttp.send();
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var result = JSON.parse(xmlhttp.responseText);
+                for ( property in result ) {
+                    companies.push(result[property].name);
+
+                }
+
+                $scope.companies=companies;
+                alert($scope.companies);
+
+
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     $scope.message = 'שעונים';
     if (window.XMLHttpRequest)
         var xmlhttp = new XMLHttpRequest();
@@ -47,10 +98,22 @@ myAppAdmin.controller('watchController', function($scope) {
             }
         }
     }
+    //receiving all companies in select
+
+
+
+
+//end of generating companies
 
     $scope.category = ["גברים", "נשים"];
     $scope.stock = ["זמין", "לא זמין"];
     $scope.type = ["דיגיטלי", "אוטומט","כרונוגרף","אנלוגי"];
+    companies_name();
+    $scope.$apply();
+    console.log($scope.companies);
+
+
+
     $scope.updateCategory=function(selected) {
 
         $scope.selectedCategory = selected;
@@ -63,18 +126,9 @@ myAppAdmin.controller('watchController', function($scope) {
 
         $scope.selectedType = selected;
     }
-// //receiving all companies in select
-//         xmlhttp.open("GET","http://localhost:3000/getCompanies", true);
-//         xmlhttp.send();
-//
-//         xmlhttp.onreadystatechange = function() {
-//             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-//                 var result = JSON.parse(xmlhttp.responseText);
-//                 alert(result);
-//
-//             }
-//         }
-// //end of generating companies
+
+
+
 
 
 
@@ -85,6 +139,7 @@ myAppAdmin.controller('watchController', function($scope) {
                 var xmlhttp = new XMLHttpRequest();
             else
                 var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
             var document =
                 {
                     "model": $scope.model,
@@ -112,6 +167,7 @@ myAppAdmin.controller('watchController', function($scope) {
 
 
     }
+
 
 
 });

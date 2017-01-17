@@ -17,10 +17,12 @@ myAppAdmin.controller('ordersController', function($scope) {
 
     xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState==4 && xmlhttp.status==200){
+
             arrList=JSON.parse(xmlhttp.responseText);
             $scope.ordersList=arrList.filter(function (item,index,nums) {
                 return item.status!=4;
             });
+
 
             $scope.$apply();
         }
@@ -67,12 +69,14 @@ myAppAdmin.controller('ordersController', function($scope) {
                     "client" :$scope.customerId,
                     "watch" :$scope.watchId,
                     "payment" :$scope.payment,
-                    "dateOrder" :"999"
+                    "dateOrder" :$scope.example.value
                 };
 
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    $scope.orderList = JSON.parse(xmlhttp.responseText);
+
+
+                    $scope.ordersList = JSON.parse(xmlhttp.responseText);
 
                     $scope.$apply();
 

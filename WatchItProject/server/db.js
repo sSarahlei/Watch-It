@@ -46,7 +46,12 @@ module.exports={
 
 
     },
+    updateCompany:function(id,field_to_edit) {
+        DB.collection('companies').updateOne(id,{$set: field_to_edit});
+        console.log("updated document");
+        return DB.collection('companies').find({});
 
+    }
     //orders
     getAllOrders:function() {
         return DB.collection('orders').find({});

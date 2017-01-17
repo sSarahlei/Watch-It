@@ -62,6 +62,28 @@ app.post('/insertCompany', function (req, res,next) {
 
 });
 
+
+//chedva
+app.post('/updateCompany', function (req, res,next) {
+    console.log("serving updateCompany");
+    var document=req.body;
+    console.log(document);
+
+    var value_key={
+        "name":document.name,
+    }
+    console.log(value_key);
+    var arr=db.updateCompany(value_key,document);
+    console.log("arr"+arr);
+    var arrComp;
+    arr.toArray(function(err, items) { //foreach
+        arrComp=JSON.stringify(items);
+        console.log(items);
+        res.send(arrComp);
+
+    });
+
+});
 app.post('/insertWatch', function (req, res,next) {
 
     console.log("serving insertWatch");
