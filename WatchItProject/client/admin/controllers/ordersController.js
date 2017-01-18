@@ -4,7 +4,8 @@
 myAppAdmin.controller('ordersController', function($scope) {
     var arrList;
     $scope.showBtn=false;
-    $scope.showDivPayment=false
+    $scope.showDivPayment=false;
+    $scope.showDivCustomer=false;
     $scope.message = 'הזמנה';
     if (window.XMLHttpRequest)
         var xmlhttp = new XMLHttpRequest();
@@ -120,10 +121,26 @@ myAppAdmin.controller('ordersController', function($scope) {
            return item._id==id;
        });
        $scope.paymentToShow=res[0];
-      // alert($scope.paymentToShow.wId);
     }
     $scope.closePayment=function () {
         $scope.showDivPayment=false;
     }
+
+    $scope.getCustomer=function(id) {
+
+        $scope.showDivCustomer=true;
+
+        var res=arrList.filter(function (item,index,nums) {
+
+            return item._id==id;
+        });
+        $scope.customerToShow=res[0];
+
+    }
+    $scope.closeCustomer=function () {
+        $scope.showDivCustomer=false;
+    }
+
+
 
 });

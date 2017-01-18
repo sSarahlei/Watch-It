@@ -28,7 +28,7 @@
             <td>{{item.watchCompany}}</td>
             <td>{{item.watchModel}}</td>
             <td>{{item.watchWId}}</td>
-            <td><a href="#">{{item.clientName}}</a></td>
+            <td><a ng-click="getCustomer(item._id)">{{item.clientName}}</a></td>
         </tr>
         </tbody>
     </table>
@@ -98,6 +98,15 @@
     <label>{{paymentToShow.cvv}}</label><br>
     <label>{{paymentToShow.validity}}</label><br>
     <input type="button" ng-click="closePayment()" value="סגור">
+    <label></label><br>
+
+</div>
+<div  ng-show="showDivCustomer" >
+    <h1>פרטי לקוח</h1>
+    <label>{{customerToShow.clientName}} {{customerToShow.clientLastName}}</label><br>
+    <label>{{customerToShow.clientMail}}</label><br>
+    <label>{{customerToShow.clientPhone}}</label><br>
+    <input type="button" ng-click="closeCustomer()" value="סגור">
     <label></label><br>
 
 </div>

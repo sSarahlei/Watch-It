@@ -51,15 +51,15 @@
                     <div class="price_single">
                         <span>מחיר מחירון:</span> <span class="reducedfrom">{{singleWatch[0].priceList}} ש"ח</span><br />
                         <span>מחיר שעון בקטלוג:</span> <span class="amount item_price actual">{{singleWatch[0].endPrice}} ש"ח</span><br /><br />
-                        <a href="#" class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1" target="_self">הזמן עכשיו</a>
+                        <a href="#checkout/{{singleWatch[0]._id}}" class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1" target="_self">קנה עכשיו</a>
                     </div>
 
                     <p class="quick_desc">תאור קצר:</p>
                     <p class="quick_desc">{{singleWatch[0].details}}</p>
                     <div class="wish-list">
-                        <ul>
+                        <ul style="font-size:200%">
                             <li class="wish" style="margin-right:-0.225%"><a href="#">הוסף למועדפים </a></li><br />
-                            <li class="compare" ><a href=#>הוסף להשוואה</a></li>
+                            <li class="compare" ><a href="#comparison/{{singleWatch[0]._id}}">הוסף להשוואה</a></li>
                         </ul>
                     </div>
 

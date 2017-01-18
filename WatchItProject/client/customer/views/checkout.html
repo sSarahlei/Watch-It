@@ -7,7 +7,9 @@
                     <h3>פרטי מחיר</h3>
                     <div ng-repeat="item in singleWatch">
                     <span class="total1">{{item.endPrice}}</span>
+
                     <span >{{item.wId}}</span>
+                     <img width="100" src="images\{{item.image}}" ></img>
                     </div>
 
 
@@ -23,69 +25,69 @@
                 <a class="order" href="#order">בצע הזמנה</a>
 
             </div>
-            <div class="col-md-9 cart-items">
-                <h1>סל הקניות שלי ({{singleWatch.length}})</h1>
-                <script>$(document).ready(function(c) {
-                    $('.close1').on('click', function(c){
-                        $('.cart-header').fadeOut('slow', function(c){
-                            $('.cart-header').remove();
-                        });
-                    });
-                });
-                </script>
-                <div ng-repeat="item in singleWatch" class="cart-header">
-                    <div class="close1"> </div>
-                    <div class="cart-sec simpleCart_shelfItem">
-
-                        <div class="cart-item-info">
-                            <h3><a href="#">מס' דגם: {{item.wId}}</a><span>{{item.company}} {{item.model}}</span></h3>
-                            <!--<ul class="qty">-->
-                                <!--<li><p>כמות: 1</p></li>-->
-                                <!--<li><p>מידה: 5</p></li>-->
-                            <!--</ul>-->
-                            <div class="delivery">
-                                <p>מחיר: {{item.endPrice}} ש"ח</p>
-                                <span>נשלח תוך 14 ימי עבודה</span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <div class="cart-item cyc">
-                            <img src={{item.image}} class="img-responsive" alt=""/>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
+            <!--<div class="col-md-9 cart-items">-->
+                <!--<h1>סל הקניות שלי ({{singleWatch.length}})</h1>-->
                 <!--<script>$(document).ready(function(c) {-->
-                    <!--$('.close2').on('click', function(c){-->
-                        <!--$('.cart-header2').fadeOut('slow', function(c){-->
-                            <!--$('.cart-header2').remove();-->
+                    <!--$('.close1').on('click', function(c){-->
+                        <!--$('.cart-header').fadeOut('slow', function(c){-->
+                            <!--$('.cart-header').remove();-->
                         <!--});-->
                     <!--});-->
                 <!--});-->
                 <!--</script>-->
-                <!--<div class="cart-header2">-->
-                    <!--<div class="close2"> </div>-->
+                <!--<div ng-repeat="item in singleWatch" class="cart-header">-->
+                    <!--<div class="close1"> </div>-->
                     <!--<div class="cart-sec simpleCart_shelfItem">-->
 
                         <!--<div class="cart-item-info">-->
-                            <!--<h3><a href="#">Mountain Hopper(XS R034)</a><span>מס' מודל: 3578</span></h3>-->
-                            <!--<ul class="qty">-->
-                                <!--<li><p>כמות:1</p></li>-->
-                                <!--<li><p>מידה: 5</p></li>-->
-                            <!--</ul>-->
+                            <!--<h3><a href="#">מס' דגם: {{item.wId}}</a><span>{{item.company}} {{item.model}}</span></h3>-->
+                            <!--&lt;!&ndash;<ul class="qty">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li><p>כמות: 1</p></li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li><p>מידה: 5</p></li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
                             <!--<div class="delivery">-->
-                                <!--<p>דמי שרות: 100.00 ש"ח</p>-->
-                                <!--<span>נשלח תוך 2-3 ימי עבודה</span>-->
+                                <!--<p>מחיר: {{item.endPrice}} ש"ח</p>-->
+                                <!--<span>נשלח תוך 14 ימי עבודה</span>-->
                                 <!--<div class="clearfix"></div>-->
                             <!--</div>-->
                         <!--</div>-->
                         <!--<div class="cart-item cyc">-->
-                            <!--<img src="images/m4.jpg" class="img-responsive" alt=""/>-->
+                            <!--<img src={{item.image}} class="img-responsive" alt=""/>-->
                         <!--</div>-->
                         <!--<div class="clearfix"></div>-->
                     <!--</div>-->
                 <!--</div>-->
-            </div>
+                <!--&lt;!&ndash;<script>$(document).ready(function(c) {&ndash;&gt;-->
+                    <!--&lt;!&ndash;$('.close2').on('click', function(c){&ndash;&gt;-->
+                        <!--&lt;!&ndash;$('.cart-header2').fadeOut('slow', function(c){&ndash;&gt;-->
+                            <!--&lt;!&ndash;$('.cart-header2').remove();&ndash;&gt;-->
+                        <!--&lt;!&ndash;});&ndash;&gt;-->
+                    <!--&lt;!&ndash;});&ndash;&gt;-->
+                <!--&lt;!&ndash;});&ndash;&gt;-->
+                <!--&lt;!&ndash;</script>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="cart-header2">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="close2"> </div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="cart-sec simpleCart_shelfItem">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<div class="cart-item-info">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<h3><a href="#">Mountain Hopper(XS R034)</a><span>מס' מודל: 3578</span></h3>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<ul class="qty">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li><p>כמות:1</p></li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li><p>מידה: 5</p></li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="delivery">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<p>דמי שרות: 100.00 ש"ח</p>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span>נשלח תוך 2-3 ימי עבודה</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="clearfix"></div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="cart-item cyc">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<img src="images/m4.jpg" class="img-responsive" alt=""/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="clearfix"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
             <div class="clearfix"></div>
         </div>
     </div>

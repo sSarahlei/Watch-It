@@ -5,11 +5,11 @@
         <tr>
             <th>עידכון</th>
             <th>מחיקה</th>
-            <th>מזהה קטגוריה</th>
+            <th>קטגוריה</th>
             <th>תמונה</th>
             <th>פרטים נוספים</th>
             <th>סוג מנגנון</th>
-            <th>זמין\לאזמין</th>
+            <th>זמינות</th>
             <th>מחיר סופי</th>
             <th>מחיר מחירון</th>
             <th>חברה</th>
@@ -18,16 +18,21 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in watchesList">
-            <th>עידכון</th>
-            <th><a ng-click="deleteWatch(item._id)">מחיקה</a></th>
-            <th>{{item.category}}</th>
-            <th>{{item.image}}</th>
-            <th>{{item.details}}</th>
-            <th>{{item.type}}</th>
-            <th>{{item.inStock}}</th>
-            <th>{{item.endPrice}}</th>
-            <th>{{item.priceList}}</th>
-            <th>{{item.model}}</th>
+            <td>עידכון</td>
+            <td><a ng-click="deleteWatch(item._id)">מחיקה</a></td>
+            <td ng-if="item.category=='2'">נשים</td>
+            <td ng-if="item.category=='1'">גברים</td>
+            <td><img src=images\{{item.image}}></td>
+            <td>{{item.details}}</td>
+            <td ng-if="item.type=='1'">דיגיטלי</td>
+            <td ng-if="item.type=='2'">אנלוגי</td>
+            <td ng-if="item.type=='3'">כרונוגרף</td>
+            <td ng-if="item.inStock"><input type="checkbox"  checked></td>
+            <td ng-if="!item.inStock"><input type="checkbox"  ></td>
+            <td>{{item.endPrice}}</td>
+            <td>{{item.priceList}}</td>
+            <td>{{item.model}}</td>
+            <td>{{item.wId}}</td>
         </tr>
         </tbody>
     </table>

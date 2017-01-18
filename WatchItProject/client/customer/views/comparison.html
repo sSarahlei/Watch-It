@@ -1,6 +1,6 @@
 
 <div class="col-md-9 cart-items">
-    <h1>סל הקניות שלי ({{cart.length}})</h1>
+    <h1>השוואת שעונים ({{comp.length}})</h1>
     <script>$(document).ready(function(c) {
         $('.close1').on('click', function(c){
             $('.cart-header').fadeOut('slow', function(c){
@@ -9,7 +9,7 @@
         });
     });
     </script>
-    <div ng-repeat="item in cart" class="cart-header">
+    <div ng-repeat="item in comp" class="cart-header">
         <div class="close1" style="background-color:#F9D9BE" ng-click="removeItem(item._id)"> </div>
         <div class="cart-sec simpleCart_shelfItem">
 
@@ -59,8 +59,4 @@
     <!--</div>-->
     <!--</div>-->
 </div>
-<br>
-<br>
-<br>
-<a href="#checkout/-1" class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1" target="_self">קנה עכשיו</a>
 <div class="clearfix"></div>

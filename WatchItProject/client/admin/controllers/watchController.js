@@ -132,6 +132,7 @@ myAppAdmin.controller('watchController', function($scope) {
 
 
 
+
     $scope.insertWatch = function (form) {
         if (form.$valid) {
 

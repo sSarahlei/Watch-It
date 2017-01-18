@@ -96,6 +96,10 @@ app.get('/cart/:id',function(req,res){
     res.sendFile(path.join(dirCustomer,'/cart.html'));
     //__dirname : It will resolve to your project folder.
 });
+app.get('/comparison/:id',function(req,res){
+    res.sendFile(path.join(dirCustomer,'/comparison.html'));
+    //__dirname : It will resolve to your project folder.
+});
 app.get('/getWatchesMen', function (req, res) {
     console.log("serving getWatches");
     var arr=db.getWatchesMen();

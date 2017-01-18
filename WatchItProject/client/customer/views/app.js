@@ -57,6 +57,10 @@ myApp.config(function($routeProvider) {
             templateUrl : 'cart.html',
             controller:'cartCtrl'
         })
+        .when('/comparison/:id', {
+            templateUrl : 'comparison.html',
+            controller:'comparisonCtrl'
+        })
         .otherwise( {
             templateUrl :'404.html',
             controller:'404Ctrl'
