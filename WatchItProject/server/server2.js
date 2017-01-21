@@ -130,7 +130,7 @@ app.get('/getSingle/:id', function (req, res) {
     console.log("serving getSingle");
 
 
-    var single=db.getWatcheSingle(req.params.id);
+    var single=db.getWatchSingle(req.params.id);
 
     var watch;
 
@@ -147,7 +147,7 @@ app.get('/getWatchesOrdering/:id', function (req, res) {
     console.log("serving getWatchesOrdering");
 
 
-    var single=db.getWatcheSingle(req.params.id);
+    var single=db.getWatchSingle(req.params.id);
 
     var watch;
 

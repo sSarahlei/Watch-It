@@ -13,7 +13,8 @@
             <th>מחיר סופי</th>
             <th>מחיר מחירון</th>
             <th>חברה</th>
-            <th>דגם</th>
+            <th>דגם חברה</th>
+            <th>דגם שעון בקטלוג</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,7 @@
             <td ng-if="!item.inStock"><input type="checkbox"  ></td>
             <td>{{item.endPrice}}</td>
             <td>{{item.priceList}}</td>
+            <td>{{item.company}}</td>
             <td>{{item.model}}</td>
             <td>{{item.wId}}</td>
         </tr>
@@ -38,7 +40,7 @@
     </table>
     <div class="container">
         <!-- Trigger the modal with a button -->
-        <button  type="button"  class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">הוספת שעון חדש</button>
+        <button  type="button" ng-click="getName()"  class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">הוספת שעון חדש</button>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal">
@@ -54,7 +56,7 @@
                                 <span class="error" ng-show="myForm.model.$error.required" style="color:darkred">Required</span><br>
                             </label><br>
                             <label>חברה:
-                                <select  name="company" ng-model="selectedCompany"  ng-options="x for x in company " ng-change="updateCompany(selectedCompany)" required></select>
+                                <select  name="company" ng-model="selectedCompany"  ng-options="x for x in companies" ng-change="updateCompany(selectedCompany)" required></select>
                             </label><br>
                             <label>מחיר מחירון:
                                 <input type="number" name="priceList" min="0" step="0.1" ng-model="priceList" required/><br>
@@ -78,7 +80,7 @@
                             <label>תמונה:
                                 <input type="file" name="post_image" />
                             </label><br>
-                            <label>מזהה קטגוריה:
+                            <label> קטגוריה:
                                 <select name ="category" ng-model="selectedCategory" ng-options="x for x in category" ng-change="updateCategory(selectedCategory)" required></select>
                                 <span class="error" ng-show="myForm.category.$error.required" style="color:darkred">Required</span><br>
                                 <!--s-->

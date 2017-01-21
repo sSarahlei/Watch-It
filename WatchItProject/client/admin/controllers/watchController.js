@@ -18,16 +18,13 @@ myAppAdmin.controller('watchController', function($scope) {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 var result = JSON.parse(xmlhttp.responseText);
-                for ( property in result ) {
+                for (property in result) {
+
                     companies.push(result[property].name);
 
                 }
 
-                $scope.companies=companies;
-                alert($scope.companies);
-
-
-
+                $scope.companies = companies;
 
 
             }
@@ -40,17 +37,6 @@ myAppAdmin.controller('watchController', function($scope) {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     $scope.message = 'שעונים';
@@ -100,7 +86,9 @@ myAppAdmin.controller('watchController', function($scope) {
     }
     //receiving all companies in select
 
-
+$scope.getName=function () {
+    companies_name();
+}
 
 
 //end of generating companies
@@ -109,8 +97,9 @@ myAppAdmin.controller('watchController', function($scope) {
     $scope.stock = ["זמין", "לא זמין"];
     $scope.type = ["דיגיטלי", "אוטומט","כרונוגרף","אנלוגי"];
     companies_name();
+
     $scope.$apply();
-    console.log($scope.companies);
+
 
 
 
@@ -126,12 +115,6 @@ myAppAdmin.controller('watchController', function($scope) {
 
         $scope.selectedType = selected;
     }
-
-
-
-
-
-
 
     $scope.insertWatch = function (form) {
         if (form.$valid) {

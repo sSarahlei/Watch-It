@@ -47,7 +47,7 @@ module.exports={
 
     },
     updateCompany:function(id,field_to_edit) {
-        DB.collection('companies').updateOne(id,{$set: field_to_edit});
+        DB.collection('companies').updateOne(id,{$set:field_to_edit});
         console.log("updated document");
         return DB.collection('companies').find({});
 
@@ -74,6 +74,11 @@ module.exports={
 
         return DB.collection('Watches').find({});
     },
+    getAllTypes:function() {
+
+        return DB.collection('types').find({});
+    },
+
     getWatchesMen:function() {
 
         return DB.collection('Watches').find({"category":1,"inStock":true});

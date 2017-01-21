@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.json());
 var path = require('path');
+var mongodb=require('mongodb');
  var dir=path.resolve('../client/admin/views');
 var dirControllers=path.join(__dirname, '../client/admin/controllers');
 app.use(express.static(dirControllers));
@@ -67,14 +68,14 @@ app.post('/insertCompany', function (req, res,next) {
 app.post('/updateCompany', function (req, res,next) {
     console.log("serving updateCompany");
     var document=req.body;
-    console.log(document);
+   // console.log(document);
 
     var value_key={
-        "name":document.name,
+        "_id":new mongodb.ObjectID(document.id),
     }
-    console.log(value_key);
+    //console.log(value_key);
     var arr=db.updateCompany(value_key,document);
-    console.log("arr"+arr);
+    //console.log("arr"+arr);
     var arrComp;
     arr.toArray(function(err, items) { //foreach
         arrComp=JSON.stringify(items);
@@ -180,6 +181,20 @@ app.get('/deleteWatch/:id', function (req, res) {
         res.send(arrWatches);
 
     });
+
+});
+app.get('/getTypes', function (req, res) {
+    console.log("serving getTypes");
+    var arr=db.getAllTypes();
+
+    var arrT;
+
+    arr.toArray(function(err, items) { //foreach
+        arrT=JSON.stringify(items);
+        res.send(arrT);
+
+    });
+
 
 });
 // app.get('/getPayment/:id', function (req, res) {

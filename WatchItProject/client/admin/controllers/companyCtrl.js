@@ -3,7 +3,7 @@
  */
 myAppAdmin.controller('companyCtrl',function ($scope) {
     $scope.message = 'חברה';
-
+    var time=true;
     if (window.XMLHttpRequest)
         var xmlhttp = new XMLHttpRequest();
     else
@@ -51,21 +51,21 @@ myAppAdmin.controller('companyCtrl',function ($scope) {
     }
     //chedva
     $scope.update = function(form) {
-
         if(form.$valid) {
 
             if (window.XMLHttpRequest)
                 var xmlhttp = new XMLHttpRequest();
             else
                 var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
             var document =
                 {
-
-                    "name": $scope.update_name,
-                    "image": $scope.image,
-                    "percentCalc": $scope.percentCalc,
-                    "percentProfit": $scope.percentProfit,
-                    "details": $scope.update_details
+                    "id":$scope.itemToEdit._id,
+                    "name": $scope.itemToEdit.name,
+                    "image": $('#imageW').val(),
+                    "percentCalc": $('#percentCalc').val(),
+                    "percentProfit": $('#percentProfit').val(),
+                    "details":  $('#update_details').val()
                 };
 
             xmlhttp.onreadystatechange = function () {
@@ -121,4 +121,21 @@ myAppAdmin.controller('companyCtrl',function ($scope) {
 
     }
 
+    // $scope.detailsToUpdate=function () {
+    //
+    //     var textD= $(this).text();
+    //     $(this).text('');
+    //     var textBox=$("<input type='text'/>").text(textD).val(textD);
+    //     $(this).append(textBox);
+    //
+    //
+    //
+    //
+    // }
+$scope.findItem=function (id) {
+    var res=$scope.companyList.filter(function (item,index,nums) {
+        return item._id==id;
+    })
+    $scope.itemToEdit=res[0];
+}
 });
