@@ -161,7 +161,7 @@ app.get('/getWatchesOrdering/:id', function (req, res) {
 
 });
 //adina
-app.post('/insertUser', function (req, res,next) {
+app.get('/insertUser', function (req, res) {
 
     console.log("serving insertUser");
     var document=req.body;

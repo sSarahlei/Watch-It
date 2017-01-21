@@ -37,7 +37,7 @@ myApp.controller('loginCtrl',function ($scope, $http) {
 
                 }
             }
-            xmlhttp.open('POST', 'http://localhost:3000/insertUser');
+            xmlhttp.open('GET', 'http://localhost:3000/insertUser');
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
             xmlhttp.send(JSON.stringify(document));
         //}
