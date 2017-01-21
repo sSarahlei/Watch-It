@@ -160,3 +160,20 @@ app.get('/getWatchesOrdering/:id', function (req, res) {
 
 
 });
+//adina
+app.post('/insertUser', function (req, res,next) {
+
+    console.log("serving insertUser");
+    var document=req.body;
+    console.log(document);
+    var arr=db.insertUser(document);
+    console.log("arr"+arr);
+    var arrComp;
+    arr.toArray(function(err, items) { //foreach
+        arrComp=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrComp);
+
+    });
+
+});

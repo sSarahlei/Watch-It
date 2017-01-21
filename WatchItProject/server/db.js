@@ -138,6 +138,17 @@ module.exports={
 
 
     },
+    //adina
+    insertUser:function(document){
+
+
+        DB.collection('users').insertOne(document);
+        console.log("Inserted document");
+        return DB.collection('users').find({});
+
+
+
+    },
 
 }
 

@@ -1,36 +1,44 @@
-myApp.controller('registerCtrl',function ($scope, $http) {
 
-    $("#index_banner").removeClass('banner');
-    $("#index_banner").addClass('men_banner');
+    /**
+     * Created by Coopersmith Family on 1/20/2017.
+     */
+    myAppAdmin.controller('registerCtrl',function ($scope) {
 
 
-    $scope.createUser = function () {
-        console.log($scope.myForm.$invalid);
-        if ($scope.myForm.$invalid) {
-            angular.forEach($scope.myForm.$error.required, function (field) {
-                field.$setDirty();
-            });
+        $scope.insertUser = function(form) {
+            alert("in registernctrl");
+            console.log("!!!in register controller");
+           // if(form.$valid) {
 
-            return;
-        }
-        $http.post('/auth/register', $scope.user)
-            .success(function (response) {
-                $scope.result = response;
-                if (response.isAdded == true) {
-                    window.location.reload();
-                    window.location.replace('#index');
-                }
+                if (window.XMLHttpRequest)
+                    var xmlhttp = new XMLHttpRequest();
                 else
-                    $scope.result.class = "errMessage";
+                    var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                var document =
+                    {
+                        "firstName": $scope.firstName,
+                        "lastName": $scope.lastName,
+                        "number": $scope.number,
+                        "email": $scope.email,
+                        "password": $scope.password,
+                        "passwordValid": $scope.passwordValid
+
+                    };
+
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        $scope.userList = JSON.parse(xmlhttp.responseText);
+                        $scope.$apply();
 
 
-            })
-            .error(function (error) {
-                console.log('Error: ' + error);
+                    }
+                }
+                xmlhttp.open('POST', 'http://localhost:3000/insertUser');
+                xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+                xmlhttp.send(JSON.stringify(document));
+            }
 
-            });
-    }
-}
-	
-	
-	
+
+
+       // }
+    });
