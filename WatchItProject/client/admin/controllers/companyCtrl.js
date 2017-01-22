@@ -139,4 +139,5 @@ $scope.findItem=function (id) {
     $scope.itemToEdit=res[0];
 
 }
+
 });

@@ -41,10 +41,6 @@ myApp.config(function($routeProvider) {
             templateUrl : 'single.html',
             controller:'singleCtrl'
         })
-        .when('/login', {
-            templateUrl : 'login.html',
-            controller:'loginCtrl'
-        })
         .when('/order', {
             templateUrl : 'order.html',
             controller:'orderCtrl'
