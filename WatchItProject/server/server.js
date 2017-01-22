@@ -200,6 +200,33 @@ app.get('/getTypes', function (req, res) {
 
 
 });
+app.post('/updatetWatch', function (req, res,next) {
+
+    console.log("serving updateWatch");
+    var document=req.body;
+    console.log(document);
+    var value_key={
+        "_id":new mongodb.ObjectID(document.id),
+    }
+    //console.log(value_key);
+    var arr=db.updateWatch(value_key,document);
+
+
+
+
+
+
+
+    var arrComp;
+    arr.toArray(function(err, items) { //foreach
+        arrComp=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrComp);
+
+    });
+
+});
+
 // app.get('/getPayment/:id', function (req, res) {
 //
 //     console.log("serving getPayment");

@@ -52,6 +52,12 @@ module.exports={
         return DB.collection('companies').find({});
 
     },
+    updateWatch:function(id,field_to_edit) {
+        DB.collection('Watches').updateOne(id,{$set:field_to_edit});
+        console.log("updated watch");
+        return DB.collection('Watches').find({});
+
+    },
     //orders
     getAllOrders:function() {
         return DB.collection('orders').find({});

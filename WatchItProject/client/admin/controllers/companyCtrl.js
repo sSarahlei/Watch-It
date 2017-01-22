@@ -137,5 +137,6 @@ $scope.findItem=function (id) {
         return item._id==id;
     })
     $scope.itemToEdit=res[0];
+
 }
 });
