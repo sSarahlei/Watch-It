@@ -35,7 +35,13 @@ myAppAdmin.config(function($routeProvider) {
         .when('/watch', {
             templateUrl : 'watch.html',
             controller  : 'watchController'
-        });
+        })
+
+    // route for the register new Admin page
+    .when('/login', {
+        templateUrl : 'login.html',
+        controller  : 'loginCtrl'
+    });
 });
 
 // create the controller and inject Angular's $scope

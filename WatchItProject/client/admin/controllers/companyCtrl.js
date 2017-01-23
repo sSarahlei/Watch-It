@@ -147,7 +147,16 @@ $scope.findItem=function (id) {
     var res=$scope.companyList.filter(function (item,index,nums) {
         return item._id==id;
     })
+
     $scope.itemToEdit=res[0];
+    $scope.image=res[0].image;
+    console.log(res[0].percentCalc);
+    $scope.percentCalc=res[0].percentCalc;
+
+    $scope.percentProfit=res[0].percentProfit;
+    $scope.details=res[0].details;
+
 
 }
+
 });

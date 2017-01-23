@@ -36,30 +36,35 @@
     <div class="container">
         <div class="col-sm-2 sidebar_men">
             <h3>חברות</h3>
+            <ul class="product-categories color" ng-repeat="item in companyList">
+                <li class="cat-item cat-item-42"><a href="#">{{item.name}}</a> </li>
+
+
+            </ul>
+            <h3>קטגוריה</h3>
             <ul class="product-categories color">
-                <li class="cat-item cat-item-42"><a href="#">Tissot-טיסו</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-42"><a href="#">Tissot-טיסו</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-42"><a href="#">Tissot-טיסו</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-42"><a href="#">Tissot-טיסו</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-42"><a href="#">Tissot-טיסו</a> <span class="count">(14)</span></li>
+                <li class="cat-item cat-item-54"><a href="#">גברים</a> </li>
+                <li class="cat-item cat-item-63"><a href="#">נשים</a></li>
+
 
             </ul>
             <h3>סוג מנגנון</h3>
             <ul class="product-categories color">
-                <li class="cat-item cat-item-42"><a href="#">אוטומט</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-60"><a href="#">כרונוגרף</a> <span class="count">(2)</span></li>
-                <li class="cat-item cat-item-63"><a href="#">אנלוגי</a> <span class="count">(2)</span></li>
-                <li class="cat-item cat-item-54"><a href="#">דיגיטלי</a> <span class="count">(8)</span></li>
+                <li class="cat-item cat-item-54"><a href="#">דיגיטלי</a> </li>
+                <li class="cat-item cat-item-63"><a href="#">אנלוגי</a> </li>
+                <li class="cat-item cat-item-60"><a href="#">כרונוגרף</a> </li>
 
             </ul>
 
-            <h3>מחירים</h3>
+            <h3>טווח מחיר</h3>
             <ul class="product-categories">
-                <li class="cat-item cat-item-42"><a href="#">200$-300$</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-60"><a href="#">300$-400$</a> <span class="count">(2)</span></li>
-                <li class="cat-item cat-item-63"><a href="#">400$-500$</a> <span class="count">(2)</span></li>
-                <li class="cat-item cat-item-54"><a href="#">500$-600$</a> <span class="count">(8)</span></li>
-                <li class="cat-item cat-item-55"><a href="#">600$-700$</a> <span class="count">(11)</span></li>
+
+                <li class="cat-item cat-item-42"><a href="#">עד 300 ש"ח</a></li>
+                <li class="cat-item cat-item-60"><a href="#">300-600 ש"ח</a> </span></li>
+                <li class="cat-item cat-item-63"><a href="#">600-1000 ש"ח</a> </span></li>
+                <li class="cat-item cat-item-54"><a href="#">1000-1500 ש"ח</a> </span></li>
+                <li class="cat-item cat-item-55"><a href="#">1500-2000 ש"ח</a> </span></li>
+                <li class="cat-item cat-item-55"><a href="#">מעל 2000 ש"ח</a> </span></li>
             </ul>
         </div>
         <div class="col-sm-9 mens_right">

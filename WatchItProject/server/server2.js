@@ -25,7 +25,20 @@ app.listen(3000, function () {
 
 //tzofia
 
+app.get('/getCompanies', function (req, res) {
+    console.log("serving getCompanies");
+    var arr=db.getAllCompanies();
 
+    var arrComp;
+
+    arr.toArray(function(err, items) { //foreach
+        arrComp=JSON.stringify(items);
+        res.send(arrComp);
+
+    });
+
+
+});
 app.get('/',function(req,res){
     res.sendFile(path.join(dirCustomer,'/index.html'));
     //__dirname : It will resolve to your project folder.
@@ -62,7 +75,7 @@ app.get('/legall',function(req,res){
     //__dirname : It will resolve to your project folder.
 });
 app.get('/login',function(req,res){
-    res.sendFile(path.join(dirCustomer,'/login.html'));
+    res.sendFile(path.join(dirCustomer,'/loginClient.html'));
     //__dirname : It will resolve to your project folder.
 });
 app.get('/men',function(req,res){
@@ -158,22 +171,5 @@ app.get('/getWatchesOrdering/:id', function (req, res) {
 
     });
 
-
-});
-//adina
-app.get('/insertUser', function (req, res) {
-
-    console.log("serving insertUser");
-    var document=req.body;
-    console.log(document);
-    var arr=db.insertUser(document);
-    console.log("arr"+arr);
-    var arrComp;
-    arr.toArray(function(err, items) { //foreach
-        arrComp=JSON.stringify(items);
-        //console.log(items);
-        res.send(arrComp);
-
-    });
 
 });
