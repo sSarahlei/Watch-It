@@ -19,10 +19,28 @@ myApp.controller('menCtrl',function ($scope) {
             $scope.WatchesListMen = JSON.parse(xmlhttp.responseText);
            // var arr=JSON.parse(xmlhttp.responseText);
             $scope.$apply();
+            $scope.getCompanies();
 
         }
     }
-    
+    $scope.getCompanies=function () {
+        if (window.XMLHttpRequest)
+            var xmlhttp = new XMLHttpRequest();
+        else
+            var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+        xmlhttp.open("GET","http://localhost:3000/getCompanies", true);
+
+        xmlhttp.send();
+
+        xmlhttp.onreadystatechange = function(){
+            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                $scope.companyList=JSON.parse(xmlhttp.responseText);
+                $scope.$apply();
+            }
+
+        }
+    }
     $scope.singleWatch=function (id) {
         if (window.XMLHttpRequest)
             var xmlhttp = new XMLHttpRequest();

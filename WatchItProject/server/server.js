@@ -16,6 +16,38 @@ app.listen(3000, function () {
     console.log("server running at port 3000!");
 
 });
+// app.use(express.bodyParser({uploadDir:'/path/to/temporary/directory/to/store/uploaded/files'}));
+// var fs = require('fs');
+// var path = require('path'),
+//
+// // ...
+// app.post('/upload', function (req, res) {
+//     var tempPath = req.files.file.path,
+//         targetPath = path.resolve('./uploads/image.png');
+//     if (path.extname(req.files.file.name).toLowerCase() === '.png') {
+//         fs.rename(tempPath, targetPath, function(err) {
+//             if (err) throw err;
+//             console.log("Upload completed!");
+//         });
+//     } else {
+//         fs.unlink(tempPath, function () {
+//             if (err) throw err;
+//             console.error("Only .png files are allowed!");
+//         });
+//     }
+//     // ...
+// });
+// app.get('/image.png', function (req, res) {
+//     res.sendfile(path.resolve('./uploads/image.png'));
+// });
+
+
+
+
+
+
+
+
 //companies
 app.get('/getCompanies', function (req, res) {
     console.log("serving getCompanies");
