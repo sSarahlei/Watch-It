@@ -114,6 +114,9 @@ module.exports={
     //
     //     return DB.collection('payments').find({_id:new mongodb.ObjectID(id)});
     // },
+    getAllUsers:function() {
+        return DB.collection('users').find({});
+    },
     insertCompany:function(document){
 
 
@@ -150,6 +153,15 @@ module.exports={
 
         DB.collection('users').insertOne(document);
         console.log("Inserted document");
+        return DB.collection('users').find({});
+
+
+
+    },
+    deleteUser:function(id){
+
+        DB.collection('users').deleteOne({_id:new mongodb.ObjectID(id)});
+        console.log("Removed document");
         return DB.collection('users').find({});
 
 

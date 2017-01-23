@@ -1,0 +1,64 @@
+<div class="container">
+    <h2 align="right">הוספת מנהל</h2>
+    <table class="table table-hover" >
+        <thead>
+        <tr>
+
+            <th>מחיקה</th>
+            <th>סיסמא</th>
+            <th>שם מנהל</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in userList">
+            <td> <a ng-click="deleteUser(item._id)">מחיקה</a></td>
+            <td>{{item.password}}></td>
+            <td>{{item.name}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="container">
+        <!-- Trigger the modal with a button -->
+        <button  type="button"  class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" >הוספת מנהל חדש</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">מנהלים:</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form name="myForm"  class="form-horizontal" novalidate ng-submit="insertUser(myForm)">
+                            <label>שם:
+                                <input type="text" id="name" placeholder="שם מנהל"  name ="user" ng-model="name" required/><br>
+                                <span class="error" ng-show="myForm.user.$error.required" style="color:darkred">Required</span><br>
+                            </label><br>
+                            <label>סיסמא
+                                <input type="text" id="password" placeholder="סיסמאת מנהל"  name ="password" ng-model="password" required/><br>
+                                <span class="error" ng-show="myForm.password.$error.required" style="color:darkred">Required</span><br>
+                            </label><br>
+
+                            <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="myForm.$invalid" value="אישור"/>
+                            <input type="button"   class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <style>
+        #myModal {
+            direction: rtl;
+            font-size: large;
+        }
+
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
