@@ -1,30 +1,29 @@
 ﻿
-<div class="account-in">
-	<div class="container" ng-form="myForm">
-		<h3>כניסה לחשבון</h3>
-		<div class="col-md-7 account-top">
-			<form>
-				<div>
-					<span>מייל*</span>
-					<input type="text" ng-model="user.email" ng-required="true">
-				</div>
-				<div>
-					<span class="pass">סיסמא*</span>
-					<input type="password" ng-model="user.password" ng-required="true">
-				</div>
-				<input type="submit" value="אישור" ng-click="login()">
-			</form>
-		</div>
-		<div class="col-md-5 left-account ">
-			<a href="single.html"><img class="img-responsive " src="images/s4.jpg" alt=""/></a>
-			<div class="five-in">
-				<h1>35% </h1><span>discount</span>
 
-		</div>
-		<div class="clearfix"> </div>
-	</div>
+<div class="col-sm-3 center" style="margin-left: 430px">
+	<form name="myForm"  class="form-horizontal" novalidate ng-submit="signing(myForm)">
+		<h3>כניסה למנהל</h3><br>
+		<label for="inputUserName" class="sr-only">שם משתמש</label>
+		<input id="inputUserName" ng-model="user.userName" class="form-control" placeholder="שם משתמש" name="userName" required="true" autofocus="" type="name">
+
+		</br>
+
+		<label for="inputPassword" class="sr-only">סיסמא</label>
+		<input id="inputPassword" ng-model="user.password" class="form-control" placeholder="סיסמא" name="password" required="true"  type="password">
+
+		<!--<label for="inputConfirmPassword" class="sr-only"> Confirm Password</label>-->
+		<!--<input id="inputConfirmPassword" class="form-control" placeholder="Confirm Password" required="" type="password">-->
+
+		</br>
+
+		<button class="btn btn-lg btn-primary btn-block" ng-disabled="myForm.$invalid" type="submit">התחבר</button>
+		<a href="#/home" class="btn btn-lg btn-primary btn-block" >ביטול</a>
+	</form>
 </div>
-<div class="map">
-	<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3150859.767904157!2d-96.62081048651531!3d39.536794757966845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1408111832978"> </iframe>
-</div>
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+
+
 <!--<a href="admin\index.html">הכנס כמנהל</a>-->

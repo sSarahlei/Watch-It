@@ -155,7 +155,7 @@ app.post('/insertOrder', function (req, res,next) {
 
 //adina
 app.post('/insertUser', function (req, res, next) {
-
+alert("serving insertUser");
     console.log("serving insertUser");
     var document=req.body;
     console.log(req);
@@ -169,8 +169,23 @@ app.post('/insertUser', function (req, res, next) {
 
     });
 
-});
 
+});
+app.get('/deleteUser/:id', function (req, res) {
+
+    console.log("serving deleteUser");
+    console.log(req.params.id);
+    var arr=db.deleteUser(req.params.id);
+
+    var arrUser;
+    arr.toArray(function(err, items) { //foreach
+        arrUser=JSON.stringify(items);
+        //console.log(items);
+        res.send(arrUser);
+
+    });
+
+});
 
 
 
@@ -323,6 +338,10 @@ app.get('/rights',function(req,res){
 });
 app.get('/message',function(req,res){
     res.sendFile(path.join(dir,'/message.html'));
+
+});
+app.get('/login',function(req,res){
+    res.sendFile(path.join(dir,'/login.html'));
 
 });
 

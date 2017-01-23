@@ -33,9 +33,9 @@ myApp.config(function($routeProvider) {
             controller:'brandsCtrl'
         })
 
-		.when('/register', {
-            templateUrl : 'register.html',
-            controller:'loginCtrl'
+		.when('/loginClient', {
+            templateUrl : 'loginClient.html',
+            controller:'loginClientCtrl'
         })
 		.when('/single/:id', {
             templateUrl : 'single.html',

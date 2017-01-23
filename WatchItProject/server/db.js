@@ -169,7 +169,11 @@ module.exports={
     },
 
 }
+module.exports = mongoose.model('User',{
 
+    name : String,
+    password : String
+});
 
 
 

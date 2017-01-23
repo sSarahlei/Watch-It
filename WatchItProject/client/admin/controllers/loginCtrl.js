@@ -8,19 +8,15 @@
 myAppAdmin.controller('loginCtrl',function ($scope) {
     $scope.insertUser = function(form) {
         if(form.$valid) {
-alert("in login controller");
+            alert("in login controller");
             if (window.XMLHttpRequest)
                 var xmlhttp = new XMLHttpRequest();
             else
                 var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
             var document =
                 {
-                    "firstName": $scope.firstName,
-                    "lastName": $scope.lastName,
-                    "number": $scope.number,
-                    "email": $scope.email,
-                    "password": $scope.password,
-                    "passwordValid": $scope.passwordValid
+                    "name": $scope.name,
+                    "password": $scope.password
                 };
 
             xmlhttp.onreadystatechange = function () {

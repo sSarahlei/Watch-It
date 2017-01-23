@@ -15,6 +15,9 @@ app.use(express.static(dirJs));
 var db=require('./db.js');
 
 
+
+
+
 app.listen(3000, function () {
     console.log("server running at port 3000!");
 
@@ -74,7 +77,7 @@ app.get('/legall',function(req,res){
     res.sendFile(path.join(dirCustomer,'/legall.html'));
     //__dirname : It will resolve to your project folder.
 });
-app.get('/login',function(req,res){
+app.get('/loginClient',function(req,res){
     res.sendFile(path.join(dirCustomer,'/loginClient.html'));
     //__dirname : It will resolve to your project folder.
 });
@@ -172,4 +175,37 @@ app.get('/getWatchesOrdering/:id', function (req, res) {
     });
 
 
+});
+app.post('/signing', function (req, res) {
+    alert("in signing!");
+    var existUser = new User(req.body);
+
+    console.log("In sign in :",existUser);
+
+    if(req.session.user != null)
+    {
+        res.json({ in: false, msg: "הנך מחובר! התנתק לפני התחברות חוזרת", user: null });
+    }
+    else
+    {
+        User.findOne({  name: existUser.name}, function (err, user) {
+            if (user) {
+
+                if(user.password != existUser.password)
+                {
+                    res.json({ in: false, msg: "הסיסמא שהכנסת שגויה", user: user });
+                }
+                else
+                {
+                    req.session.user = user;
+                    res.json({ in: true, msg: "התחברת לשעון בקטלוג בהצלחה", user: user });
+                }
+
+            }
+            else {
+                res.json({ in: false, msg: "שם המשתמש אינו קיים בשעון בקטלוג", user: user });
+
+            }
+        });
+    }
 });
