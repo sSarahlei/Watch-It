@@ -90,6 +90,16 @@ myAppAdmin.controller('companyCtrl',function ($scope) {
 
     $scope.insertCompany = function(form) {
         if(form.$valid) {
+			   //validation for no duplicate companies:
+
+            var companyString = JSON.stringify($scope.companyList);
+            console.log("lll" + companyString);
+            var n = companyString.indexOf($scope.name);
+            if (n > 0) {
+                alert("חברה זו קיימת כבר במאגר!");
+            }
+            //if company does not exist yet
+            else {
 
             if (window.XMLHttpRequest)
                 var xmlhttp = new XMLHttpRequest();
@@ -116,6 +126,7 @@ myAppAdmin.controller('companyCtrl',function ($scope) {
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
             xmlhttp.send(JSON.stringify(document));
         }
+		}
 
 
 

@@ -62,10 +62,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="header_top">
                 <div class="header_top_left">
                     <div class="box_11">
-                        <a href="#cart/0">
-                            <!-- to fix - in small screen the texrt is ltr -->
-                            <h4><p>סל קניות: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> פריטים)</p><img src="images/bag.png" alt="" /><div class="clearfix"> </div></h4>
-                        </a>
+                        <form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                                <input type="hidden" name="cmd" value="_cart">
+                                <input type="hidden" name="business" value="PAP4GMJNYL4PL">
+                                <input type="image" src="images/bag.png" border="0" name="submit" alt="">
+                                <img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+                                <input type="hidden" name="display" value="1">
+                            </form>
                     </div>
 
                     <div class="clearfix"> </div>

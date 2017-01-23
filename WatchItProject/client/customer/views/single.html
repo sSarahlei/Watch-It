@@ -73,7 +73,23 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <a href="#cart/{{singleWatch[0]._id}}" class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1" target="_self">הוסף לסל</a>
+
+
+                
+
+                    <form name="_xclick" target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                        <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="business" value="PAP4GMJNYL4PL">
+                        <input type="hidden" name="currency_code" value="ILS">
+                        <input type="hidden" name="item_name" value={{watchCompany}}:{{watchModel}}>
+                        <input type="hidden" name="amount" value={{watchPrice}}>
+                        <input type="image" src="http://www.paypal.com/en_AU/i/btn/sc-but-01.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+                        <input type="hidden" name="add" value="1">
+                    </form>
+
+
+
+
                 </div>
                 <div class="clearfix"> </div>
             </div>
