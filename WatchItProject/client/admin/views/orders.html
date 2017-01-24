@@ -22,7 +22,10 @@
             <td>הזמנה מהספק</td>
             <td>עידכון</td>
             <td><a ng-click="deleteOrder(item._id)">מחיקה</a></td>
-            <td>{{item.statusT}}</td>
+            <td ng-if="item.statusT=='1'">לא טופל </td>
+            <td ng-if="item.statusT=='2'">הוזמן מהספק</td>
+            <td ng-if="item.statusT=='3'">התקבל </td>
+            <td ng-if="item.statusT=='4'">נשלח ללקוח</td>
             <td>{{item.dateOrder | date:'dd/MM/yyyy' }}</td>
             <td><a ng-click="getPayment(item._id)">לחץ להצגה</a></td>
             <td>{{item.watchCompany}}</td>
@@ -46,22 +49,34 @@
                     </div>
                     <div class="modal-body">
                         <form name="myForm"  class="form-horizontal" novalidate ng-submit="insertOrder(myForm)">
-                            <label>מזהה מזמין:
-                                <input type="text" name="customerId"  ng-model="customerId" required/><br>
-                                <span class="error" ng-show="myForm.customerId.$error.required" style="color:darkred">Required</span><br>
+                            <label>שם לקוח:
+                                <input type="text" name="clientName"  ng-model="clientName" required/><br>
+                                <span class="error" ng-show="myForm.clientName.$error.required" style="color:darkred">Required</span><br>
                             </label><br>
-                            <label>מזהה שעון:
-                                <input type="text" name="watchId"  ng-model="watchId" required/><br>
-                                <span class="error" ng-show="myForm.watchId.$error.required" style="color:darkred">Required</span><br>
+                            <label>אי-מייל לקוח:
+                                <input type="email" name="clientMail"  ng-model="clientMail" required/><br>
+                                <span class="error" ng-show="myForm.clientMail.$error.required" style="color:darkred">Required</span><br>
                             </label><br>
-                            <label>פרטים תשלום:
-                                <input type="text"  name="payment"   ng-model="payment" required />
-                                <span class="error" ng-show="myForm.payment.$error.required" style="color:darkred">Required</span><br>
+                            <label>טלפון לקוח:
+                                <input type="tel" name="clientPhone"  ng-model="clientPhone" required/><br>
+                                <span class="error" ng-show="myForm.clientPhone.$error.required" style="color:darkred">Required</span><br>
+                            </label><br>
+                            <label>חברה:
+                                <input type="text"  name="watchCompany"   ng-model="watchCompany" required />
+                                <span class="error" ng-show="myForm.watchCompany.$error.required" style="color:darkred">Required</span><br>
+                            </label><br>
+                            <label>דגם:
+                                <input type="text"  name="watchModel"   ng-model="watchModel" required />
+                                <span class="error" ng-show="myForm.watchModel.$error.required" style="color:darkred">Required</span><br>
                             </label><br>
 
                             <label>תאריך:
                                 <input type="date" id="exampleInput" name="input" ng-model="example.value"
                                        placeholder="yyyy-MM-dd"  required />
+                            </label><br>
+                            <label>סטטוס:
+                                <select  name="statusT" ng-model="selectedStatusT"  ng-options="x for x in statusT " ng-change="updateStatusT(selectedStatusT)" required ></select>
+                                <span class="error" ng-show="myForm.statusT.$error.required" style="color:darkred">Required</span><br>
                             </label><br>
                             <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="myForm.$invalid" value="אישור"/>
                             <input type="button"   class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
@@ -73,47 +88,10 @@
             </div>
         </div>
 
-        <div class="modal fade" id="updateModal">
-            <div class="modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title">הוסף הזמנה:</h2>
-                    </div>
-                    <div class="modal-body">
-                        <form name="updateForm"  class="form-horizontal" novalidate ng-submit="updateOrder(updateForm)">
-                            <label>מזהה מזמין:
-                                <input type="text" name="customerId"  ng-model="customerId" required/><br>
-                                <span class="error" ng-show="updateForm.customerId.$error.required" style="color:darkred">Required</span><br>
-                            </label><br>
-                            <label>מזהה שעון:
-                                <input type="text" name="watchId"  ng-model="watchId" required/><br>
-                                <span class="error" ng-show="updateForm.watchId.$error.required" style="color:darkred">Required</span><br>
-                            </label><br>
-                            <label>פרטים תשלום:
-                                <input type="text"  name="payment"   ng-model="payment" required />
-                                <span class="error" ng-show="updateForm.payment.$error.required" style="color:darkred">Required</span><br>
-                            </label><br>
 
-                            <label>תאריך:
-                                <input type="date" id="exampleInput" name="input" ng-model="example.value"
-                                       placeholder="yyyy-MM-dd"  required />
-                            </label><br>
-                            <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="updateForm.$invalid" value="אישור"/>
-                            <input type="button"   class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
-                        </form>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
         <style>
             #myModal {
-                direction: rtl;
-                font-size: large;
-            }
-            #updateModal {
                 direction: rtl;
                 font-size: large;
             }

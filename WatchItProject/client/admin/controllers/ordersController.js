@@ -57,9 +57,24 @@ myAppAdmin.controller('ordersController', function($scope) {
             }
         }
     }
+    $scope.statusT = [" לא טופל","התקבל","הוזמן","נשלח ללקוח"];
+    $scope.updateStatusT=function(selected) {
+        $scope.selectedStatusT = selected;
+
+
+    }
 
     $scope.insertOrder = function(form) {
         if(form.$valid) {
+            switch ($scope.selectedStatusT)
+            {
+                case 'לא טופל':  $scope.my_stat='1';break;
+                case 'הוזמן מהספק':  $scope.my_stat='2';break;
+                case 'התקבל':  $scope.my_stat='3';break;
+                case 'נשלח ללקוח':  $scope.my_stat='4';break;
+
+                default: ;break;
+            }
 
             if (window.XMLHttpRequest)
                 var xmlhttp = new XMLHttpRequest();
@@ -67,10 +82,14 @@ myAppAdmin.controller('ordersController', function($scope) {
                 var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
             var document=
                 {
-                    "client" :$scope.customerId,
-                    "watch" :$scope.watchId,
-                    "payment" :$scope.payment,
-                    "dateOrder" :$scope.example.value
+                    clientName:$scope.clientName,
+                    clientMail:$scope.clientMail,
+                    clientPhone:$scope.clientPhone,
+                    watchCompany:$scope.watchCompany,
+                    watchModel:$scope.watchModel,
+                    watchWId:$scope.watchWId,
+                    dateOrder:$scope.example.value,
+                    statusT: $scope.my_stat
                 };
 
             xmlhttp.onreadystatechange = function () {
@@ -93,12 +112,12 @@ myAppAdmin.controller('ordersController', function($scope) {
 
 
     }
-    
+
     $scope.getOldOrders=function () {
         $scope.ordersList=arrList.filter(function (item,index,nums) {
             return item.status==4;
         });
-       // $("#btnOld").hide;
+        // $("#btnOld").hide;
         $scope.showBtn=true;
 
 
@@ -116,11 +135,11 @@ myAppAdmin.controller('ordersController', function($scope) {
 
         $scope.showDivPayment=true;
 
-       var res=arrList.filter(function (item,index,nums) {
+        var res=arrList.filter(function (item,index,nums) {
 
-           return item._id==id;
-       });
-       $scope.paymentToShow=res[0];
+            return item._id==id;
+        });
+        $scope.paymentToShow=res[0];
     }
     $scope.closePayment=function () {
         $scope.showDivPayment=false;
