@@ -21,6 +21,8 @@ myApp.controller('singleCtrl',function ($scope,$routeParams) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             $scope.singleWatch = JSON.parse(xmlhttp.responseText);
             //sarah added
+
+            $scope.watchID=($scope.singleWatch[0])._id;
             $scope.watchModel=($scope.singleWatch[0]).model;
             $scope.watchCompany=($scope.singleWatch[0]).company;
             $scope.watchPrice=($scope.singleWatch[0]).endPrice;

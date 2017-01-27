@@ -1,5 +1,14 @@
-﻿body
-{
+﻿h3{font-family:"BN Dafna Broke";}
+.down-button{
+    position:absolute;
+    bottom:40px;
+    width:100%;
+    text-align:center;
+
+}
+
+.down-button i{
+    color:white;
 }
 .Wmargin-logo{
     margin-right:2%;
@@ -26,7 +35,7 @@
     margin-top:-30%;
 }
 .WMarginSort{
-  margin-right:-195%; 
+  margin-right:-195%;
 }
 .WMarginForm{
     margin-right:89.5%;
@@ -34,15 +43,15 @@
 .Wmenu{
     margin-right:2%;
     clear:both;
-   
-   
+
+
 }
 .WfloatRight{
     float:right;
     margin-right:50%;
     color:#F9D9BE !important;
     font-weight:700;
-    
+
 }
 .WclearFloat{
 clear:both;

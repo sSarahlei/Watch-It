@@ -14,8 +14,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--webfont-->
-<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
+
     <script
             src="https://code.jquery.com/jquery-1.12.4.min.js"
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
@@ -36,6 +35,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--materia-light-->
+    <link rel="stylesheet" href="css/mdl/material.min.css">
+    <script src="css/mdl/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
 
 
 
@@ -61,15 +68,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="header_top">
                 <div class="header_top_left">
-                    <div class="box_11">
+
                         <form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                                 <input type="hidden" name="cmd" value="_cart">
                                 <input type="hidden" name="business" value="PAP4GMJNYL4PL">
-                                <input type="image" src="images/bag.png" border="0" name="submit" alt="">
+                                <input type="image" class="img-responsive img-circle" src="images/cart1.png" border="0"  width="70px" name="submit" alt="">
                                 <img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
                                 <input type="hidden" name="display" value="1">
                             </form>
-                    </div>
+
 
                     <div class="clearfix"> </div>
                 </div>
@@ -120,13 +127,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="header_bottom">
             <div class="logo Wmargin-logo">
               <h1><span class="m_1">ש</span>עון בקטלוג</h1>
+                <div class="down-button">
+
+                </div>
             </div>
             <br /><br />
             <div class="Wmenu">
                 <div class="menu">
                     <ul class="megamenu skyblue">
                         <!-- data from DB -->
-                        <li><a class="color7" href="#whatsNew">מה חדש</a></li>
 
 					 <li>
                             <a class="color2" href="#woman">נשים</a>
@@ -134,7 +143,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="row">
                                     <div class="col2">
                                         <div class="h_nav">
-                                            <h4 class="WfloatRight">נוספים</h4>
+                                            <h4 class="WfloatRight">שעונים</h4>
                                             <ul class="WclearFloat">
                                                 <li>
                                                     <div class="p_right">
@@ -253,7 +262,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                     <div class="col1">
                                         <div class="h_nav">
-                                            <h4 class="WfloatRight">אופנה</h4>
                                             <ul class="WclearFloat">
                                                 <li><a href="#men">Calvin Klein-קלווין קליין</a></li>
                                                 <li><a href="#men">Calvin Klein-קלווין קליין</a></li>
@@ -292,12 +300,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </div>
             </div>
+            <div class="down-button">
+
+                <a id="linkID">
+                <i class="fa fa-arrow-circle-down fa-4x"></i>
+                </a>
+                <script>
+                    $("#linkID").click(function () {
+                        $('html, body').animate({
+                            scrollTop: $('#main').offset().top
+                        }, 'slow');
+                    })
+                </script>
+            </div>
+
             <div class="clearfix"> </div>
+
         </div>
 
-   </div>
 
-   <div class="main" ng-view></div>
+
+
+    </div>
+
+   <div id="main" ng-view></div>
 
 
     <div class="footer">
@@ -329,4 +355,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
     </div>
 </body>
+<!--&lt;!&ndash;scrooling effects&ndash;&gt;-->
+
+<!--<script src="css/jquery.easing.1.3.js"></script>-->
+<!--<script src="css/jquery.stellar.js"></script>-->
+<!--<script src="js/scrolling.js"></script>-->
 </html>

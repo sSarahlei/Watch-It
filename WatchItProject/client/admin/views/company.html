@@ -39,7 +39,7 @@
                         <h2 class="modal-title">הוסף חברה:</h2>
                     </div>
                     <div class="modal-body">
-                        <form name="myForm"  class="form-horizontal" novalidate ng-submit="insertCompany(myForm)">
+                        <mui-form name="myForm"  class="form-horizontal" novalidate ng-submit="insertCompany(myForm)">
                             <label>שם:
                                 <input type="text" id="name" placeholder="שם חברה"  name ="company" ng-model="name" required/><br>
                                 <span class="error" ng-show="myForm.company.$error.required" style="color:darkred">Required</span><br>
@@ -60,7 +60,7 @@
                             </label><br>
                             <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="myForm.$invalid" value="אישור"/>
                             <input type="button"   class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
-                        </form>
+                        </mui-form>
 
                     </div>
 
@@ -80,7 +80,7 @@
                             <h2 class="modal-title">עדכן חברה:</h2>
                         </div>
                         <div class="modal-body">
-                            <form name="myUpdateForm" form class="form-horizontal" novalidate  ng-submit="update(myUpdateForm)">
+                            <mui-form name="myUpdateForm" form class="form-horizontal" novalidate  ng-submit="update(myUpdateForm)">
                                 <label>{{itemToEdit.name}}</label><br>
                                 <label>הכנס שדות שברצונך לעדכן:</label></br></br>
                                 <label>תמונה:
@@ -101,7 +101,7 @@
                                 </label></br>
                                 <input type="submit"  class="btn btn-default" name="submit"   ng-disabled="myUpdateForm.$invalid" value="אישור"/>
                                 <input type="button"  class="btn btn-default" value="סגור" data-dismiss="modal"/></br></br>
-                            </form>
+                            </mui-form>
 
                         </div>
 

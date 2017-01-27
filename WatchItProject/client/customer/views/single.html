@@ -51,7 +51,7 @@
                     <div class="price_single">
                         <span>מחיר מחירון:</span> <span class="reducedfrom">{{singleWatch[0].priceList}} ש"ח</span><br />
                         <span>מחיר שעון בקטלוג:</span> <span class="amount item_price actual">{{singleWatch[0].endPrice}} ש"ח</span><br /><br />
-                        <a href="#checkout/{{singleWatch[0]._id}}" class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1" target="_self">קנה עכשיו</a>
+                        <!--<a href="#checkout/{{singleWatch[0]._id}}" class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1" target="_self">קנה עכשיו</a>-->
                     </div>
 
                     <p class="quick_desc">תאור קצר:</p>
@@ -82,6 +82,9 @@
                         <input type="hidden" name="business" value="PAP4GMJNYL4PL">
                         <input type="hidden" name="currency_code" value="ILS">
                         <input type="hidden" name="item_name" value={{watchCompany}}:{{watchModel}}>
+                        <<input type="hidden" name="item_image" value={{image}}>
+
+
                         <input type="hidden" name="amount" value={{watchPrice}}>
                         <input type="image" src="http://www.paypal.com/en_AU/i/btn/sc-but-01.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
                         <input type="hidden" name="add" value="1">
