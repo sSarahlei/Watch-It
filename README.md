@@ -6,7 +6,7 @@ Watch-It is a unique new venture of selling watches through web catalogs allowin
 The Developed system Implements a marketing platform that manages the project in a way that is easy both for the buyer and for the company.  
 The system is designed primarily for the Hareidi Sector who require filtering of inappropiate content.  
 
-Logo:  
+Logo:  https://github.com/sSarahlei/Watch-It/blob/master/logo.png  
 
 Current distribution of the product:  
 https://drive.google.com/file/d/0B4k_15Pd490fcXFHbUlGVkptT1k/view
@@ -31,6 +31,8 @@ Note:This project is carried out within the framework of Software engineering co
 [ZFR](https://github.com/sSarahlei/Watch-It/wiki/ZFR)  
 **Iterations:**  
 [Iteration 1](https://github.com/sSarahlei/Watch-It/wiki/iteration-1)
+[Iteration 1](https://github.com/sSarahlei/Watch-It/wiki/iteration-2)
+[Iteration 1](https://github.com/sSarahlei/Watch-It/wiki/iteration-3)
 
 
 
