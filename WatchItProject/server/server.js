@@ -55,22 +55,14 @@ app.post("/api/Upload" ,function (req, res) {
 });
 
 app.post("/api/UploadC/", function (req, res) {
-    //var id=req.params.id;
-    var id='58654402cab7e7d4fd4dadf2';
-
     upload(req, res, function (err) {
         if (err) {
+
             return res.end("Something went wrong!");
         }
-        var value_key={
-            "_id":new mongodb.ObjectID(id),
-        }
-        //console.log(value_key);
-        var document={
-            "image":fileName,
-        };
-        var arr=db.updateCompany(value_key,document);
-        return res.end("File uploaded sucessfully!.");
+        return res.redirect("/");
+
+
     });
 });
 

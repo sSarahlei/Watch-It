@@ -30,7 +30,7 @@
 
 <div class="container">
     <h2 text align="right">ניהול תמונות</h2>
-    <h3>שעונים</h3>
+    <h2 dir="rtl" style="color:#c62828;font-weight:500">שעונים</h2>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -49,7 +49,7 @@
         </tr>
         </tbody>
     </table>
-    <h3>חברות</h3>
+    <h2 dir="rtl" style="color:#c62828;font-weight:500">חברות</h2>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -80,9 +80,9 @@
                         <label>דגם חברה </label><br>
                         <label>{{itemToEdit.model}}</label><br>
                         <img width="100" id="img" src=images\{{itemToEdit.image}} alt="התמונה לא הועלתה לשרת">
-                        <input type="file" id="imgU" onchange="angular.element(this).scope().uploadImage()" name="imgUploader" multiple />
+                        <input  type="file" id="imgU" onchange="angular.element(this).scope().uploadImage()" name="imgUploader" multiple />
 
-                        <input type="submit" name="submit" style="visibility: hidden" id="btnSubmit" value="העלה תמונה" /><br><br>
+                        <input  align="right" class="btn btn-default btn-lg" type="submit" name="submit" style="visibility: hidden" id="btnSubmit" value="העלה תמונה" /><br><br>
 
                     </form>
 
@@ -99,13 +99,13 @@
                     <h2 class="modal-title"> עדכן או הוסף תמונה:</h2>
                 </div>
                 <div class="modal-body">
-                    <form name="ImageForm" id="frmUploaderC" enctype="multipart/form-data" action="api/UploadC/" method="post"  class="form-horizontal" >
+                    <form name="ImageForm" id="frmUploaderC" enctype="multipart/form-data" action="api/UploadC" method="post"  class="form-horizontal" >
                         <label>שם חברה</label><br>
                         <label>{{itemToEditC.name}}</label><br>
 
 
-                        <img width="50" src=images\{{itemToEditC.image}} alt="ריק">
-                        <input type="file" name="imgUploader" multiple />
+                        <img width="100" src=images\{{itemToEditC.image}} alt="התמונה לא הועלתה לשרת">
+                        <input type="file" id="imgUC" onchange="angular.element(this).scope().uploadImageC()" name="imgUploader" multiple />
                         <input type="submit" name="submit" id="btnSubmitC" value="Upload" /><br><br>
                     </form>
 
