@@ -37,8 +37,8 @@ myApp.controller('womanCtrl',function ($scope) {
 
             $scope.WatchesListWomen = WatchesWomen;
             $scope.WatchesListWomanToView = $scope.WatchesListWomen.slice(0,p);
-
-            $scope.$apply();
+            $scope.showPageNums=true;
+            $scope.filterMessage= " ";
 
 
         }
@@ -59,9 +59,11 @@ myApp.controller('womanCtrl',function ($scope) {
                 }
             }
             $scope.WatchesListWomanToView = viewWatches;
+            $scope.showPageNums=false;
+            $scope.filterMessage= "מציג שעוני " + company;
             // $scope.$apply();
         },
-        $scope.getWatchesByType=function(type){
+        $scope.getWatchesByType=function(type,title){
             $scope.foundOne = false;
             var viewWatches= {};
             var counter =0;
@@ -76,6 +78,8 @@ myApp.controller('womanCtrl',function ($scope) {
                 }
             }
             $scope.WatchesListWomanToView = viewWatches;
+            $scope.showPageNums=false;
+            $scope.filterMessage="מציג שעוני " + title ;
             //$scope.$apply();
 
         },
@@ -94,6 +98,8 @@ myApp.controller('womanCtrl',function ($scope) {
                 }
             }
             $scope.WatchesListWomanToView = viewWatches;
+            $scope.showPageNums=false;
+            $scope.filterMessage="מציג שעונים שמחירם בין " + minPrice + " שח ל " + maxPrice + " שח";
             //$scope.$apply();
         },
 
@@ -126,6 +132,8 @@ myApp.controller('womanCtrl',function ($scope) {
         $(".active").removeClass('active');
         $("#li"+page).addClass('active');
         $scope.foundOne = true;
+        $scope.showPageNums=true;
+        $scope.filterMessage= " ";
     }
 
 });

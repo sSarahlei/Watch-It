@@ -55,9 +55,9 @@
             <!--if changed to ng-repeat with types send to function item.title-->
 
             <ul class="product-categories color">
-                <li class="cat-item cat-item-54"><a ng-click="getWatchesByType('3')">דיגיטלי</a> </li>
-                <li class="cat-item cat-item-63"><a ng-click="getWatchesByType('1')">אנלוגי</a> </li>
-                <li class="cat-item cat-item-60"><a ng-click="getWatchesByType('2')">כרונוגרף</a> </li>
+                <li class="cat-item cat-item-54"><a ng-click="getWatchesByType('3','דיגיטלי')">דיגיטלי</a> </li>
+                <li class="cat-item cat-item-63"><a ng-click="getWatchesByType('1','אנלוגי')">אנלוגי</a> </li>
+                <li class="cat-item cat-item-60"><a ng-click="getWatchesByType('2','כרונוגרף')">כרונוגרף</a> </li>
 
             </ul>
 
@@ -98,7 +98,7 @@
 
                 </div>
                 <!--<li><a style="display:inline"  class="previous">דף : </a></li>-->
-                <ul   ng-repeat="item in pages" class="women_pagenation dc_paginationA dc_paginationA06">
+                <ul   ng-if="showPageNums" ng-repeat="item in pages" class="women_pagenation dc_paginationA dc_paginationA06">
 
 
                     <li id=li{{item}}><a ng-click="replaceWatches(item)">{{item}}</a></li>
@@ -116,6 +116,7 @@
                     <div class="clearfix"></div>
                     <ul class="moveToRight">
                         <h2 ng-if="!foundOne">לא נמצאו שעונים התואמים את החיפוש</h2>
+                        <h4 ng-if="!showPageNums && foundOne">{{filterMessage}} <h6><a ng-if="!showPageNums" ng-click="replaceWatches(1)">אפס סינון</a></h6></h4>
                         <li ng-repeat="item in WatchesListMenToView"  class="simpleCart_shelfItem">
 
                             <a class="cbp-vm-image" href=#single/{{item._id}}>

@@ -109,7 +109,7 @@
                 </div>
 
 
-                    <ul   ng-repeat="item in pages" class="women_pagenation dc_paginationA dc_paginationA06">
+                    <ul ng-if="showPageNums"  ng-repeat="item in pages" class="women_pagenation dc_paginationA dc_paginationA06">
 
 
                         <li id=li{{item}}><a ng-click="replaceWatches(item)">{{item}}</a></li>
@@ -126,7 +126,8 @@
                     </div>
                     <div class="clearfix"></div>
                     <ul class="moveToRight">
-                        <h2 ng-if="!foundOne">לא נמצאו שעונים התואמים את החיפוש</h2>
+                        <h2 ng-if="!foundOne"> לא נמצאו שעונים התואמים את החיפוש </h2>
+                        <h4 ng-if="!showPageNums && foundOne">{{filterMessage}} <h6><a ng-if="!showPageNums" ng-click="replaceWatches(1)">אפס סינון</a></h6></h4>
                         <li ng-repeat="item in WatchesListWomanToView" class="simpleCart_shelfItem">
                             <a class="cbp-vm-image" href=#single/{{item._id}}>
                                 <div class="view view-first">

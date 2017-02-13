@@ -31,10 +31,12 @@ myApp.controller('menCtrl',function ($scope) {
             for(i=0;i<len;i++) {
                 pages[i] = i + 1;
             }
+            $scope.showPageNums=true;
             $scope.foundOne = true;
             $scope.pages=pages;
             $scope.WatchesListMen = WatchesMen;
             $scope.WatchesListMenToView =WatchesMen.slice(0,p);
+            $scope.filterMessage="";
             $scope.$apply();
 
 
@@ -84,6 +86,8 @@ myApp.controller('menCtrl',function ($scope) {
             $(".active").removeClass('active');
             $("#li"+page).addClass('active');
             $scope.foundOne = true;
+            $scope.showPageNums=true;
+            $scope.filterMessage="";
 
         },
 
@@ -104,11 +108,13 @@ myApp.controller('menCtrl',function ($scope) {
                 }
             }
             $scope.WatchesListMenToView = viewWatches;
-            console.log( $scope.WatchesListMenToView );
+            $scope.showPageNums=false;
+            $scope.filterMessage= "מציג שעוני " + company;
+            //console.log( $scope.WatchesListMenToView );
             // $scope.$apply();
         },
 
-        $scope.getWatchesByType=function(type){
+        $scope.getWatchesByType=function(type,title){
             $scope.foundOne = false;
             var viewWatches= {};
             var counter =0;
@@ -124,7 +130,9 @@ myApp.controller('menCtrl',function ($scope) {
                 }
             }
             $scope.WatchesListMenToView = viewWatches;
-            console.log( $scope.WatchesListMenToView );
+            $scope.showPageNums=false;
+            $scope.filterMessage="מציג שעוני " + title ;
+            //console.log( $scope.WatchesListMenToView );
             //$scope.$apply();
 
         },
@@ -143,7 +151,9 @@ myApp.controller('menCtrl',function ($scope) {
                 }
             }
             $scope.WatchesListMenToView = viewWatches;
-            console.log( $scope.WatchesListMenToView );
+            $scope.showPageNums=false;
+            $scope.filterMessage="מציג שעונים שמחירם בין " + minPrice + " שח ל " + maxPrice + " שח";
+            //console.log( $scope.WatchesListMenToView );
             //$scope.$apply();
         }
 
