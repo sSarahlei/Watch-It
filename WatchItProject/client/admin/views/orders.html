@@ -1,127 +1,17 @@
 <div class="container">
     <h2 text align="right">ניהול הזמנות</h2>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>הזמנה מהספק</th>
-            <th>עידכון</th>
-            <th>מחיקה</th>
-            <th>סטטוס</th>
-            <th>תאריך</th>
-            <th>פרטי תשלום</th>
-            <th>חברה</th>
-            <th>דגם חברה</th>
-            <th>דגם שעון בקטלוג</th>
-            <th>מזמין</th>
+  <hr>
 
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="item in ordersList">
-            <td>הזמנה מהספק</td>
-            <td>עידכון</td>
-            <td><a ng-click="deleteOrder(item._id)">מחיקה</a></td>
-            <td ng-if="item.statusT=='1'">לא טופל </td>
-            <td ng-if="item.statusT=='2'">הוזמן מהספק</td>
-            <td ng-if="item.statusT=='3'">התקבל </td>
-            <td ng-if="item.statusT=='4'">נשלח ללקוח</td>
-            <td>{{item.dateOrder | date:'dd/MM/yyyy' }}</td>
-            <td><a ng-click="getPayment(item._id)">לחץ להצגה</a></td>
-            <td>{{item.watchCompany}}</td>
-            <td>{{item.watchModel}}</td>
-            <td>{{item.watchWId}}</td>
-            <td><a ng-click="getCustomer(item._id)">{{item.clientName}}</a></td>
-        </tr>
-        </tbody>
-    </table>
     <div class="container">
         <!-- Trigger the modal with a button -->
-        <button  type="button"  class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">הוספת הזמנה חדשה</button>
-        <a href="mailto:sjofen94@gmail.com" target="_top">שליחת ההזמנה לספק<span class="glyphicon glyphicon-envelope"></span></a>
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal">
-            <div class="modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title">הוסף הזמנה:</h2>
-                    </div>
-                    <div class="modal-body">
-                        <form name="myForm"  class="form-horizontal" novalidate ng-submit="insertOrder(myForm)">
-                            <label>שם לקוח:
-                                <input type="text" name="clientName"  ng-model="clientName" required/><br>
-                                <span class="error" ng-show="myForm.clientName.$error.required" style="color:darkred">Required</span><br>
-                            </label><br>
-                            <label>אי-מייל לקוח:
-                                <input type="email" name="clientMail"  ng-model="clientMail" required/><br>
-                                <span class="error" ng-show="myForm.clientMail.$error.required" style="color:darkred">Required</span><br>
-                            </label><br>
-                            <label>טלפון לקוח:
-                                <input type="tel" name="clientPhone"  ng-model="clientPhone" required/><br>
-                                <span class="error" ng-show="myForm.clientPhone.$error.required" style="color:darkred">Required</span><br>
-                            </label><br>
-                            <label>חברה:
-                                <input type="text"  name="watchCompany"   ng-model="watchCompany" required />
-                                <span class="error" ng-show="myForm.watchCompany.$error.required" style="color:darkred">Required</span><br>
-                            </label><br>
-                            <label>דגם:
-                                <input type="text"  name="watchModel"   ng-model="watchModel" required />
-                                <span class="error" ng-show="myForm.watchModel.$error.required" style="color:darkred">Required</span><br>
-                            </label><br>
-
-                            <label>תאריך:
-                                <input type="date" id="exampleInput" name="input" ng-model="example.value"
-                                       placeholder="yyyy-MM-dd"  required />
-                            </label><br>
-                            <label>סטטוס:
-                                <select  name="statusT" ng-model="selectedStatusT"  ng-options="x for x in statusT " ng-change="updateStatusT(selectedStatusT)" required ></select>
-                                <span class="error" ng-show="myForm.statusT.$error.required" style="color:darkred">Required</span><br>
-                            </label><br>
-                            <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="myForm.$invalid" value="אישור"/>
-                            <input type="button"   class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
-                        </form>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-
-        <style>
-            #myModal {
-                direction: rtl;
-                font-size: large;
-            }
-        </style>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <a  href="mailto:shaonbacatalog@gmail.com"  class="btn btn-info mailto"  style="float:right;font-size:large" target="_top"> שליחת ההזמנה לספק<span class="glyphicon glyphicon-envelope"></span></a><br><br><br>
+        <a href="https://www.sandbox.paypal.com/webscr" class="btn btn-info pay-pal" style="float:right;font-size:large" target="_top">pay -pal<span>התחבר ל </span></a>
 
     </div>
-    <button type="button" ng-show="!showBtn" id="btnOld" ng-click="getOldOrders()" align="right" class="btn btn-default btn-lg">הזמנות ישנות</button>
-    <button type="button" ng-show="showBtn" id="btnNew" ng-click="getNewOrders()" align="right" class="btn btn-default btn-lg">הזמנות בטיפול</button>
-    <button type="button" align="right" class="btn btn-default btn-lg">שליחת ההזמנה לספק</button>
-</div>
+        <!-- Modal -->
 
-<div id="divPayment" ng-show="showDivPayment" >
-    <h1>פרטי תשלום</h1>
-    <label>{{paymentToShow.numCard}}</label><br>
-    <label>{{paymentToShow.nameOwnerCard}}</label><br>
-    <label>{{paymentToShow.TZownerCard}}</label><br>
-    <label>{{paymentToShow.cardCompany}}</label><br>
-    <label>{{paymentToShow.cvv}}</label><br>
-    <label>{{paymentToShow.validity}}</label><br>
-    <input type="button" ng-click="closePayment()" value="סגור">
-    <label></label><br>
 
-</div>
-<div  ng-show="showDivCustomer" >
-    <h1>פרטי לקוח</h1>
-    <label>{{customerToShow.clientName}} {{customerToShow.clientLastName}}</label><br>
-    <label>{{customerToShow.clientMail}}</label><br>
-    <label>{{customerToShow.clientPhone}}</label><br>
-    <input type="button" ng-click="closeCustomer()" value="סגור">
-    <label></label><br>
 
-</div>
+
+

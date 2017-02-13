@@ -1,0 +1,143 @@
+<!--<form method="post" enctype="multipart/form-data" action="/upload">-->
+<!--<input type="file" name="file">-->
+<!--<input type="submit" value="Submit">-->
+
+<!--</form>-->
+
+<!--<form method="post" enctype="multipart/form-data" action="/upload">-->
+
+<!--<i</form>nput type="file" name="thumbnail">-->
+<!--<input type="submit">-->
+
+<script>
+    $(document).ready(function () {
+
+        var options = {
+            beforeSubmit: showRequest,  // pre-submit callback
+            success: showResponse  // post-submit callback
+        };
+
+        // bind to the form's submit event
+        $('#frmUploader').submit(function () {
+            $(this).ajaxSubmit(options);
+            // always return false to prevent standard browser submit and page navigation
+            return false;
+        });
+    });
+
+    // pre-submit callback
+    function showRequest(formData, jqForm, options) {
+        alert('Uploading is starting.');
+        return true;
+    }
+
+    // post-submit callback
+    function showResponse(responseText, statusText, xhr, $form) {
+        alert('status: ' + statusText + '\n\nresponseText: \n' + responseText );
+    }
+</script>
+
+<div class="container">
+    <h2 text align="right">ניהול תמונות</h2>
+    <h3>שעונים</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>הוספת תמונה</th>
+            <th>חברה</th>
+            <th>דגם חברה</th>
+            <th>דגם שעון בקטלוג</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in WatchesList">
+            <td > <button  ng-click="findItem(item._id)"  type="button" align="right" class="btn btn-default btn-lg" data-toggle="modal" data-target="#uploadImage" >הוסף תמונה</button></td>
+            <td>{{item.company}}</td>
+            <td>{{item.model}}</td>
+            <td>{{item.wId}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>חברות</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>הוספת תמונה</th>
+            <th>שם חברה</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in companyList">
+            <td > <button  ng-click="findCompanyItem(item._id)"  type="button" align="right" class="btn btn-default btn-lg" data-toggle="modal" data-target="#uploadImageComp" >הוסף תמונה</button></td>
+            <td>{{item.name}}</td>
+
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+    <div class="modal fade" id="uploadImage">
+        <div class="modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title"> עדכן או הוסף תמונה:</h2>
+                </div>
+                <div class="modal-body">
+                    <form name="ImageForm" id="frmUploader" enctype="multipart/form-data" action="api/Upload?id={{itemToEdit.image}}" method="post"  class="form-horizontal" >
+                        <label>דגם שעון בקטלוג</label><br>
+                        <label>{{itemToEdit.wId}}</label><br>
+                        <label>דגם חברה </label><br>
+                        <label>{{itemToEdit.model}}</label><br>
+                        <img width="50" src=images\{{itemToEdit.image}} alt="ריק">
+                        <input type="file" name="imgUploader" multiple />
+                        <input type="submit" name="submit" id="btnSubmit" value="Upload" /><br><br>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="uploadImageComp">
+        <div class="modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title"> עדכן או הוסף תמונה:</h2>
+                </div>
+                <div class="modal-body">
+                    <form name="ImageForm" id="frmUploaderC" enctype="multipart/form-data" action="api/UploadC/" method="post"  class="form-horizontal" >
+                        <label>שם חברה</label><br>
+                        <label>{{itemToEditC.name}}</label><br>
+
+
+                        <img width="50" src=images\{{itemToEditC.image}} alt="ריק">
+                        <input type="file" name="imgUploader" multiple />
+                        <input type="submit" name="submit" id="btnSubmitC" value="Upload" /><br><br>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <style>
+
+
+        #uploadImage {
+            direction: rtl;
+            font-size: large;
+        }
+        #uploadImageComp{
+            direction: rtl;
+            font-size: large;
+        }
+    </style>
+
+
+
+</div>

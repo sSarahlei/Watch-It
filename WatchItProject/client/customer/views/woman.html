@@ -4,7 +4,7 @@
     }
     .moveToRight li{
         float:left;
-        padding:2%;
+        padding:3%;
 
 
     }
@@ -20,6 +20,7 @@
 
 
     }
+
     .posBadge{
         position: relative;
         right: -20%;
@@ -36,30 +37,38 @@
     <div class="container">
         <div class="col-sm-2 sidebar_men">
             <h3>חברות</h3>
+            <ul class="product-categories color" ng-repeat="item in companyList">
+                <li class="cat-item cat-item-42"><a ng-click="getWatchesByCompany(item.name)">{{item.name}}</a> </li>
+
+
+            </ul>
+            <h3>קטגוריה</h3>
             <ul class="product-categories color">
-                <li class="cat-item cat-item-42"><a href="#">Tissot-טיסו</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-42"><a href="#">Tissot-טיסו</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-42"><a href="#">Tissot-טיסו</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-42"><a href="#">Tissot-טיסו</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-42"><a href="#">Tissot-טיסו</a> <span class="count">(14)</span></li>
+                <li class="cat-item cat-item-54"><a href="#men">גברים</a> </li>
+                <li class="cat-item cat-item-63"><a ng-click="getWatchesByCat()">נשים</a></li>
+
 
             </ul>
             <h3>סוג מנגנון</h3>
+
+            <!--if changed to ng-repeat with types send to function item.title-->
+
             <ul class="product-categories color">
-                <li class="cat-item cat-item-42"><a href="#">אוטומט</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-60"><a href="#">כרונוגרף</a> <span class="count">(2)</span></li>
-                <li class="cat-item cat-item-63"><a href="#">אנלוגי</a> <span class="count">(2)</span></li>
-                <li class="cat-item cat-item-54"><a href="#">דיגיטלי</a> <span class="count">(8)</span></li>
+                <li class="cat-item cat-item-54"><a ng-click="getWatchesByType('2')">דיגיטלי</a> </li>
+                <li class="cat-item cat-item-63"><a ng-click="getWatchesByType('1')">אנלוגי</a> </li>
+                <li class="cat-item cat-item-60"><a ng-click="getWatchesByType('3')">כרונוגרף</a> </li>
 
             </ul>
 
-            <h3>מחירים</h3>
+            <h3>טווח מחיר</h3>
             <ul class="product-categories">
-                <li class="cat-item cat-item-42"><a href="#">200₪-300₪</a> <span class="count">(14)</span></li>
-                <li class="cat-item cat-item-60"><a href="#">300₪-400₪</a> <span class="count">(2)</span></li>
-                <li class="cat-item cat-item-63"><a href="#">400₪-500₪</a> <span class="count">(2)</span></li>
-                <li class="cat-item cat-item-54"><a href="#">500₪-600₪</a> <span class="count">(8)</span></li>
-                <li class="cat-item cat-item-55"><a href="#">600₪-700₪</a> <span class="count">(11)</span></li>
+
+                <li class="cat-item cat-item-42"><a ng-click="getWatchesByPrice(0,300)">עד 300 ש"ח</a></li>
+                <li class="cat-item cat-item-60"><a ng-click="getWatchesByPrice(300,600)">300-600 ש"ח</a> </span></li>
+                <li class="cat-item cat-item-63"><a ng-click="getWatchesByPrice(600,1000)">600-1000 ש"ח</a> </span></li>
+                <li class="cat-item cat-item-54"><a ng-click="getWatchesByPrice(1000,1500)">1000-1500 ש"ח</a> </span></li>
+                <li class="cat-item cat-item-55"><a ng-click="getWatchesByPrice(1500,2000)">1500-2000 ש"ח</a> </span></li>
+                <li class="cat-item cat-item-55"><a ng-click="getWatchesByPrice(2000,2000)">מעל 2000 ש"ח</a> </span></li>
             </ul>
         </div>
         <div class="col-sm-9 mens_right">
@@ -67,11 +76,12 @@
                 <ul class="breadcrumbs">
                     <li class="home">
                         <a href="#index" title="Go to Home Page">דף הבית</a>&nbsp;
-                        <span>&gt;</span>
+                        <span>&gt;&gt;</span>
                     </li>
                     <li class="home">
                         &nbsp;
-                        גברים &nbsp;
+                        &nbsp;
+                        נשים &nbsp;
                     </li>
                 </ul>
                 <ul class="previous">
@@ -113,7 +123,8 @@
                     </div>
                     <div class="clearfix"></div>
                     <ul class="moveToRight">
-                        <li ng-repeat="item in WatchesListWomen" class="simpleCart_shelfItem">
+                        <h2 ng-if="!foundOne">לא נמצאו שעונים התואמים את החיפוש</h2>
+                        <li ng-repeat="item in WatchesListWomanToView" class="simpleCart_shelfItem">
                             <a class="cbp-vm-image" href=#single/{{item._id}}>
                                 <div class="view view-first">
                                     <div class="inner_content clearfix">
@@ -135,14 +146,16 @@
                                     </div>
                                 </div>
                             </a>
-                            <form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="PAP4GMJNYL4PL">
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="item_name" value={{item.company}}:{{item.model}} >
-                                <input type="hidden" name="amount" value={{item.endPrice}}>
-                                <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_107x26.png" alt="Buy Now" >
-                            </form>
+                            <div class="buyNow">
+                                <form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                                    <input type="hidden" name="cmd" value="_xclick">
+                                    <input type="hidden" name="business" value="PAP4GMJNYL4PL">
+                                    <input type="hidden" name="currency_code" value="ILS">
+                                    <input type="hidden" name="item_name" value={{item.company}}:{{item.model}} >
+                                    <input type="hidden" name="amount" value={{item.endPrice}}>
+                                    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_107x26.png" alt="Buy Now" >
+                                </form>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -152,3 +165,4 @@
 
         </div>
     </div>
+</div>

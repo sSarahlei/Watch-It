@@ -1,48 +1,88 @@
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.json());
 var path = require('path');
 var mongodb=require('mongodb');
- var dir=path.resolve('../client/admin/views');
+var mongoose=require('mongoose');
+var fs=require('fs');
+var dir=path.resolve('../client/admin/views');
 var dirControllers=path.join(__dirname, '../client/admin/controllers');
 app.use(express.static(dirControllers));
 app.use(express.static(dir));
+var multer = require('multer');
+var dirJs=path.join(__dirname, '../public');
+app.use(express.static(dirJs));
 //app.use(express.static(dirCustomer));
+app.use(bodyParser.urlencoded({extended: true}));
+
 
 //console.log(db.dbw);
 var db=require('./db.js');
+var fileName;
+
+
 app.listen(3000, function () {
     console.log("server running at port 3000!");
 
 });
-// app.use(express.bodyParser({uploadDir:'/path/to/temporary/directory/to/store/uploaded/files'}));
-// var fs = require('fs');
-// var path = require('path'),
-//
-// // ...
-// app.post('/upload', function (req, res) {
-//     var tempPath = req.files.file.path,
-//         targetPath = path.resolve('./uploads/image.png');
-//     if (path.extname(req.files.file.name).toLowerCase() === '.png') {
-//         fs.rename(tempPath, targetPath, function(err) {
-//             if (err) throw err;
-//             console.log("Upload completed!");
-//         });
-//     } else {
-//         fs.unlink(tempPath, function () {
-//             if (err) throw err;
-//             console.error("Only .png files are allowed!");
-//         });
-//     }
-//     // ...
-// });
-// app.get('/image.png', function (req, res) {
-//     res.sendfile(path.resolve('./uploads/image.png'));
-// });
+
+//login
+var Storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, '../public/images');
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.originalname);
+        fileName=file.originalname;
+        //console.log(fileName);
+    }
+});
 
 
+var upload = multer({ storage: Storage }).array("imgUploader", 3);
+app.post("/api/Upload", function (req, res) {
+    console.log(req.query.id);
+    // var id=req.params.id;
+    //var id='58653fdbcab7e7d4fd4dade4';
+    //var id=req.query.id;
+    console.log(id);
+    upload(req, res, function (err) {
+        if (err) {
+            return res.end("Something went wrong!");
+        }
+        var value_key={
+            "_id":new mongodb.ObjectID(id),
+        }
+        //console.log(value_key);
+        var document={
+            "image":fileName,
+        };
+        var arr=db.updateWatch(value_key,document);
+        return res.end("File uploaded sucessfully!.");
+    });
+});
 
+app.post("/api/UploadC/", function (req, res) {
+    //var id=req.params.id;
+    var id='58654402cab7e7d4fd4dadf2';
+
+    upload(req, res, function (err) {
+        if (err) {
+            return res.end("Something went wrong!");
+        }
+        var value_key={
+            "_id":new mongodb.ObjectID(id),
+        }
+        //console.log(value_key);
+        var document={
+            "image":fileName,
+        };
+        var arr=db.updateCompany(value_key,document);
+        return res.end("File uploaded sucessfully!.");
+    });
+});
 
 
 
@@ -56,8 +96,8 @@ app.get('/getCompanies', function (req, res) {
     var arrComp;
 
     arr.toArray(function(err, items) { //foreach
-         arrComp=JSON.stringify(items);
-         res.send(arrComp);
+        arrComp=JSON.stringify(items);
+        res.send(arrComp);
 
     });
 
@@ -69,7 +109,7 @@ app.get('/deleteCompany/:id', function (req, res) {
     console.log(req.params.id);
     var arr=db.deleteCompany(req.params.id);
 
-     var arrComp;
+    var arrComp;
     arr.toArray(function(err, items) { //foreach
         arrComp=JSON.stringify(items);
         //console.log(items);
@@ -100,7 +140,7 @@ app.post('/insertCompany', function (req, res,next) {
 app.post('/updateCompany', function (req, res,next) {
     console.log("serving updateCompany");
     var document=req.body;
-   // console.log(document);
+    // console.log(document);
 
     var value_key={
         "_id":new mongodb.ObjectID(document.id),
@@ -155,7 +195,7 @@ app.post('/insertOrder', function (req, res,next) {
 
 //adina
 app.post('/insertUser', function (req, res, next) {
-alert("serving insertUser");
+    alert("serving insertUser");
     console.log("serving insertUser");
     var document=req.body;
     console.log(req);
@@ -292,56 +332,8 @@ app.post('/updatetWatch', function (req, res,next) {
 
 });
 
-// app.get('/getPayment/:id', function (req, res) {
-//
-//     console.log("serving getPayment");
-//     var single=db.getPayment(req.params.id);
-//
-//     var payment;
-//
-//     single.toArray(function(err, items) { //foreach
-//         payment=JSON.stringify(items);
-//
-//         res.send(payment);
-//
-//     });
-//
-// });
 
 
 
-/*Sarah*/
-app.get('/',function(req,res){
-    res.sendFile(path.join(dir,'/index.html'));
-    //__dirname : It will resolve to your project folder.
-});
 
-app.get('/menu',function(req,res){
-    res.sendFile(path.join(dir,'/menu.html'));
-
-});
-app.get('/orders',function(req,res){
-    res.sendFile(path.join(dir,'/orders.html'));
-
-});
-app.get('/watch',function(req,res){
-    res.sendFile(path.join(dir,'/watch.html'));
-
-});
-app.get('/company',function(req,res){
-    res.sendFile(path.join(dir,'/company.html'));
-
-});
-app.get('/rights',function(req,res){
-    res.sendFile(path.join(dir,'/rights.html'));
-
-});
-app.get('/message',function(req,res){
-    res.sendFile(path.join(dir,'/message.html'));
-
-});
-app.get('/login',function(req,res){
-    res.sendFile(path.join(dir,'/login.html'));
-
-});
 

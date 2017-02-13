@@ -39,28 +39,40 @@
                         <h2 class="modal-title">הוסף חברה:</h2>
                     </div>
                     <div class="modal-body">
-                        <mui-form name="myForm"  class="form-horizontal" novalidate ng-submit="insertCompany(myForm)">
+                        <form name="myForm"  class="form-horizontal" novalidate ng-submit="insertCompany(myForm)">
                             <label>שם:
                                 <input type="text" id="name" placeholder="שם חברה"  name ="company" ng-model="name" required/><br>
-                                <span class="error" ng-show="myForm.company.$error.required" style="color:darkred">Required</span><br>
-                            </label><br>
-                            <label>תמונה:
-                                <input type="text" name="image" placeholder="תמונה" ng-model="image" /><br>
+                                <span class="error" ng-show="myForm.company.$error.required" style="color:darkred">שדה חובה</span><br>
                             </label><br>
                             <label>אחוז חישוב:
                                 <input type="number"  name="percentCalc"  ng-model="percentCalc" min="0" max="100" required/><br>
-                                <span class="error" ng-show="myForm.percentCalc.$error.required" style="color:darkred">Required</span><br>
+                                <span class="error" ng-show="myForm.percentCalc.$error.required" style="color:darkred">שדה חובה</span><br>
                             </label><br>
                             <label>אחוז רווח:
                                 <input type="number"   name="percentProfit" ng-model="percentProfit"  min="0" max="100" required/><br>
-                                <span class="error" ng-show="myForm.percentProfit.$error.required" style="color:darkred">Required</span><br>
+                                <span class="error" ng-show="myForm.percentProfit.$error.required" style="color:darkred">שדה חובה</span><br>
                             </label><br>
                             <label>פרטים נוספים:
                                 <input type="text"  id="details" placeholder="פרטים נוספים"  ng-model="details" />
                             </label><br>
                             <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="myForm.$invalid" value="אישור"/>
                             <input type="button"   class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
-                        </mui-form>
+                            <script>
+                                $('#myModal[data-dismiss=modal]').on('click', function (e) {
+                                    var $t = $(this),
+                                        target = $t[0].href || $t.data("target") || $t.parents('.modal') || [];
+
+                                    $(target)
+                                        .find("input[type=text],input[type=number],textarea,select")
+                                        .val('')
+                                        .end()
+                                        .find("input[type=checkbox], input[type=radio]")
+                                        .prop("checked", "")
+                                        .end();
+                                })
+                            </script>
+
+                        </form>
 
                     </div>
 
@@ -80,13 +92,9 @@
                             <h2 class="modal-title">עדכן חברה:</h2>
                         </div>
                         <div class="modal-body">
-                            <mui-form name="myUpdateForm" form class="form-horizontal" novalidate  ng-submit="update(myUpdateForm)">
+                            <form name="myUpdateForm" form class="form-horizontal"  ng-submit="update(myUpdateForm)">
                                 <label>{{itemToEdit.name}}</label><br>
                                 <label>הכנס שדות שברצונך לעדכן:</label></br></br>
-                                <label>תמונה:
-                                    <input type="text"  name="image" ng-model="image" placeholder="תמונה" id="imageW" required/><br>
-                                    <span class="error" ng-show="myUpdateForm.image.$error.required" style="color:darkred">שדה חובה</span><br>
-                                </label></br>
                                 <label>אחוז חישוב:
 
                                     <input type="number" value="{{itemToEdit.percentCalc}}"  name="percentCalc"  id="percentCalc" min="0" max="100" step="0.1" required/><br>
@@ -101,7 +109,8 @@
                                 </label></br>
                                 <input type="submit"  class="btn btn-default" name="submit"   ng-disabled="myUpdateForm.$invalid" value="אישור"/>
                                 <input type="button"  class="btn btn-default" value="סגור" data-dismiss="modal"/></br></br>
-                            </mui-form>
+
+                            </form>
 
                         </div>
 
@@ -122,3 +131,4 @@
             </style>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</div>

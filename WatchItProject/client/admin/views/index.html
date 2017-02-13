@@ -4,25 +4,33 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--google sigin clientid-->
+    <meta name="google-signin-client_id" content="461247710885-h7luo6d8nrubdo1664h1qtk5acg8lk83.apps.googleusercontent.com">
+
     <!-- SCROLLS -->
+
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+   <!--google-signin-->
 
     <!-- SPELLS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 
     <!--material design-light-->
     <link href="//cdn.muicss.com/mui-0.9.9-rc2/css/mui.min.css" rel="stylesheet" type="text/css" />
     <script src="//cdn.muicss.com/mui-0.9.9-rc2/angular/mui-angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
-
 
 
 
@@ -32,17 +40,16 @@
     <script src="script.js"></script>
     <script src="companyCtrl.js"></script>
     <script src="mainController.js"></script>
-    <script src="messageController.js"></script>
     <script src="ordersController.js"></script>
-    <script src="rightsController.js"></script>
     <script src="watchController.js"></script>
-    <script src="loginCtrl.js"></script>
+    <script src="uploadCtrl.js"></script>
 
 
 </head>
 
 <!-- define angular controller -->
-<body ng-controller="mainController">
+<body >
+
 
 <nav class="navbar navbar-default">
     <div class="container">
@@ -55,21 +62,178 @@
             <li><a href="#watch"><span class="glyphicon glyphicon-time"></span>ניהול שעונים</a></li>
             <li><a href="#company"> <span class="glyphicon glyphicon-home"></span>ניהול חברות</a></li>
             <li><a href="#orders"><span class="glyphicon glyphicon-shopping-cart"></span>ניהול הזמנות</a></li>
-            <li><a href="#message"><span class="glyphicon glyphicon-envelope"></span>ניהול הודעות</a></li>
-            <li><a href="#rights"> <span class="glyphicon glyphicon-lock"></span>ניהול הרשאות</a></li>
-            <li><a href="#login"> <span class="glyphicon glyphicon-lock"></span>הוספת מנהל</a></li>
+            <li><a href="#uploadImage"> <span class="glyphicon glyphicon-picture"></span>העלאת תמונות</a></li>
 
         </ul>
     </div>
 </nav>
+<!--signin button-->
+<div id="signin" class="g-signin2" data-onsuccess="onSignIn"  data-height="50" data-width="140" style="margin-left: 10px"></div>
+<script>
+    var auth2; // The Sign-In object.
+    var googleUser; // The current user.
+
+
+    function onSignIn(googleUser) {
+
+        var profile = googleUser.getBasicProfile();
+        if(  profile.getEmail()!="shaonbacatalog@gmail.com")
+        {
+            onFailure();
+
+        }
+        else {
+
+//            console.log('Name: ' + profile.getName());
+//            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+//
+//            console.log('Image URL: ' + profile.getImageUrl());
+//            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+
+    }
+    function onFailure() {
+
+        alert("לא קימות לך הרשאות גישה לאתר זה!");
+        signOut();
+    }
+
+
+    /* Calls startAuth after Sign in V2 finishes setting up.*/
+    function appStart () {
+//alert("2");
+        gapi.load('auth2', initSigninV2);
+
+    };
+
+    /**
+     * Initializes Signin v2 and sets up listeners.
+     */
+    function initSigninV2 () {
+//        alert("3");
+
+
+        auth2 = gapi.auth2.getAuthInstance({
+            client_id: '461247710885-h7luo6d8nrubdo1664h1qtk5acg8lk83.apps.googleusercontent.com',
+            scope: 'profile'
+
+        });
+
+        // Listen for sign-in state changes.
+        auth2.isSignedIn.listen(signinChanged);
+
+        // Listen for changes to current user.
+        auth2.currentUser.listen(userChanged);
+
+        // Sign in the user if they are currently signed in.
+        if (auth2.isSignedIn.get() == true){
+                auth2.signIn();
+
+        }
+
+        // Start with the current live values.
+        refreshValues();
+    };
+
+
+    /**
+     * Listener method for sign-out live value.
+     *
+     * @param {boolean} val the updated signed out state.
+     */
+    var signinChanged = function (val) {
+        if(val==false) {
+            window.location.assign("http://localhost:3000");
+
+
+        }
+
+        if(val==true) {
+           if(googleUser.getBasicProfile().getEmail()!="shaonbacatalog@gmail.com") {
+               googleUser.disconnect();
+
+           }
+
+        }
+        console.log('Signin state changed to ', val);
+    };
+
+    /**
+     * Listener method for when the user changes.
+     *
+     * @param {GoogleUser} user the updated user.
+     */
+    var userChanged = function (user) {
+
+        console.log('User now: ', user);
+        googleUser = user;
+
+
+    };
+
+    /**
+     * Updates the properties in the Google User table using the current user.
+     */
+    var updateGoogleUser = function () {
+        if (googleUser) {
+            googleUser.getId();
+            googleUser.getGrantedScopes();
+            googleUser.getAuthResponse();
+//            document.getElementById('auth-response').innerText =
+//                JSON.stringify(googleUser.getAuthResponse(), undefined, 2);
+        }
+//        } else {
+//            document.getElementById('user-id').innerText = '--';
+//            document.getElementById('user-scopes').innerText = '--';
+//            document.getElementById('auth-response').innerText = '--';
+//        }
+    };
+
+    /**
+     * Retrieves the current user and signed in states from the GoogleAuth
+     * object.
+//     */
+    function refreshValues () {
+        if (auth2) {
+            console.log('Refreshing values...');
+
+              googleUser = auth2.currentUser.get();
+
+            auth2.isSignedIn.get();
+//            updateGoogleUser();
+
+        }
+    }
+
+
+</script>
+
+
+<!--signout button-->
+<a  id="signout" href="" style="margin-left: 10px;font-size: medium;" onclick="signOut();">Sign out</a>
+<script>
+    function signOut() {
+        if(googleUser.getBasicProfile().getEmail()=="shaonbacatalog@gmail.com"){
+            if(confirm("האם את\ה רוצה שהנתונים שלך ישמרו במערכת?")!=true)
+            {
+                googleUser.disconnect();
+            }
+        }
+
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+</script>
+
 
 <div id="main">
 
-    <!-- angular templating -->
-    <!-- this is where content will be injected -->
+
     <div ng-view></div>
 
 </div>
+<script src="https://apis.google.com/js/plus.js?onload=appStart"  async defer></script>
 
 
 </body>

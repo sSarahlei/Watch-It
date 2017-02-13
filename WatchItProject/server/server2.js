@@ -119,11 +119,15 @@ app.get('/comparison/:id',function(req,res){
 app.get('/getWatchesMen', function (req, res) {
     console.log("serving getWatches");
     var arr=db.getWatchesMen();
+    console.log(arr);
+
 
     var arrWatches;
 
     arr.toArray(function(err, items) { //foreach
         arrWatches=JSON.stringify(items);
+        console.log(arrWatches);
+
         res.send(arrWatches);
 
     });
@@ -134,6 +138,17 @@ app.get('/getWatchesMen', function (req, res) {
 app.get('/getWatchesWomen', function (req, res) {
     console.log("serving getWatchesWomen");
     var arr=db.getWatchesWomen();
+
+    var arrWatches;
+
+    arr.toArray(function(err, items) { //foreach
+        arrWatches = JSON.stringify(items);
+        res.send(arrWatches);
+    });
+});
+app.get('/getAllWatches', function (req, res) {
+    console.log("serving getAllWatches");
+    var arr=db.getAllWatches();
 
     var arrWatches;
 
@@ -175,37 +190,4 @@ app.get('/getWatchesOrdering/:id', function (req, res) {
     });
 
 
-});
-app.post('/signing', function (req, res) {
-    alert("in signing!");
-    var existUser = new User(req.body);
-
-    console.log("In sign in :",existUser);
-
-    if(req.session.user != null)
-    {
-        res.json({ in: false, msg: "הנך מחובר! התנתק לפני התחברות חוזרת", user: null });
-    }
-    else
-    {
-        User.findOne({  name: existUser.name}, function (err, user) {
-            if (user) {
-
-                if(user.password != existUser.password)
-                {
-                    res.json({ in: false, msg: "הסיסמא שהכנסת שגויה", user: user });
-                }
-                else
-                {
-                    req.session.user = user;
-                    res.json({ in: true, msg: "התחברת לשעון בקטלוג בהצלחה", user: user });
-                }
-
-            }
-            else {
-                res.json({ in: false, msg: "שם המשתמש אינו קיים בשעון בקטלוג", user: user });
-
-            }
-        });
-    }
 });

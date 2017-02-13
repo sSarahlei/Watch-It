@@ -9,6 +9,7 @@ myAppAdmin.config(function($routeProvider) {
         .when('/', {
             templateUrl : 'menu.html',
             controller  : 'mainController'
+
         })
 
         // route for the company page
@@ -16,35 +17,26 @@ myAppAdmin.config(function($routeProvider) {
             templateUrl : 'company.html',
             controller  : 'companyCtrl'
         })
-        // route for the messages page
-        .when('/message', {
-            templateUrl : 'message.html',
-            controller  : 'messageController'
-        })
         // route for the orders page
         .when('/orders', {
             templateUrl : 'orders.html',
             controller  : 'ordersController'
         })
-        // route for the rights page
-        .when('/rights', {
-            templateUrl : 'rights.html',
-            controller  : 'rightsController'
+        .when('/uploadImage', {
+            templateUrl : 'uploadImage.html',
+            controller  : 'uploadCtrl'
         })
         // route for the watch page
         .when('/watch', {
             templateUrl : 'watch.html',
             controller  : 'watchController'
+
         })
 
-    // route for the register new Admin page
-    .when('/login', {
-        templateUrl : 'login.html',
-        controller  : 'loginCtrl'
-    });
+
+
 });
 
-// create the controller and inject Angular's $scope
 
 
 

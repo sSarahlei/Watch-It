@@ -1,7 +1,16 @@
 /**
  * Created by Tzofia on 15/01/2017.
  */
-myAppAdmin.controller('companyCtrl',function ($scope) {
+myAppAdmin.controller('companyCtrl',function ($scope,$location) {
+    function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
+    /* jQuery < 1.7 */
+    $(document).bind("keydown", disableF5);
+    /* OR jQuery >= 1.7 */
+    $(document).on("keydown", disableF5);
+
+    if(auth2.isSignedIn.get()==false){
+        $location.path('/');
+    }
     $scope.message = 'חברה';
     var time=true;
     if (window.XMLHttpRequest)
@@ -62,7 +71,6 @@ myAppAdmin.controller('companyCtrl',function ($scope) {
                 {
                     "id":$scope.itemToEdit._id,
                     "name": $scope.itemToEdit.name,
-                    "image": $('#imageW').val(),
                     "percentCalc": $('#percentCalc').val(),
                     "percentProfit": $('#percentProfit').val(),
                     "details":  $('#update_details').val()
@@ -90,11 +98,16 @@ myAppAdmin.controller('companyCtrl',function ($scope) {
 
     $scope.insertCompany = function(form) {
         if(form.$valid) {
-			   //validation for no duplicate companies:
-
+            var companyNames;
+			 //   //validation for no duplicate companies:
             var companyString = JSON.stringify($scope.companyList);
-            console.log("lll" + companyString);
-            var n = companyString.indexOf($scope.name);
+             for(var i=0; i<($scope.companyList).length; i++) {
+                 companyNames+=$scope.companyList[i]["name"];
+             }
+
+
+             var n = companyNames.indexOf($scope.name);
+
             if (n > 0) {
                 alert("חברה זו קיימת כבר במאגר!");
             }

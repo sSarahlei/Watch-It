@@ -1,5 +1,6 @@
 <div class="container">
     <h2 text align="right">ניהול שעונים</h2>
+    <input id="search" type="text" ng-model="searchString" placeholder="חיפוש שעון">
     <table class="table table-hover">
         <thead>
         <tr>
@@ -18,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in watchesList">
+        <tr ng-repeat="item in watchesList | searchFor:searchString">
             <td > <button  ng-click="findItem(item._id)"  type="button" align="right" class="btn btn-default btn-lg" data-toggle="modal" data-target="#updateWatchModel" >עדכון</button></td>
 
             <td><a ng-click="deleteWatch(item._id)">מחיקה</a></td>
@@ -31,10 +32,10 @@
             <td ng-if="item.type=='3'">כרונוגרף</td>
 
 
-            <td ng-if="item.inStock"><input type="checkbox" checked></td>
-            <td ng-if="!item.inStock"><input type="checkbox"  ></td>
-            <td>{{item.endPrice}}</td>
-            <td>{{item.priceList}}</td>
+            <td ng-if="item.inStock=='true'"><span class="glyphicon glyphicon-ok"></span></td>
+            <td ng-if="item.inStock=='false'"><span class="glyphicon glyphicon-remove"></span></td>
+            <td>{{item.endPrice}}₪</td>
+            <td>{{item.priceList}}₪</td>
             <td>{{item.company}}</td>
             <td>{{item.model}}</td>
             <td>{{item.wId}}</td>
@@ -68,33 +69,29 @@
                             </label><br>
                             <label>מחיר מחירון:
                                 <input type="number" name="priceList" min="1" step="0.1" ng-model="priceList" required/><br>
-                                <span class="error" ng-show="myForm.priceList.$error.required" style="color:darkred">Required</span><br>
+                                <span class="error" ng-show="myForm.priceList.$error.required" style="color:darkred">שדה חובה</span><br>
                             </label><br>
                             <label>מחיר סופי:
                                 <input type="number"  name="endPrice"  ng-model="endPrice" min="1" step="0.1" required/><br>
-                                <span class="error" ng-show="myForm.endPrice.$error.required" style="color:darkred">Required</span><br>
+                                <span class="error" ng-show="myForm.endPrice.$error.required" style="color:darkred">שדה חובה</span><br>
                             </label><br>
                             <label>זמין\לא זמין
                                 <select  name="stock" ng-model="selectedStock"  ng-options="x for x in stock " ng-change="updateStock(selectedStock)" required ></select>
-                                <span class="error" ng-show="myForm.name.$error.required" style="color:darkred">Required</span><br>
+                                <span class="error" ng-show="myForm.name.$error.required" style="color:darkred">שדה חובה</span><br>
                             </label><br>
                             <label>סוג מנגנון:
                                 <select name="type" ng-model="selectedType" ng-options="x for x in type" ng-change="updateType(selectedType)" required></select>
-                                <span class="error" ng-show="myForm.type.$error.required" style="color:darkred">Required</span><br>
+                                <span class="error" ng-show="myForm.type.$error.required" style="color:darkred">שדה חובה</span><br>
                             </label><br>
                             <label>פרטים נוספים:
                                 <input type="text"  name="details" placeholder="פרטים נוספים"  ng-model="details" />
                             </label><br>
-                            <label>תמונה:
-                                <input type="file" name="post_image" />
-                            </label><br>
                             <label> קטגוריה:
                                 <select name ="category_options" ng-model="selectedCategory" ng-options="x for x in category" ng-change="updateCategory(selectedCategory)" required></select>
-                                <span class="error" ng-show="myForm.category.$error.required" style="color:darkred">Required</span><br>
-                                <!--s-->
+                                <span class="error" ng-show="myForm.category.$error.required" style="color:darkred">שדה חובה</span><br>
                             </label><br><br>
                             <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="myForm.$invalid" value="אישור"/>
-                            <input type="button"   class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
+                            <input type="button"   id="insertModal" class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
                         </form>
 
                     </div>
@@ -143,9 +140,6 @@
                             <label>פרטים נוספים:
                                 <input type="text" value={{itemToEdit.details}} id="details" name="details" placeholder="פרטים נוספים"  />
                             </label><br>
-                            <label>תמונה:
-                                <input type="file" name="post_image" id="image" value={{itemToEdit.image}}/>
-                            </label><br>
                             <label> קטגוריה:
                                 <select name ="category_options" value={{itemToEdit.category}} data-ng-model="selectedOptionCategory"  data-ng-options="x for x in category" ng-change="updateCategory(selectedOptionCategory)" required></select>
                                 <span class="error" ng-show="updateForm.category.$error.required" style="color:darkred">שדה חובה</span><br>
@@ -153,6 +147,21 @@
                             </label><br><br>
                             <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="updateForm.$invalid" value="אישור"/>
                             <input type="button"   class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
+                            <script>
+                                $('[data-dismiss=modal]').on('click', function (e) {
+                                    console.log((e.target.nodeName.id));
+                                    var $t = $(this),
+                                        target = $t[0].href || $t.data("target") || $t.parents('.modal') || [];
+
+                                    $(target)
+                                        .find("input[type=text],input[type=number],textarea,select")
+                                        .val('')
+                                        .end()
+                                        .find("input[type=checkbox], input[type=radio]")
+                                        .prop("checked", "")
+                                        .end();
+                                })
+                            </script>
                         </form>
 
                     </div>
@@ -174,7 +183,7 @@
                 font-size: large;
             }
         </style>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 
     </div>
 </div>

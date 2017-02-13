@@ -1,5 +1,18 @@
 var companies =new Array();
-myAppAdmin.controller('watchController', function($scope) {
+var start;
+
+
+myAppAdmin.controller('watchController', function($scope,$location) {
+    function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
+    /* jQuery < 1.7 */
+    $(document).bind("keydown", disableF5);
+    /* OR jQuery >= 1.7 */
+    $(document).on("keydown", disableF5);
+
+    if(auth2.isSignedIn.get()==false){
+        $location.path('/');
+
+    }
 
     function companies_name(arr) {
         if (window.XMLHttpRequest)
@@ -8,9 +21,9 @@ myAppAdmin.controller('watchController', function($scope) {
             var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 
 
+
         xmlhttp.open("GET", "http://localhost:3000/getCompanies", true);
         xmlhttp.send();
-
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 var result = JSON.parse(xmlhttp.responseText);
@@ -72,7 +85,6 @@ myAppAdmin.controller('watchController', function($scope) {
 
             xmlhttp.onreadystatechange = function(){
                 if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                    //alert(xmlhttp.responseText);
                     $scope.watchesList=JSON.parse(xmlhttp.responseText);
                     $scope.$apply();
                 }
@@ -80,12 +92,6 @@ myAppAdmin.controller('watchController', function($scope) {
             }
         }
     }
-    //receiving all companies in select
-
-// $scope.getName=function () {
-//     companies_name();
-// }
-
 
 //end of generating companies
 
@@ -160,6 +166,7 @@ myAppAdmin.controller('watchController', function($scope) {
                 case 'לא זמין': $scope.my_inStock='false';break;
 
             }
+            alert($scope.my_inStock);
             switch ($scope.selectedCategory)
             {
                 case 'גברים': $scope.my_category='1';break;
@@ -192,13 +199,13 @@ myAppAdmin.controller('watchController', function($scope) {
                     $scope.$apply();
 
 
+
                 }
             }
             xmlhttp.open('POST', 'http://localhost:3000/insertWatch');
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
             xmlhttp.send(JSON.stringify(document));
         }
-
 
     }
 
@@ -241,7 +248,6 @@ myAppAdmin.controller('watchController', function($scope) {
                     "inStock": $scope.my_inStock,
                     "type": $scope.my_type,
                     "details": $('#details').val(),
-                    "image": $('#image').val(),
                     "category":$scope.my_category
                 };
 
@@ -260,12 +266,24 @@ myAppAdmin.controller('watchController', function($scope) {
 
 
     }
-    $scope.findItem=function (id) {
-        var res=$scope.companyList.filter(function (item,index,nums) {
-            return item._id==id;
-        })
-        $scope.itemToEdit=res[0];
 
-    }
+
+});
+
+//zehava
+myAppAdmin.filter('searchFor', function(){
+    return function(arr, searchString){
+        if(!searchString){
+            return arr;
+        }
+        var result = [];
+        searchString = searchString;
+        angular.forEach(arr, function(item){
+            if((item.wId && item.wId.indexOf(searchString)!= -1)||(item.model && item.model.toString().indexOf(searchString)!= -1)){
+                result.push(item);
+            }
+        });
+        return result;
+    };
 
 });

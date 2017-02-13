@@ -11,7 +11,8 @@ p {margin: 0;}
 html, body{
    font-family: 'PT Sans Narrow', sans-serif;
    font-size: 100%;
-   background:#fff; 
+   background:#fff;
+	cursor: pointer;
 }
 body a{
 	transition:0.5s all;
@@ -1278,6 +1279,7 @@ ul.women_pagenation li a:hover{
 	text-decoration: none;
 	overflow: hidden;
 	display: block;
+	height: 260px;
 }
 img.zoom-img {
 	-webkit-transform: scale(1, 1);
@@ -1699,6 +1701,9 @@ ul.product{
 	padding:0;
 	list-style:none;
 	margin-bottom:1em;
+}
+.product_image{
+	height:470px;
 }
 ul.product li.product_img{
 	float: left;
@@ -2793,4 +2798,10 @@ a.b-home {
 .grid_1 {
   margin-bottom: 1em;
 }
+}
+/*sarah*/
+.buyNow{
+	margin-bottom: 10px;
+	margin-right:35px;
+
 }
