@@ -35,20 +35,15 @@ myApp.controller('womanCtrl',function ($scope) {
             }
             $scope.pages=pages;
 
-            $scope.WatchesListWomen = WatchesWomen.slice(0,p);
-            $scope.WatchesListWomanToView = $scope.WatchesListWomen;
+            $scope.WatchesListWomen = WatchesWomen;
+            $scope.WatchesListWomanToView = $scope.WatchesListWomen.slice(0,p);
 
             $scope.$apply();
 
 
         }
     },
-        $scope.getWatchesByCat=function(){
-            $scope.foundOne = true;
-            $scope.WatchesListWomanToView = $scope.WatchesListWomen;
-            //$scope.$apply();
 
-        },
         $scope.getWatchesByCompany=function(company){
             $scope.foundOne = false;
             var viewWatches= {};
@@ -91,7 +86,7 @@ myApp.controller('womanCtrl',function ($scope) {
             var counter = 0;
             for(var key in $scope.WatchesListWomen){
                 if ($scope.WatchesListWomen.hasOwnProperty(key)) {
-                    if ((minPrice == 2000 && parseInt($scope.WatchesListMen[key].endPrice) >= 2000) || parseInt($scope.WatchesListMen[key].endPrice) >= minPrice && parseInt($scope.WatchesListMen[key].endPrice) <= maxPrice){
+                    if ((minPrice == 2000 && parseInt($scope.WatchesListWomen[key].endPrice) >= 2000) || parseInt($scope.WatchesListWomen[key].endPrice) >= minPrice && parseInt($scope.WatchesListWomen[key].endPrice) <= maxPrice){
                         viewWatches[counter]=$scope.WatchesListWomen[key];
                         counter++;
                         $scope.foundOne = true;
@@ -130,6 +125,7 @@ myApp.controller('womanCtrl',function ($scope) {
 
         $(".active").removeClass('active');
         $("#li"+page).addClass('active');
+        $scope.foundOne = true;
     }
 
 });

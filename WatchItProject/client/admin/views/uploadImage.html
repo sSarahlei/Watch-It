@@ -31,6 +31,8 @@
 <div class="container">
     <h2 text align="right">ניהול תמונות</h2>
     <h2 dir="rtl" style="color:#c62828;font-weight:500">שעונים</h2>
+    <input id="search" type="text" ng-model="searchString" placeholder="חיפוש שעון">
+
     <table class="table table-hover">
         <thead>
         <tr>
@@ -41,7 +43,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in WatchesList">
+        <tr ng-repeat="item in WatchesList | searchFor:searchString">
             <td > <button id="eee" ng-click="findItem(item._id)"  type="button" align="right" class="btn btn-default btn-lg" data-toggle="modal" data-target="#uploadImage" >הוסף תמונה</button></td>
             <td>{{item.company}}</td>
             <td>{{item.model}}</td>
@@ -126,7 +128,7 @@
             font-size: large;
         }
     </style>
-<<<<<<< HEAD
+
     <script>
         $(function(){
             var loaded_3 = parseInt(localStorage.getItem('loaded_3'), 10),
@@ -139,6 +141,5 @@
 
 
 
-=======
->>>>>>> origin/master
+
 </div>

@@ -139,3 +139,21 @@ myAppAdmin.controller('uploadCtrl', function($scope,$location) {
         xmlhttp.send(JSON.stringify(document));
     }
 });
+
+//zehava
+myAppAdmin.filter('searchFor', function(){
+    return function(arr, searchString){
+        if(!searchString){
+            return arr;
+        }
+        var result = [];
+        searchString = searchString;
+        angular.forEach(arr, function(item){
+            if((item.wId && item.wId.indexOf(searchString)!= -1)||(item.model && item.model.toString().indexOf(searchString)!= -1)){
+                result.push(item);
+            }
+        });
+        return result;
+    };
+
+});

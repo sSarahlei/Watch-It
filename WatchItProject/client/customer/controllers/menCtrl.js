@@ -33,8 +33,8 @@ myApp.controller('menCtrl',function ($scope) {
             }
             $scope.foundOne = true;
             $scope.pages=pages;
-            $scope.WatchesListMen = WatchesMen.slice(0,p);
-            $scope.WatchesListMenToView = $scope.WatchesListMen;
+            $scope.WatchesListMen = WatchesMen;
+            $scope.WatchesListMenToView =WatchesMen.slice(0,p);
             $scope.$apply();
 
 
@@ -83,16 +83,10 @@ myApp.controller('menCtrl',function ($scope) {
            // alert($scope.WatchesListMen[0]._id);
             $(".active").removeClass('active');
             $("#li"+page).addClass('active');
-        }
-
-
-        $scope.getWatchesByCat=function(){
             $scope.foundOne = true;
-            $scope.WatchesListMenToView = $scope.WatchesListMen;
-            console.log( $scope.WatchesListMenToView );
-            //$scope.$apply();
 
         },
+
 
         $scope.getWatchesByCompany=function(company){
 
