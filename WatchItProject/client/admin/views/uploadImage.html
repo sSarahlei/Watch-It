@@ -1,13 +1,4 @@
-<!--<form method="post" enctype="multipart/form-data" action="/upload">-->
-<!--<input type="file" name="file">-->
-<!--<input type="submit" value="Submit">-->
 
-<!--</form>-->
-
-<!--<form method="post" enctype="multipart/form-data" action="/upload">-->
-
-<!--<i</form>nput type="file" name="thumbnail">-->
-<!--<input type="submit">-->
 
 <script>
     $(document).ready(function () {
@@ -51,7 +42,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in WatchesList">
-            <td > <button  ng-click="findItem(item._id)"  type="button" align="right" class="btn btn-default btn-lg" data-toggle="modal" data-target="#uploadImage" >הוסף תמונה</button></td>
+            <td > <button id="eee" ng-click="findItem(item._id)"  type="button" align="right" class="btn btn-default btn-lg" data-toggle="modal" data-target="#uploadImage" >הוסף תמונה</button></td>
             <td>{{item.company}}</td>
             <td>{{item.model}}</td>
             <td>{{item.wId}}</td>
@@ -76,10 +67,6 @@
         </tbody>
     </table>
 
-
-
-
-
     <div class="modal fade" id="uploadImage">
         <div class="modal-lg">
             <div class="modal-content">
@@ -87,14 +74,16 @@
                     <h2 class="modal-title"> עדכן או הוסף תמונה:</h2>
                 </div>
                 <div class="modal-body">
-                    <form name="ImageForm" id="frmUploader" enctype="multipart/form-data" action="api/Upload?id={{itemToEdit.image}}" method="post"  class="form-horizontal" >
+                    <form name="ImageForm" id="frmUploader" enctype="multipart/form-data" method="post" action="api/Upload"  class="form-horizontal" >
                         <label>דגם שעון בקטלוג</label><br>
                         <label>{{itemToEdit.wId}}</label><br>
                         <label>דגם חברה </label><br>
                         <label>{{itemToEdit.model}}</label><br>
-                        <img width="50" src=images\{{itemToEdit.image}} alt="ריק">
-                        <input type="file" name="imgUploader" multiple />
-                        <input type="submit" name="submit" id="btnSubmit" value="Upload" /><br><br>
+                        <img width="100" id="img" src=images\{{itemToEdit.image}} alt="התמונה לא הועלתה לשרת">
+                        <input type="file" id="imgU" onchange="angular.element(this).scope().uploadImage()" name="imgUploader" multiple />
+
+                        <input type="submit" name="submit" style="visibility: hidden" id="btnSubmit" value="העלה תמונה" /><br><br>
+
                     </form>
 
                 </div>
@@ -137,7 +126,4 @@
             font-size: large;
         }
     </style>
-
-
-
 </div>

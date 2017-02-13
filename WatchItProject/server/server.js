@@ -42,25 +42,15 @@ var Storage = multer.diskStorage({
 
 
 var upload = multer({ storage: Storage }).array("imgUploader", 3);
-app.post("/api/Upload", function (req, res) {
-    console.log(req.query.id);
-    // var id=req.params.id;
-    //var id='58653fdbcab7e7d4fd4dade4';
-    //var id=req.query.id;
-    console.log(id);
+app.post("/api/Upload" ,function (req, res) {
     upload(req, res, function (err) {
         if (err) {
+
             return res.end("Something went wrong!");
         }
-        var value_key={
-            "_id":new mongodb.ObjectID(id),
-        }
-        //console.log(value_key);
-        var document={
-            "image":fileName,
-        };
-        var arr=db.updateWatch(value_key,document);
-        return res.end("File uploaded sucessfully!.");
+        return res.redirect("/");
+
+
     });
 });
 
