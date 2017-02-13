@@ -34,8 +34,6 @@ myApp.controller('menCtrl',function ($scope) {
             $scope.foundOne = true;
             $scope.pages=pages;
             $scope.WatchesListMen = WatchesMen.slice(0,p);
-            //$("#li1").addClass('active');
-            // $scope.WatchesListMen = JSON.parse(xmlhttp.responseText);
             $scope.WatchesListMenToView = $scope.WatchesListMen;
             $scope.$apply();
 
@@ -80,11 +78,12 @@ myApp.controller('menCtrl',function ($scope) {
         },
         $scope.replaceWatches=function (page) {
 
-            $scope.WatchesListMen = WatchesMen.slice(p*parseInt(page-1),parseInt(p*parseInt(page-1)+p));
+            $scope.WatchesListMenToView = WatchesMen.slice(p*parseInt(page-1),parseInt(p*parseInt(page-1)+p));
 
+           // alert($scope.WatchesListMen[0]._id);
             $(".active").removeClass('active');
             $("#li"+page).addClass('active');
-        },
+        }
 
 
         $scope.getWatchesByCat=function(){

@@ -62,9 +62,6 @@ myAppAdmin.controller('uploadCtrl', function($scope,$location) {
         $scope.itemToEdit=res[0];
         $scope.idWatch=res[0]._id;
 
-//alert($scope.idWatch);
-
-
 
     }
     $scope.findCompanyItem=function (id) {
@@ -77,5 +74,68 @@ myAppAdmin.controller('uploadCtrl', function($scope,$location) {
 
 
 
+    }
+
+
+
+    $scope.uploadImage=function () {
+        var id=$scope.itemToEdit._id;
+        var wId=$scope.itemToEdit.wId;
+        var nameFile = $("#imgU").val();
+        var image = nameFile.substring(nameFile.lastIndexOf('\\') + 1, nameFile.length);
+
+
+        if (window.XMLHttpRequest)
+            var xmlhttp = new XMLHttpRequest();
+        else
+            var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+        var document =
+            {
+                "id": id,
+                "image": image,
+
+            };
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                $("#btnSubmit").css('visibility','visible');
+
+
+            }
+        }
+        xmlhttp.open('POST', 'http://localhost:3000/updatetWatch');
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+        xmlhttp.send(JSON.stringify(document));
+    }
+    $scope.uploadImageC=function () {
+        var id=$scope.itemToEditC._id;
+
+        var nameFile = $("#imgUC").val();
+        var image = nameFile.substring(nameFile.lastIndexOf('\\') + 1, nameFile.length);
+
+
+        if (window.XMLHttpRequest)
+            var xmlhttp = new XMLHttpRequest();
+        else
+            var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+        var document =
+            {
+                "id": id,
+                "image": image,
+
+            };
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                $("#btnSubmitC").css('visibility','visible');
+
+
+            }
+        }
+        xmlhttp.open('POST', 'http://localhost:3000/updateCompany');
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+        xmlhttp.send(JSON.stringify(document));
     }
 });
