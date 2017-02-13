@@ -121,9 +121,8 @@ myAppAdmin.controller('companyCtrl',function ($scope,$location) {
             var document =
                 {
                     "name": $scope.name,
-                    "image": $scope.image,
-                    "percentCalc": $scope.percentCalc,
-                    "percentProfit": $scope.percentProfit,
+                    "percentCalc": JSON.stringify($scope.percentCalc),
+                    "percentProfit":JSON.stringify( $scope.percentProfit),
                     "details": $scope.details
                 };
 

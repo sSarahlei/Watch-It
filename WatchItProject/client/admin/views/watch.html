@@ -143,24 +143,25 @@
                             <label> קטגוריה:
                                 <select name ="category_options" value={{itemToEdit.category}} data-ng-model="selectedOptionCategory"  data-ng-options="x for x in category" ng-change="updateCategory(selectedOptionCategory)" required></select>
                                 <span class="error" ng-show="updateForm.category.$error.required" style="color:darkred">שדה חובה</span><br>
-                                <!--s-->
                             </label><br><br>
                             <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="updateForm.$invalid" value="אישור"/>
                             <input type="button"   class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
                             <script>
                                 $('[data-dismiss=modal]').on('click', function (e) {
-                                    console.log((e.target.nodeName.id));
                                     var $t = $(this),
                                         target = $t[0].href || $t.data("target") || $t.parents('.modal') || [];
-
-                                    $(target)
-                                        .find("input[type=text],input[type=number],textarea,select")
-                                        .val('')
-                                        .end()
-                                        .find("input[type=checkbox], input[type=radio]")
-                                        .prop("checked", "")
-                                        .end();
+                                    var modalId = (target[0]).id;
+                                    if (modalId != 'updateWatchModel') {
+                                        $(target)
+                                            .find("input[type=text],input[type=number],textarea,select")
+                                            .val('')
+                                            .end()
+                                            .find("input[type=checkbox], input[type=radio]")
+                                            .prop("checked", "")
+                                            .end();
+                                    }
                                 })
+
                             </script>
                         </form>
 

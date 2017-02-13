@@ -166,7 +166,6 @@ myAppAdmin.controller('watchController', function($scope,$location) {
                 case 'לא זמין': $scope.my_inStock='false';break;
 
             }
-            alert($scope.my_inStock);
             switch ($scope.selectedCategory)
             {
                 case 'גברים': $scope.my_category='1';break;
