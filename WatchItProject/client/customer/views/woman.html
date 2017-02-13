@@ -107,12 +107,15 @@
                         <a href=""><img src="images/arrow2.gif" alt="" class="v-middle"></a>
                     </div>
                 </div>
-                <ul class="women_pagenation dc_paginationA dc_paginationA06">
 
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#" class="previous">עמוד : </a></li>
-                </ul>
+
+                    <ul   ng-repeat="item in pages" class="women_pagenation dc_paginationA dc_paginationA06">
+
+
+                        <li id=li{{item}}><a ng-click="replaceWatches(item)">{{item}}</a></li>
+
+                    </ul>
+
                 <div class="clearfix"></div>
             </div>
             <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">

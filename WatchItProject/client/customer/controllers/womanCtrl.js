@@ -1,6 +1,9 @@
 /**
  * Created by Tzofia on 20/12/2016.
  */
+var p=9;
+var WatchesWomen=new Array();
+var len;
 myApp.controller('womanCtrl',function ($scope) {
     $scope.foundOne = true;
     $("#index_banner").removeClass('banner');
@@ -17,10 +20,24 @@ myApp.controller('womanCtrl',function ($scope) {
 
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            $scope.foundOne = true;
-            $scope.WatchesListWomen = JSON.parse(xmlhttp.responseText);
+
+            WatchesWomen = JSON.parse(xmlhttp.responseText);
             $scope.getCompanies();
+            $scope.foundOne = true;
+            len=parseInt((WatchesWomen.length)/p);
+            if(parseInt((WatchesWomen.length)% p)!=0)
+                len+=1;
+            //alert(len);
+            console.log(WatchesWomen.length);
+            var pages=new Array(len);
+            for(i=0;i<len;i++) {
+                pages[i] = i + 1;
+            }
+            $scope.pages=pages;
+
+            $scope.WatchesListWomen = WatchesWomen.slice(0,p);
             $scope.WatchesListWomanToView = $scope.WatchesListWomen;
+
             $scope.$apply();
 
 
@@ -71,10 +88,10 @@ myApp.controller('womanCtrl',function ($scope) {
         $scope.getWatchesByPrice=function(minPrice, maxPrice){
             $scope.foundOne = false;
             var viewWatches= {};
-            var counter =0;
+            var counter = 0;
             for(var key in $scope.WatchesListWomen){
                 if ($scope.WatchesListWomen.hasOwnProperty(key)) {
-                    if ((minPrice == 2000 && parseInt($scope.WatchesListMen[key].endPrice) >= 2000) ||parseInt($scope.WatchesListMen[key].endPrice) >= minPrice && parseInt($scope.WatchesListMen[key].endPrice) <= maxPrice){
+                    if ((minPrice == 2000 && parseInt($scope.WatchesListMen[key].endPrice) >= 2000) || parseInt($scope.WatchesListMen[key].endPrice) >= minPrice && parseInt($scope.WatchesListMen[key].endPrice) <= maxPrice){
                         viewWatches[counter]=$scope.WatchesListWomen[key];
                         counter++;
                         $scope.foundOne = true;
@@ -106,5 +123,13 @@ myApp.controller('womanCtrl',function ($scope) {
         $scope.$watch('WatchesListWomanToView', function (){
             //$scope.$apply();
         });
+    $scope.replaceWatches=function (page) {
+
+        $scope.WatchesListWomanToView = WatchesWomen.slice(p*parseInt(page-1),parseInt(p*parseInt(page-1)+p));
+
+
+        $(".active").removeClass('active');
+        $("#li"+page).addClass('active');
+    }
 
 });
