@@ -2,14 +2,13 @@
  * Created by Tzofia on 15/01/2017.
  */
 myAppAdmin.controller('uploadCtrl', function($scope,$location) {
-    // alert(auth2.isSignedIn.get());
-    function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
-    /* jQuery < 1.7 */
-    $(document).bind("keydown", disableF5);
-    /* OR jQuery >= 1.7 */
-    $(document).on("keydown", disableF5);
-    if(auth2.isSignedIn.get()==false){
-        $location.path('/');
+    var i=localStorage.getItem('loaded_3');
+
+    if(i==0|| i==1) {
+        if (auth2.isSignedIn.get() == false) {
+            $location.path('/');
+            localStorage.setItem('loaded_3',0);
+        }
     }
     $scope.message = 'ניהול תמונות';
     if (window.XMLHttpRequest)

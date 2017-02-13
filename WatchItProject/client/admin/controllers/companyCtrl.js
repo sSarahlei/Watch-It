@@ -2,14 +2,13 @@
  * Created by Tzofia on 15/01/2017.
  */
 myAppAdmin.controller('companyCtrl',function ($scope,$location) {
-    function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
-    /* jQuery < 1.7 */
-    $(document).bind("keydown", disableF5);
-    /* OR jQuery >= 1.7 */
-    $(document).on("keydown", disableF5);
+    var i=localStorage.getItem('loaded');
 
-    if(auth2.isSignedIn.get()==false){
-        $location.path('/');
+    if(i==0|| i==1) {
+        if (auth2.isSignedIn.get() == false) {
+            $location.path('/');
+            localStorage.setItem('loaded',0);
+        }
     }
     $scope.message = 'חברה';
     var time=true;
@@ -29,9 +28,6 @@ myAppAdmin.controller('companyCtrl',function ($scope,$location) {
         }
 
     }
-    //add now
-
-
 //tzofia
     $scope.deleteCompany=function(id) {
         var res=$scope.companyList.filter(function (item,index,nums) {
@@ -43,14 +39,13 @@ myAppAdmin.controller('companyCtrl',function ($scope,$location) {
                 var xmlhttp = new XMLHttpRequest();
             else
                 var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            console.log(id);
+            // console.log(id);
             xmlhttp.open("GET","http://localhost:3000/deleteCompany/"+id, true);
 
             xmlhttp.send();
 
             xmlhttp.onreadystatechange = function(){
                 if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                    //alert(xmlhttp.responseText);
                     $scope.companyList=JSON.parse(xmlhttp.responseText);
                     $scope.$apply();
                 }
@@ -144,31 +139,21 @@ myAppAdmin.controller('companyCtrl',function ($scope,$location) {
 
     }
 
-    // $scope.detailsToUpdate=function () {
-    //
-    //     var textD= $(this).text();
-    //     $(this).text('');
-    //     var textBox=$("<input type='text'/>").text(textD).val(textD);
-    //     $(this).append(textBox);
-    //
-    //
-    //
-    //
-    // }
-$scope.findItem=function (id) {
-    var res=$scope.companyList.filter(function (item,index,nums) {
-        return item._id==id;
-    })
 
-    $scope.itemToEdit=res[0];
-    $scope.image=res[0].image;
-    console.log(res[0].percentCalc);
-    $scope.percentCalc=res[0].percentCalc;
+    $scope.findItem=function (id) {
+        var res=$scope.companyList.filter(function (item,index,nums) {
+            return item._id==id;
+        })
 
-    $scope.percentProfit=res[0].percentProfit;
-    $scope.details=res[0].details;
+        $scope.itemToEdit=res[0];
+        $scope.image=res[0].image;
+        console.log(res[0].percentCalc);
+        $scope.percentCalc=res[0].percentCalc;
+
+        $scope.percentProfit=res[0].percentProfit;
+        $scope.details=res[0].details;
 
 
-}
+    }
 
 });

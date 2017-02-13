@@ -137,6 +137,15 @@
             font-size: large;
         }
     </style>
+    <script>
+        $(function(){
+            var loaded_3 = parseInt(localStorage.getItem('loaded_3'), 10),
+                loaded_numb = loaded_3?loaded_3+1:1;
+            localStorage.setItem('loaded_3', loaded_numb);
+
+            $('#load').val(loaded_numb);
+        });
+    </script>
 
 
 

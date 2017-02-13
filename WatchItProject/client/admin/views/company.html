@@ -1,3 +1,4 @@
+
 <div class="container">
     <h2 align="right">ניהול חברות</h2>
     <table class="table table-hover" >
@@ -119,7 +120,7 @@
 
                     </div>
                 </div>
-            </div>
+            <!--<div id="test"></div>-->
         </div>
 
             <style>
@@ -132,6 +133,16 @@
                     font-size: large;
                 }
             </style>
+            <input type="hidden" id="load"></input>
+    <script>
+        $(function(){
+            var loaded = parseInt(localStorage.getItem('loaded'), 10),
+                loaded_numb = loaded?loaded+1:1;
+            localStorage.setItem('loaded', loaded_numb);
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            $('#load').val(loaded_numb);
+        });
+    </script>
+
+        </div>
 </div>

@@ -1,4 +1,8 @@
-
+<style>
+    html,body{
+        cursor:pointer;
+    }
+</style>
 <html ng-app="myAppAdmin">
 
 <head>
@@ -48,7 +52,7 @@
 </head>
 
 <!-- define angular controller -->
-<body >
+<body  >
 
 
 <nav class="navbar navbar-default">
@@ -75,6 +79,10 @@
 
 
     function onSignIn(googleUser) {
+        localStorage.setItem('loaded',2);
+        localStorage.setItem('loaded_1',2);
+        localStorage.setItem('loaded_2',2);
+        localStorage.setItem('loaded_3',2);
 
         var profile = googleUser.getBasicProfile();
         if(  profile.getEmail()!="shaonbacatalog@gmail.com")
@@ -213,6 +221,10 @@
 <a  id="signout" href="" style="margin-left: 10px;font-size: medium;" onclick="signOut();">Sign out</a>
 <script>
     function signOut() {
+        localStorage.setItem('loaded',0);
+        localStorage.setItem('loaded_1',0);
+        localStorage.setItem('loaded_2',0);
+        localStorage.setItem('loaded_3',0);
         if(googleUser.getBasicProfile().getEmail()=="shaonbacatalog@gmail.com"){
             if(confirm("האם את\ה רוצה שהנתונים שלך ישמרו במערכת?")!=true)
             {

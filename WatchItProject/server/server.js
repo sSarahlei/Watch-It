@@ -112,7 +112,6 @@ app.get('/deleteCompany/:id', function (req, res) {
     var arrComp;
     arr.toArray(function(err, items) { //foreach
         arrComp=JSON.stringify(items);
-        //console.log(items);
         res.send(arrComp);
 
     });
@@ -124,7 +123,6 @@ app.post('/insertCompany', function (req, res,next) {
     var document=req.body;
     console.log(document);
     var arr=db.insertCompany(document);
-    console.log("arr"+arr);
     var arrComp;
     arr.toArray(function(err, items) { //foreach
         arrComp=JSON.stringify(items);
@@ -163,11 +161,9 @@ app.post('/insertWatch', function (req, res,next) {
     var document=req.body;
     console.log(document);
     var arr=db.insertWatch(document);
-    console.log("arr"+arr);
     var arrComp;
     arr.toArray(function(err, items) { //foreach
         arrComp=JSON.stringify(items);
-        //console.log(items);
         res.send(arrComp);
 
     });
@@ -193,39 +189,7 @@ app.post('/insertOrder', function (req, res,next) {
 
 });
 
-//adina
-app.post('/insertUser', function (req, res, next) {
-    alert("serving insertUser");
-    console.log("serving insertUser");
-    var document=req.body;
-    console.log(req);
-    var arr=db.insertUser(document);
-    console.log("arr"+arr);
-    var arrComp;
-    arr.toArray(function(err, items) { //foreach
-        arrComp=JSON.stringify(items);
-        //console.log(items);
-        res.send(arrComp);
 
-    });
-
-
-});
-app.get('/deleteUser/:id', function (req, res) {
-
-    console.log("serving deleteUser");
-    console.log(req.params.id);
-    var arr=db.deleteUser(req.params.id);
-
-    var arrUser;
-    arr.toArray(function(err, items) { //foreach
-        arrUser=JSON.stringify(items);
-        //console.log(items);
-        res.send(arrUser);
-
-    });
-
-});
 
 
 

@@ -2,14 +2,13 @@
  * Created by Tzofia on 15/01/2017.
  */
 myAppAdmin.controller('ordersController', function($scope,$location) {
-    function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
-    /* jQuery < 1.7 */
-    $(document).bind("keydown", disableF5);
-    /* OR jQuery >= 1.7 */
-    $(document).on("keydown", disableF5);
-    // alert(auth2.isSignedIn.get());
-    if(auth2.isSignedIn.get()==false){
-        $location.path('/');
+    var i=localStorage.getItem('loaded_1');
+
+    if(i==0|| i==1) {
+        if (auth2.isSignedIn.get() == false) {
+            $location.path('/');
+            localStorage.setItem('loaded_1',0);
+        }
     }
     // var arrList;
     // $scope.showBtn=false;

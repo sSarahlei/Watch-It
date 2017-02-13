@@ -3,15 +3,13 @@ var start;
 
 
 myAppAdmin.controller('watchController', function($scope,$location) {
-    function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
-    /* jQuery < 1.7 */
-    $(document).bind("keydown", disableF5);
-    /* OR jQuery >= 1.7 */
-    $(document).on("keydown", disableF5);
+    var i=localStorage.getItem('loaded_2');
 
-    if(auth2.isSignedIn.get()==false){
-        $location.path('/');
-
+    if(i==0|| i==1) {
+        if (auth2.isSignedIn.get() == false) {
+            $location.path('/');
+            localStorage.setItem('loaded_2',0);
+        }
     }
 
     function companies_name(arr) {
@@ -166,6 +164,7 @@ myAppAdmin.controller('watchController', function($scope,$location) {
                 case 'לא זמין': $scope.my_inStock='false';break;
 
             }
+            alert($scope.my_inStock);
             switch ($scope.selectedCategory)
             {
                 case 'גברים': $scope.my_category='1';break;

@@ -9,6 +9,15 @@
         <a href="https://www.sandbox.paypal.com/webscr" class="btn btn-info pay-pal" style="float:right;font-size:large" target="_top">pay -pal<span>התחבר ל </span></a>
 
     </div>
+    <script>
+        $(function(){
+            var loaded_1 = parseInt(localStorage.getItem('loaded_1'), 10),
+                loaded_numb = loaded_1?loaded_1+1:1;
+            localStorage.setItem('loaded_1', loaded_numb);
+
+            $('#load').val(loaded_numb);
+        });
+    </script>
         <!-- Modal -->
 
 
