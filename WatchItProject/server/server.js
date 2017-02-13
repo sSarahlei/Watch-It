@@ -48,7 +48,7 @@ app.post("/api/Upload" ,function (req, res) {
 
             return res.end("Something went wrong!");
         }
-        return res.redirect("/");
+        return res.end("התמונות הועלו בהצלחה!");
 
 
     });
@@ -60,7 +60,7 @@ app.post("/api/UploadC/", function (req, res) {
 
             return res.end("Something went wrong!");
         }
-        return res.redirect("/");
+        return res.end("התמונות הועלו בהצלחה!");
 
 
     });
