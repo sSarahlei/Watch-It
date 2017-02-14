@@ -5,9 +5,40 @@
 
     <div class="container">
         <!-- Trigger the modal with a button -->
-        <a  href="mailto:shaonbacatalog@gmail.com"  class="btn btn-info mailto"  style="float:right;font-size:large" target="_top"> שליחת ההזמנה לספק<span class="glyphicon glyphicon-envelope"></span></a><br><br><br>
+        <a  data-toggle="modal" data-target="#myModal"  class="btn btn-info mailto"  style="float:right;font-size:large" target="_top"> שליחת ההזמנה לספק<span class="glyphicon glyphicon-envelope"></span></a><br><br><br>
         <a href="https://www.sandbox.paypal.com/webscr" class="btn btn-info pay-pal" style="float:right;font-size:large" target="_top">pay -pal<span>התחבר ל </span></a>
+        <div class="modal fade" id="myModal">
+            <div class="modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">הוסף שעון:</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form name="myForm"  class="form-horizontal" novalidate ng-submit="sendEmail(myForm)">
+                            <input type="email" placeholder="מען" ng-model="to" required><br><br>
+                            <input type="text" placeholder="נושא" ng-model="sub"><br><br>
+                            <textarea placeholder="תוכן ההודעה" ng-model="body"></textarea><br><br>
+                            <input type="submit"   class="btn btn-default" name="submit"  ng-disabled="myForm.$invalid" value="אישור"/><br><br>
+                            <input type="button"   id="insertModal" class="btn btn-default" value="סגור" data-dismiss="modal"/><br><br>
+                        </form>
 
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <style>
+            #myModal {
+                direction: rtl;
+                font-size: large;
+            }
+
+
+            #updateWatchModel {
+                direction: rtl;
+                font-size: large;
+            }
+        </style>
     </div>
     <script>
         $(function(){

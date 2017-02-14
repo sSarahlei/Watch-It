@@ -16,6 +16,8 @@ var dirJs=path.join(__dirname, '../public');
 app.use(express.static(dirJs));
 //app.use(express.static(dirCustomer));
 app.use(bodyParser.urlencoded({extended: true}));
+//email
+var nodemailer = require("nodemailer");
 
 
 //console.log(db.dbw);
@@ -25,6 +27,39 @@ var fileName;
 
 app.listen(3000, function () {
     console.log("server running at port 3000!");
+
+});
+
+//
+app.post('/sendEmail', function (req, res) {
+    console.log("serving Email");
+    var document=req.body;
+// Use Smtp Protocol to send Email
+
+    var  transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: "shaonbacatalog@gmail.com",
+            pass: "2017@watches"
+        }
+    });
+    var mailOptions = {
+        from: 'Administrator <shaonbacatalog@gmail.com>', // sender address
+        to: document.to, // list of receivers
+        subject: document.sub, // Subject line
+        text: document.body, // plain text body
+        // html: '<b>document.body</b>' // html body
+    };
+
+    transporter.sendMail(mailOptions, function(error, info)  {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+});
+    res.send("ההודעה נשלחה בהצלחה!");
+
+
 
 });
 
