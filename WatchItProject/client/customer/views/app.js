@@ -24,19 +24,7 @@ myApp.config(function($routeProvider) {
             templateUrl : 'contact.html',
             controller:'contactCtrl'
         })
-        .when('/whatsNew', {
-            templateUrl : 'whatsNew.html',
-            controller:'newCtrl'
-        })
-		.when('/brands', {
-            templateUrl : 'brands.html',
-            controller:'brandsCtrl'
-        })
 
-		.when('/loginClient', {
-            templateUrl : 'loginClient.html',
-            controller:'loginClientCtrl'
-        })
 		.when('/single/:id', {
             templateUrl : 'single.html',
             controller:'singleCtrl'
@@ -44,14 +32,6 @@ myApp.config(function($routeProvider) {
         .when('/order', {
             templateUrl : 'order.html',
             controller:'orderCtrl'
-        })
-		.when('/checkout/:id', {
-            templateUrl : 'checkout.html',
-            controller:'checkoutCtrl'
-        })
-        .when('/cart/:id', {
-            templateUrl : 'cart.html',
-            controller:'cartCtrl'
         })
         .when('/comparison/:id', {
             templateUrl : 'comparison.html',

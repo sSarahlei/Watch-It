@@ -32,6 +32,11 @@ myAppAdmin.config(function($routeProvider) {
             controller  : 'watchController'
 
         })
+        .otherwise({
+        templateUrl : 'menu.html',
+            controller  : 'mainController'
+
+    });
 
 
 

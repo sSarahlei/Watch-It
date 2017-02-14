@@ -3,7 +3,6 @@
  */
 myAppAdmin.controller('uploadCtrl', function($scope,$location) {
     var i=localStorage.getItem('loaded_3');
-
     if(i==0|| i==1) {
         if (auth2.isSignedIn.get() == false) {
             $location.path('/');
